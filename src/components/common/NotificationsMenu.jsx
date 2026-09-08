@@ -5,7 +5,7 @@ import { NOTIFICATIONS } from '@/data/notifications';
 import { useDismiss } from '@/hooks/useDismiss';
 import { cn } from '@/utils/cn';
 
-/** Pemetaan jenis notifikasi ke ikon & warna latar ikon. */
+/** Mapping of notification types to icons & icon background colors. */
 const metaByType = {
   campaign: { icon: Megaphone, iconClass: 'bg-cyan-100 text-cyan-700' },
   metric: { icon: TrendingUp, iconClass: 'bg-emerald-100 text-emerald-700' },
@@ -14,9 +14,9 @@ const metaByType = {
 };
 
 /**
- * Menu lonceng notifikasi di Navbar.
- * Data bersumber dari mock (src/data/notifications.js); aksi baca/tandai-dibaca
- * hanya simulasi state lokal.
+ * Notification bell menu in the Navbar.
+ * Data comes from mock (src/data/notifications.js); read/mark-as-read actions
+ * only simulate local state.
  */
 export const NotificationsMenu = () => {
   const [open, setOpen] = useState(false);
@@ -38,7 +38,7 @@ export const NotificationsMenu = () => {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        aria-label={`Notifikasi (${unreadCount} belum dibaca)`}
+        aria-label={`Notifications (${unreadCount} unread)`}
         aria-haspopup="true"
         aria-expanded={open}
         className="relative flex h-11 w-11 items-center justify-center rounded-lg text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
@@ -54,11 +54,11 @@ export const NotificationsMenu = () => {
       {open && (
         <div
           role="region"
-          aria-label="Daftar notifikasi"
+          aria-label="Notification list"
           className="animate-fade-in absolute right-0 z-50 mt-2 w-72 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-xl shadow-slate-900/10 sm:w-80"
         >
           <div className="flex items-center justify-between gap-3 border-b border-slate-100 px-4 py-3">
-            <h2 className="text-sm font-semibold text-slate-900">Notifikasi</h2>
+            <h2 className="text-sm font-semibold text-slate-900">Notifications</h2>
             <button
               type="button"
               onClick={markAllRead}
@@ -66,7 +66,7 @@ export const NotificationsMenu = () => {
               className="inline-flex items-center gap-1 text-xs font-medium text-cyan-700 transition-colors hover:text-cyan-800 disabled:cursor-not-allowed disabled:opacity-50"
             >
               <CheckCheck className="h-3.5 w-3.5" aria-hidden="true" />
-              Tandai dibaca
+              Mark all as read
             </button>
           </div>
 
@@ -117,7 +117,7 @@ export const NotificationsMenu = () => {
               })}
             </ul>
           ) : (
-            <p className="px-4 py-8 text-center text-sm text-slate-500">Belum ada notifikasi.</p>
+            <p className="px-4 py-8 text-center text-sm text-slate-500">No notifications yet.</p>
           )}
         </div>
       )}

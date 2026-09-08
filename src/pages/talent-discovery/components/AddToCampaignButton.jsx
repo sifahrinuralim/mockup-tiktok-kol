@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
 
 /**
- * Tombol aksi "Add to Campaign" (toggle mock).
- * State kepemilikan dipegang pemanggil; tombol hanya menampilkan kondisi.
- * Memiliki tinggi minimum 44px agar nyaman untuk touch target mobile.
+ * "Add to Campaign" action button (mock toggle).
+ * Ownership state lives in the caller; the button only reflects the state.
+ * Has a minimum 44px height for a comfortable mobile touch target.
  *
- * @param {boolean} isInCampaign Apakah kreator sudah masuk daftar campaign.
- * @param {() => void} onClick Callback saat tombol diklik.
+ * @param {boolean} isInCampaign Whether the creator is already on the campaign list.
+ * @param {() => void} onClick Callback fired when the button is clicked.
  */
 export const AddToCampaignButton = ({ isInCampaign, onClick, size = 'md', className }) => {
   if (isInCampaign) {
@@ -20,7 +20,7 @@ export const AddToCampaignButton = ({ isInCampaign, onClick, size = 'md', classN
         size={size}
         onClick={onClick}
         aria-pressed="true"
-        title="Klik untuk membatalkan penambahan"
+        title="Click to remove from the campaign"
         className={cn('min-h-11', className)}
       >
         <Check className="h-4 w-4 shrink-0" aria-hidden="true" />
@@ -36,7 +36,7 @@ export const AddToCampaignButton = ({ isInCampaign, onClick, size = 'md', classN
       size={size}
       onClick={onClick}
       aria-pressed="false"
-      title="Tambahkan kreator ke daftar campaign"
+      title="Add creator to the campaign list"
       className={cn('min-h-11', className)}
     >
       <Plus className="h-4 w-4 shrink-0" aria-hidden="true" />

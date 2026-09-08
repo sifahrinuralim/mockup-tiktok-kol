@@ -4,7 +4,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 import { cn } from '@/utils/cn';
 import { formatCompactNumber } from '@/utils/metrics';
 
-/** Menyusun kartu KPI dari data satu periode terpilih. */
+/** Assembles the KPI cards from one selected period's data. */
 const buildKpis = (data) => [
   {
     key: 'views',
@@ -17,7 +17,7 @@ const buildKpis = (data) => [
   },
   {
     key: 'engagement',
-    label: 'Rata-rata Engagement',
+    label: 'Average Engagement',
     value: `${data.averageEngagement}%`,
     delta: data.changes.engagement,
     deltaSuffix: ' pt',
@@ -26,7 +26,7 @@ const buildKpis = (data) => [
   },
   {
     key: 'followers',
-    label: 'Followers Baru',
+    label: 'New Followers',
     value: formatCompactNumber(data.followersGained, 1),
     delta: data.changes.followers,
     deltaSuffix: '%',
@@ -36,7 +36,7 @@ const buildKpis = (data) => [
   {
     key: 'watch',
     label: 'Total Watch Time',
-    value: `${formatCompactNumber(data.watchHours, 0)} jam`,
+    value: `${formatCompactNumber(data.watchHours, 0)} hours`,
     delta: data.changes.watch,
     deltaSuffix: '%',
     icon: Clock3,
@@ -44,26 +44,26 @@ const buildKpis = (data) => [
   },
 ];
 
-/** Badge perubahan vs periode sebelumnya (ikon + persen). */
+/** Change badge vs the previous period (icon + percent). */
 const DeltaBadge = ({ value, suffix }) => (
   <span className="inline-flex items-center gap-1 text-xs font-semibold text-emerald-600">
     <TrendingUp className="h-3.5 w-3.5" aria-hidden="true" />
     +{value.toFixed(1)}
     {suffix}
-    <span className="font-normal text-slate-400">vs periode lalu</span>
+    <span className="font-normal text-slate-400">vs previous period</span>
   </span>
 );
 
 /**
- * Grid empat KPI utama Analytics. Seluruh nilai diformat dari data mock
- * periode aktif sehingga sinkron dengan grafik tren.
+ * Grid of the four main Analytics KPIs. All values are formatted from the
+ * active period's mock data so they stay in sync with the trend chart.
  */
 export const KpiCards = ({ data }) => {
   const kpis = buildKpis(data);
 
   return (
     <section
-      aria-label="Ringkasan KPI analytics"
+      aria-label="Analytics KPI summary"
       className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
     >
       {kpis.map(({ key, label, value, delta, deltaSuffix, icon: Icon, iconClass }) => (

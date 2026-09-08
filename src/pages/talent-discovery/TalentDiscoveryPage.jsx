@@ -17,10 +17,10 @@ import { TalentTable } from './components/TalentTable';
 import { useCampaignSelection } from './useCampaignSelection';
 import { useTalentDirectory } from './useTalentDirectory';
 
-/** Skeleton daftar hasil yang ditampilkan selama simulasi loading berjalan. */
+/** Results skeleton shown while the simulated loading runs. */
 const ResultsSkeleton = () => (
   <div
-    aria-label="Memuat kreator..."
+    aria-label="Loading creators..."
     className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4"
   >
     {Array.from({ length: 6 }, (_, index) => (
@@ -47,11 +47,11 @@ const ResultsSkeleton = () => (
 );
 
 /**
- * Halaman Utama — Talent Discovery Dashboard.
- * Menampilkan ringkasan statistik, pencarian/filter kreator, dan hasil
- * dalam mode grid maupun tabel (responsif). Seluruh data dari mock.
- * Seleksi "Add to Campaign" diangkat ke halaman agar Floating Selection Bar
- * bisa menjumlahkan kreator terpilih lintas kartu/filter.
+ * Main page — Talent Discovery Dashboard.
+ * Shows a stats summary, creator search/filter, and results in both grid and
+ * table modes (responsive). All data is mocked.
+ * The "Add to Campaign" selection is lifted to the page so the Floating
+ * Selection Bar can tally selected creators across cards/filters.
  */
 export default function TalentDiscoveryPage() {
   const [actionModal, setActionModal] = useState(null);
@@ -80,27 +80,27 @@ export default function TalentDiscoveryPage() {
     <div className="space-y-6">
       <PageHeader
         title="Top Talent Discovery"
-        description="Temukan, bandingkan, dan pilih kreator TikTok unggulan untuk kampanye Anda berikutnya."
+        description="Discover, compare, and pick top TikTok creators for your next campaign."
       />
 
       <DiscoveryStats />
 
-      <section aria-labelledby="heading-jelajahi-kreator" className="space-y-4">
+      <section aria-labelledby="heading-explore-creators" className="space-y-4">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 id="heading-jelajahi-kreator" className="text-lg font-semibold text-slate-900">
-              Jelajahi Kreator
+            <h2 id="heading-explore-creators" className="text-lg font-semibold text-slate-900">
+              Explore Creators
             </h2>
             <p className="mt-0.5 text-sm text-slate-600">
-              Filter berdasarkan kategori, urutkan metrik, dan ganti mode tampilan.
+              Filter by category, sort by metric, and switch the view mode.
             </p>
           </div>
           {isLoading ? (
-            <p className="text-sm text-slate-600">Memuat hasil…</p>
+            <p className="text-sm text-slate-600">Loading results…</p>
           ) : (
             <p aria-live="polite" className="text-sm text-slate-600">
-              Menampilkan <span className="font-semibold text-slate-900">{results.length}</span> dari{' '}
-              {totalCount} kreator
+              Showing <span className="font-semibold text-slate-900">{results.length}</span> of{' '}
+              {totalCount} creators
             </p>
           )}
         </div>
@@ -124,8 +124,8 @@ export default function TalentDiscoveryPage() {
           <Card>
             <EmptyState
               icon={SearchX}
-              title="Kreator tidak ditemukan"
-              description="Tidak ada kreator yang cocok dengan kata kunci atau filter yang Anda pilih. Coba ubah pencarian atau reset filter."
+              title="No creators found"
+              description="No creators match your keyword or the selected filters. Try another search or reset the filters."
               action={
                 <Button variant="outline" size="sm" onClick={resetFilters}>
                   <RotateCcw className="h-4 w-4" aria-hidden="true" />
@@ -146,7 +146,7 @@ export default function TalentDiscoveryPage() {
         )}
       </section>
 
-      {/* Floating bar shortlist & popup dummy aksinya */}
+      {/* Floating shortlist bar & mock action popup */}
       <CampaignSelectionBar
         selectedCount={selectedCount}
         onClear={clearSelection}

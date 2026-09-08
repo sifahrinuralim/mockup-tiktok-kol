@@ -8,7 +8,7 @@ import {
 } from '@/constants/discovery';
 import { parseCompactNumber } from '@/utils/metrics';
 
-/** Cek apakah query cocok dengan nama atau @username kreator. */
+/** Checks whether the query matches a creator's name or @username. */
 const matchesQuery = (talent, query) => {
   const normalizedQuery = query.trim().toLowerCase();
   if (!normalizedQuery) return true;
@@ -19,7 +19,7 @@ const matchesQuery = (talent, query) => {
   );
 };
 
-/** Filter daftar talent berdasarkan query teks dan kategori terpilih. */
+/** Filters the talent list by text query and the selected category. */
 const applyFilters = (talents, query, category) =>
   talents.filter((talent) => {
     const matchesCategory = category === DISCOVERY_CATEGORY_ALL || talent.category === category;
@@ -27,8 +27,8 @@ const applyFilters = (talents, query, category) =>
   });
 
 /**
- * Sortir salinan daftar talent berdasarkan nilai metrik (parsing angka ringkas).
- * Bila nilainya sama, urut abjad nama sebagai tie-breaker agar stabil.
+ * Sorts a copy of the talent list by a metric value (parsing compact numbers).
+ * When values are equal, names are compared alphabetically as a stable tie-breaker.
  */
 const sortTalents = (talents, sortKey, direction) => {
   const multiplier = direction === 'asc' ? 1 : -1;
@@ -43,9 +43,9 @@ const sortTalents = (talents, sortKey, direction) => {
 };
 
 /**
- * State & logika direktori talent di halaman utama:
- * search by name/@username, filter kategori, sortir (dropdown & klik header),
- * mode tampilan grid/table, dan simulasi loading awal.
+ * Talent directory state & logic for the main page:
+ * search by name/@username, category filter, sorting (dropdown & header click),
+ * grid/table view mode, and an initial simulated loading state.
  */
 export const useTalentDirectory = (talents) => {
   const [query, setQuery] = useState('');
@@ -55,7 +55,7 @@ export const useTalentDirectory = (talents) => {
   const [viewMode, setViewMode] = useState('grid');
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulasi request awal agar skeleton state sempat terlihat seperti aplikasi nyata.
+  // Simulate the initial request so the skeleton state is visible like a real app.
   useEffect(() => {
     const timer = window.setTimeout(() => setIsLoading(false), SIMULATED_LOAD_DELAY_MS);
     return () => window.clearTimeout(timer);
@@ -69,13 +69,13 @@ export const useTalentDirectory = (talents) => {
   const activeFilterCount =
     (query.trim() ? 1 : 0) + (category !== DISCOVERY_CATEGORY_ALL ? 1 : 0);
 
-  /** Ubah metrik sortir dari dropdown (selalu urut menurun terlebih dahulu). */
+  /** Changes the sort metric from the dropdown (always starts descending). */
   const handleSortChange = (key) => {
     setSortKey(key);
     setSortDirection(DISCOVERY_DEFAULT_SORT_DIRECTION);
   };
 
-  /** Sortir dari klik header tabel: pilih kolom baru atau balik arah urut. */
+  /** Sorts from a table header click: picks a new column or toggles the order. */
   const handleSortHeader = (key) => {
     if (key === sortKey) {
       setSortDirection((current) => (current === 'asc' ? 'desc' : 'asc'));
@@ -86,7 +86,7 @@ export const useTalentDirectory = (talents) => {
     setSortDirection(DISCOVERY_DEFAULT_SORT_DIRECTION);
   };
 
-  /** Bersihkan kata kunci & kategori (sortir dan mode tampilan dipertahankan). */
+  /** Clears the keyword & category (sorting and view mode are kept). */
   const resetFilters = () => {
     setQuery('');
     setCategory(DISCOVERY_CATEGORY_ALL);

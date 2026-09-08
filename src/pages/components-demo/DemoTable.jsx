@@ -4,27 +4,27 @@ import { Badge } from '@/components/ui/Badge';
 import { Table, TBody, Td, Th, THead, Tr } from '@/components/ui/Table';
 
 const STATUS_STYLES = {
-  Aktif: 'success',
+  Active: 'success',
   Pending: 'warning',
-  Lulus: 'primary',
-  Keluar: 'secondary',
+  Graduated: 'primary',
+  Left: 'secondary',
 };
 
 const ROWS = [
-  { nama: 'Budi Santoso', nis: '2025001', status: 'Aktif' },
+  { nama: 'Budi Santoso', nis: '2025001', status: 'Active' },
   { nama: 'Siti Rahmawati', nis: '2025002', status: 'Pending' },
-  { nama: 'Andi Wijaya', nis: '2025003', status: 'Lulus' },
-  { nama: 'Dewi Lestari', nis: '2025004', status: 'Keluar' },
+  { nama: 'Andi Wijaya', nis: '2025003', status: 'Graduated' },
+  { nama: 'Dewi Lestari', nis: '2025004', status: 'Left' },
 ];
 
 export const DemoTable = () => (
   <Table>
     <THead>
       <Tr>
-        <Th>Nama</Th>
-        <Th>Nomor Induk</Th>
+        <Th>Name</Th>
+        <Th>Student Number</Th>
         <Th>Status</Th>
-        <Th className="text-right">Aksi</Th>
+        <Th className="text-right">Actions</Th>
       </Tr>
     </THead>
     <TBody>
@@ -47,7 +47,7 @@ export const DemoTable = () => (
               <button
                 type="button"
                 className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600"
-                aria-label={`Hapus ${row.nama}`}
+                aria-label={`Delete ${row.nama}`}
               >
                 <Trash2 className="h-4 w-4" />
               </button>

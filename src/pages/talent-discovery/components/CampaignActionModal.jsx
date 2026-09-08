@@ -10,31 +10,31 @@ import { CategoryChip } from '@/components/common/CategoryChip';
 
 const VERIFIED_BADGE = 'Verified';
 
-/** Teks & ikon per mode aksi shortlist (export vs create). */
+/** Text & icon per shortlist action mode (export vs create). */
 const ACTION_META = {
   export: {
     icon: FileDown,
     title: 'Export Shortlist',
-    description: 'Simulasikan ekspor shortlist kreator terpilih menjadi berkas CSV.',
-    note: 'Kolom yang diekspor: nama, username, kategori, followers, dan engagement rate.',
+    description: 'Simulates exporting the selected creator shortlist as a CSV file.',
+    note: 'Exported columns: name, username, category, followers, and engagement rate.',
     confirmLabel: 'Export CSV',
-    loadingLabel: 'Mengekspor…',
-    successTitle: 'Shortlist berhasil diekspor',
-    successDescription: 'Berkas CSV (mock) siap diunduh pada alur sungguhan.',
+    loadingLabel: 'Exporting…',
+    successTitle: 'Shortlist exported successfully',
+    successDescription: 'A (mock) CSV file would be ready to download in a real flow.',
   },
   create: {
     icon: ClipboardList,
-    title: 'Buat Kampanye Baru',
-    description: 'Tinjau kreator terpilih sebelum draft kampanye dibuat (mock).',
-    note: 'Kreator di bawah akan dilampirkan sebagai shortlist awal kampanye.',
-    confirmLabel: 'Buat Kampanye',
-    loadingLabel: 'Membuat kampanye…',
-    successTitle: 'Kampanye berhasil dibuat',
-    successDescription: 'Draft kampanye (mock) beserta shortlist kreator telah dibuat.',
+    title: 'Create New Campaign',
+    description: 'Review the selected creators before the campaign draft is created (mock).',
+    note: 'The creators below will be attached as the campaign initial shortlist.',
+    confirmLabel: 'Create Campaign',
+    loadingLabel: 'Creating campaign…',
+    successTitle: 'Campaign created successfully',
+    successDescription: 'A (mock) campaign draft along with the creator shortlist has been created.',
   },
 };
 
-/** Menghitung ringkasan agregat shortlist dari metrik masing-masing kreator. */
+/** Computes the aggregate shortlist summary from each creator's metrics. */
 const buildSummary = (talents) => {
   const totalFollowers = talents.reduce(
     (sum, talent) => sum + parseCompactNumber(talent.followers),
@@ -53,12 +53,12 @@ const buildSummary = (talents) => {
   };
 };
 
-/** Baris kreator pada daftar shortlist di dalam dialog. */
+/** Creator row in the shortlist list inside the dialog. */
 const TalentRow = ({ talent }) => (
   <li className="flex items-center gap-3 px-4 py-3">
     <img
       src={talent.avatarUrl}
-      alt={`Foto ${talent.name}`}
+      alt={`Photo of ${talent.name}`}
       loading="lazy"
       className="h-10 w-10 shrink-0 rounded-lg object-cover ring-1 ring-slate-200"
     />
@@ -68,7 +68,7 @@ const TalentRow = ({ talent }) => (
         {talent.badges.includes(VERIFIED_BADGE) && (
           <>
             <BadgeCheck className="h-4 w-4 shrink-0 text-cyan-600" aria-hidden="true" />
-            <span className="sr-only">Terverifikasi</span>
+            <span className="sr-only">Verified</span>
           </>
         )}
       </p>
@@ -84,27 +84,27 @@ const TalentRow = ({ talent }) => (
 );
 
 /**
- * Popup dummy aksi shortlist: export CSV atau buat kampanye baru.
- * Menampilkan ringkasan & daftar kreator terpilih, lalu mensimulasikan
- * pemrosesan dengan delay sebelum menampilkan status sukses.
+ * Mock popup for shortlist actions: export CSV or create a new campaign.
+ * Shows a summary & the selected creator list, then simulates processing
+ * with a delay before displaying a success state.
  */
 export const CampaignActionModal = ({ mode, open, onClose, talents }) => {
   const meta = ACTION_META[mode] ?? ACTION_META.export;
   const [step, setStep] = useState('idle');
   const timerRef = useRef(null);
 
-  // Reset dialog setiap kali dibuka / berpindah mode.
+  // Reset the dialog each time it opens / switches mode.
   useEffect(() => {
     if (open) setStep('idle');
   }, [open, mode]);
 
-  // Bersihkan timer simulasi saat komponen dilepas.
+  // Clear the simulation timer when the component unmounts.
   useEffect(() => () => window.clearTimeout(timerRef.current), []);
 
   const summary = buildSummary(talents);
 
   const summaryTiles = [
-    { key: 'count', label: 'Kreator', value: `${talents.length}` },
+    { key: 'count', label: 'Creators', value: `${talents.length}` },
     { key: 'followers', label: 'Total Followers', value: summary.followers },
     { key: 'views', label: 'Total Views', value: summary.views },
     { key: 'engagement', label: 'Avg Eng. Rate', value: summary.engagement },
@@ -138,7 +138,7 @@ export const CampaignActionModal = ({ mode, open, onClose, talents }) => {
               disabled={step === 'loading'}
               className="min-h-11"
             >
-              Batal
+              Cancel
             </Button>
             <Button
               type="button"
@@ -162,17 +162,17 @@ export const CampaignActionModal = ({ mode, open, onClose, talents }) => {
           </span>
           <h3 className="mt-4 text-base font-semibold text-slate-800">{meta.successTitle}</h3>
           <p className="mt-1 max-w-sm text-sm leading-relaxed text-slate-500">
-            {meta.successDescription} Shortlist berisi {talents.length} kreator.
+            {meta.successDescription} Shortlist of {talents.length} creators.
           </p>
           <Button type="button" className="mt-6" onClick={handleClose}>
-            Selesai
+            Done
           </Button>
         </div>
       ) : (
         <div className="space-y-5">
           <ul
             role="list"
-            aria-label="Ringkasan shortlist"
+            aria-label="Shortlist summary"
             className="grid grid-cols-2 gap-3 sm:grid-cols-4"
           >
             {summaryTiles.map((tile) => (
@@ -188,9 +188,9 @@ export const CampaignActionModal = ({ mode, open, onClose, talents }) => {
           <section aria-labelledby="shortlist-modal-list-title">
             <div className="flex items-center justify-between gap-2">
               <h4 id="shortlist-modal-list-title" className="text-sm font-semibold text-slate-800">
-                Kreator Terpilih
+                Selected Creators
               </h4>
-              <Badge variant="secondary">{talents.length} kreator</Badge>
+              <Badge variant="secondary">{talents.length} creators</Badge>
             </div>
             <p className="mt-1 text-xs text-slate-500">{meta.note}</p>
             <ul

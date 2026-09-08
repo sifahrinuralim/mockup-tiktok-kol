@@ -1,9 +1,9 @@
 import { TalentCard } from './TalentCard';
 
 /**
- * Kisi (grid) kartu kreator.
- * Responsif: 1 kolom mobile, 2 kolom tablet, 3 kolom laptop, 4 kolom desktop lebar.
- * `selectedIds` & `onToggleCampaign` meneruskan state shortlist dari halaman.
+ * Grid of creator cards.
+ * Responsive: 1 column on mobile, 2 on tablet, 3 on laptop, 4 on wide desktop.
+ * `selectedIds` & `onToggleCampaign` forward the shortlist state from the page.
  */
 export const TalentGrid = ({ talents, selectedIds, onToggleCampaign }) => (
   <ul

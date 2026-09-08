@@ -30,11 +30,11 @@ export const DemoFeedback = () => {
         </div>
 
         <div>
-          <p className="mb-3 text-sm font-semibold text-slate-700">Modal & dialog konfirmasi</p>
+          <p className="mb-3 text-sm font-semibold text-slate-700">Modal & confirmation dialog</p>
           <div className="flex flex-wrap items-center gap-3">
-            <Button onClick={() => setModalOpen(true)}>Buka Modal</Button>
+            <Button onClick={() => setModalOpen(true)}>Open Modal</Button>
             <Button variant="danger" onClick={() => setConfirmOpen(true)}>
-              Hapus Data
+              Delete Data
             </Button>
           </div>
         </div>
@@ -42,8 +42,8 @@ export const DemoFeedback = () => {
 
       <EmptyState
         icon={SearchX}
-        title="Data tidak ditemukan"
-        description="Belum ada data yang cocok dengan pencarian Anda. Coba ubah kata kunci atau filter."
+        title="Data not found"
+        description="No data matches your search yet. Try changing the keyword or the filters."
         action={
           <Button variant="outline" size="sm">
             <Sparkles className="h-4 w-4" aria-hidden="true" />
@@ -55,19 +55,19 @@ export const DemoFeedback = () => {
       <Modal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
-        title="Judul Modal"
-        description="Deskripsi singkat isi modal."
+        title="Modal Title"
+        description="A short description of the modal contents."
         footer={
           <>
             <Button variant="outline" onClick={() => setModalOpen(false)}>
-              Batal
+              Cancel
             </Button>
-            <Button onClick={() => setModalOpen(false)}>Simpan</Button>
+            <Button onClick={() => setModalOpen(false)}>Save</Button>
           </>
         }
       >
         <p className="text-sm leading-relaxed text-slate-600">
-          Ini contoh konten modal. Ganti dengan formulir, detail data, atau konten lain sesuai kebutuhan.
+          This is an example modal body. Replace it with a form, data details, or other content as needed.
         </p>
       </Modal>
 
@@ -75,8 +75,8 @@ export const DemoFeedback = () => {
         open={confirmOpen}
         onClose={() => setConfirmOpen(false)}
         onConfirm={() => setConfirmOpen(false)}
-        title="Konfirmasi Hapus"
-        description="Data yang dipilih akan dihapus permanen dan tidak dapat dikembalikan. Lanjutkan?"
+        title="Confirm Delete"
+        description="The selected data will be permanently deleted and cannot be restored. Continue?"
       />
     </div>
   );

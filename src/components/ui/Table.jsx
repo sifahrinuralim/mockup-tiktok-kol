@@ -1,8 +1,8 @@
 import { cn } from '@/utils/cn';
 
 /**
- * Set komponen tabel generik untuk halaman data.
- * Wrapper <Table> menangani scroll horizontal pada layar kecil.
+ * Generic table component set for data pages.
+ * The <Table> wrapper handles horizontal scroll on small screens.
  */
 export const Table = ({ children, className }) => (
   <div className={cn('overflow-x-auto', className)}>

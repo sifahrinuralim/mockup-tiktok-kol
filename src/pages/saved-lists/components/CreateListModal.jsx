@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/Textarea';
 import { TALENT_CATEGORY_LIST } from '@/data/mockTalents';
 import { LIST_TARGET_OPTIONS } from '@/constants/savedLists';
 
-/** Nilai awal form saat modal dibuka. */
+/** Initial form values when the modal opens. */
 const EMPTY_FORM = {
   name: '',
   category: TALENT_CATEGORY_LIST[0],
@@ -16,19 +16,19 @@ const EMPTY_FORM = {
   description: '',
 };
 
-/** Durasi simulasi proses simpan. */
+/** Simulated save duration. */
 const SUBMIT_DELAY_MS = 600;
 
 /**
- * Modal pembuatan daftar kreator baru (mockup).
- * Daftar baru dibuat kosong — member ditambahkan dari Talent Discovery nanti.
+ * New creator-list modal (mockup).
+ * New lists start empty — members are added later from Talent Discovery.
  */
 export const CreateListModal = ({ open, onClose, onCreate }) => {
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Bersihkan form setiap modal dibuka.
+  // Clear the form each time the modal opens.
   useEffect(() => {
     if (open) {
       setForm(EMPTY_FORM);
@@ -42,7 +42,7 @@ export const CreateListModal = ({ open, onClose, onCreate }) => {
     event.preventDefault();
 
     if (!form.name.trim()) {
-      setErrors({ name: 'Nama daftar wajib diisi.' });
+      setErrors({ name: 'List name is required.' });
       return;
     }
 
@@ -62,36 +62,36 @@ export const CreateListModal = ({ open, onClose, onCreate }) => {
     <Modal
       open={open}
       onClose={onClose}
-      title="Buat Daftar Baru"
-      description="Kumpulan kreator untuk kebutuhan shortlist kampanye yang dapat diisi belakangan."
+      title="Create New List"
+      description="A group of creators for your campaign shortlist, ready to be filled in later."
       size="md"
       footer={
         <>
           <Button variant="outline" onClick={onClose} disabled={isSubmitting}>
-            Batal
+            Cancel
           </Button>
           <Button
             type="submit"
-            form="form-buat-daftar"
+            form="form-create-list"
             isLoading={isSubmitting}
-            loadingText="Menyimpan..."
+            loadingText="Saving..."
           >
-            Simpan Daftar
+            Save List
           </Button>
         </>
       }
     >
-      <form id="form-buat-daftar" onSubmit={handleSubmit} noValidate className="space-y-4">
+      <form id="form-create-list" onSubmit={handleSubmit} noValidate className="space-y-4">
         <Input
-          label="Nama Daftar"
-          placeholder="cth. Beauty Micro-Influencer"
+          label="List Name"
+          placeholder="e.g. Beauty Micro-Influencer"
           value={form.name}
           onChange={(event) => updateField('name', event.target.value)}
           error={errors.name}
         />
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Select
-            label="Kategori Fokus"
+            label="Focus Category"
             value={form.category}
             onChange={(event) => updateField('category', event.target.value)}
           >
@@ -100,10 +100,10 @@ export const CreateListModal = ({ open, onClose, onCreate }) => {
                 {category}
               </option>
             ))}
-            <option value="Multi-kategori">Multi-kategori</option>
+            <option value="Multi-category">Multi-category</option>
           </Select>
           <Select
-            label="Target Ukuran Kreator"
+            label="Target Creator Size"
             value={form.target}
             onChange={(event) => updateField('target', event.target.value)}
           >
@@ -115,9 +115,9 @@ export const CreateListModal = ({ open, onClose, onCreate }) => {
           </Select>
         </div>
         <Textarea
-          label="Deskripsi (opsional)"
+          label="Description (optional)"
           rows={3}
-          placeholder="Jelaskan kriteria kreator yang ingin Anda kumpulkan…"
+          placeholder="Describe the creator criteria you want to gather…"
           value={form.description}
           onChange={(event) => updateField('description', event.target.value)}
         />

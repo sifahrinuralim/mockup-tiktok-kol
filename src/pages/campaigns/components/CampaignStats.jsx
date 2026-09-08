@@ -5,7 +5,7 @@ import { CAMPAIGN_STATUS } from '@/constants/campaigns';
 import { cn } from '@/utils/cn';
 import { formatRupiahShort } from '@/utils/currency';
 
-/** Menghitung ringkasan pipeline dari daftar kampanye. */
+/** Computes the pipeline summary from the campaign list. */
 const buildStats = (campaigns) => {
   const activeCount = campaigns.filter((campaign) => campaign.status === CAMPAIGN_STATUS.ACTIVE).length;
   const completedCount = campaigns.filter(
@@ -19,33 +19,33 @@ const buildStats = (campaigns) => {
   return [
     {
       key: 'total',
-      label: 'Total Kampanye',
+      label: 'Total Campaigns',
       value: `${campaigns.length}`,
-      note: 'Termasuk draft & yang selesai',
+      note: 'Including drafts & completed',
       icon: LayoutList,
       iconClass: 'bg-primary-100 text-primary-700',
     },
     {
       key: 'budget',
-      label: 'Total Anggaran',
+      label: 'Total Budget',
       value: formatRupiahShort(totalBudget),
-      note: 'Akumulasi budget yang sudah disetel',
+      note: 'Sum of all set budgets',
       icon: Wallet,
       iconClass: 'bg-emerald-100 text-emerald-700',
     },
     {
       key: 'active',
-      label: 'Sedang Berjalan',
-      value: `${activeCount} kampanye`,
-      note: 'Konten sedang diproduksi/tayang',
+      label: 'Active',
+      value: `${activeCount} campaigns`,
+      note: 'Content is in production/live',
       icon: PlayCircle,
       iconClass: 'bg-sky-100 text-sky-600',
     },
     {
       key: 'completed',
-      label: 'Selesai',
-      value: `${completedCount} kampanye`,
-      note: 'Laporan akhir sudah terkirim',
+      label: 'Completed',
+      value: `${completedCount} campaigns`,
+      note: 'Final reports have been sent',
       icon: CheckCircle2,
       iconClass: 'bg-fuchsia-100 text-fuchsia-600',
     },
@@ -53,14 +53,14 @@ const buildStats = (campaigns) => {
 };
 
 /**
- * Hero ringkasan statistik Campaign Manager.
+ * Hero statistics summary for the Campaign Manager.
  */
 export const CampaignStats = ({ campaigns }) => {
   const stats = buildStats(campaigns);
 
   return (
     <section
-      aria-label="Ringkasan statistik kampanye"
+      aria-label="Campaign statistics summary"
       className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
     >
       {stats.map(({ key, label, value, note, icon: Icon, iconClass }) => (

@@ -1,6 +1,6 @@
 /**
- * Identitas aplikasi TalentPulse TikTok Agency.
- * Nilai ini dipakai untuk brand di Navbar & Sidebar.
+ * TalentPulse TikTok Agency app identity.
+ * These values are used for the brand in the Navbar & Sidebar.
  */
 export const APP = {
   name: 'TalentPulse',
@@ -9,7 +9,7 @@ export const APP = {
 };
 
 /**
- * Profil pengguna aktif (mock) — identitas yang tampil di Navbar.
+ * Active (mock) user profile — the identity shown in the Navbar.
  */
 export const CURRENT_USER = {
   name: 'Sarah Rahmawati',

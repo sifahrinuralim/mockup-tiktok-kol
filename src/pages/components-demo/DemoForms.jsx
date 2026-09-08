@@ -13,49 +13,49 @@ export const DemoForms = () => {
   return (
     <div className="grid gap-x-8 gap-y-6 lg:grid-cols-2">
       <div className="space-y-5">
-        <Input label="Nama Lengkap" placeholder="cth: Budi Santoso" />
+        <Input label="Full Name" placeholder="e.g: Budi Santoso" />
         <Input
           label="Email"
           type="email"
-          defaultValue="budi@contoh.id"
-          hint="Email tidak akan dipublikasikan."
+          defaultValue="budi@example.id"
+          hint="Email will not be published."
         />
         <Input
-          label="Nomor Induk"
+          label="Student Number"
           defaultValue="1234"
-          error="Nomor induk harus 10 digit."
+          error="Student number must be 10 digits."
         />
         <Input
-          label="Cari data"
-          placeholder="Ketik kata kunci..."
+          label="Search data"
+          placeholder="Type a keyword..."
           rightElement={<Search className="h-4 w-4 text-slate-400" aria-hidden="true" />}
         />
       </div>
 
       <div className="space-y-5">
-        <Select label="Status Keaktifan" defaultValue="">
+        <Select label="Activity Status" defaultValue="">
           <option value="" disabled>
-            Pilih status...
+            Select a status...
           </option>
-          <option value="aktif">Aktif</option>
+          <option value="active">Active</option>
           <option value="pending">Pending</option>
-          <option value="nonaktif">Nonaktif</option>
+          <option value="disabled">Disabled</option>
         </Select>
-        <Textarea label="Catatan" rows={3} placeholder="Tuliskan catatan tambahan di sini..." />
+        <Textarea label="Notes" rows={3} placeholder="Write any additional notes here..." />
         <div className="rounded-lg border border-slate-200 p-4">
           <div className="flex items-center justify-between gap-4">
             <div>
-              <p className="text-sm font-medium text-slate-700">Simpan otomatis</p>
-              <p className="text-xs text-slate-500">Menyimpan perubahan secara berkala.</p>
+              <p className="text-sm font-medium text-slate-700">Auto save</p>
+              <p className="text-xs text-slate-500">Saves changes periodically.</p>
             </div>
-            <Toggle checked={autoSave} onChange={setAutoSave} aria-label="Simpan otomatis" />
+            <Toggle checked={autoSave} onChange={setAutoSave} aria-label="Auto save" />
           </div>
           <div className="mt-4 flex items-center justify-between gap-4 border-t border-slate-100 pt-4">
             <div>
-              <p className="text-sm font-medium text-slate-700">Notifikasi email</p>
-              <p className="text-xs text-slate-500">Kirim pemberitahuan ke email Anda.</p>
+              <p className="text-sm font-medium text-slate-700">Email notifications</p>
+              <p className="text-xs text-slate-500">Send notifications to your email.</p>
             </div>
-            <Toggle checked={notify} onChange={setNotify} aria-label="Notifikasi email" />
+            <Toggle checked={notify} onChange={setNotify} aria-label="Email notifications" />
           </div>
         </div>
       </div>

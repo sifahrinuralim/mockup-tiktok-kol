@@ -4,16 +4,16 @@ import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 
 /**
- * Dialog konfirmasi destruktif (hapus data) berbasis <Modal> generik.
+ * Destructive confirmation dialog (e.g. delete data) built on the generic <Modal>.
  */
 export const ConfirmDialog = ({
   open = false,
   onClose,
   onConfirm,
-  title = 'Konfirmasi Hapus',
+  title = 'Confirm Delete',
   description,
-  confirmText = 'Hapus',
-  loadingText = 'Menghapus...',
+  confirmText = 'Delete',
+  loadingText = 'Deleting...',
   isLoading = false,
 }) => (
   <Modal
@@ -24,7 +24,7 @@ export const ConfirmDialog = ({
     footer={
       <>
         <Button variant="outline" onClick={onClose} disabled={isLoading}>
-          Batal
+          Cancel
         </Button>
         <Button variant="danger" onClick={onConfirm} isLoading={isLoading} loadingText={loadingText}>
           {confirmText}

@@ -2,7 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { CATEGORY_PERFORMANCE } from '@/data/mockAnalytics';
 import { cn } from '@/utils/cn';
 
-/** Warna bar tiap kategori — dipetakan berurutan agar konsisten antar render. */
+/** Per-category bar colors — mapped in order so they stay consistent across renders. */
 const BAR_COLORS = [
   'bg-violet-500',
   'bg-rose-400',
@@ -13,8 +13,8 @@ const BAR_COLORS = [
 ];
 
 /**
- * Performa konten per kategori (30 hari): daftar horizontal bar ringkas.
- * Nilai engagement rate memakai skala terhadap nilai tertinggi.
+ * Content performance per category (30 days): a compact horizontal bar list.
+ * Engagement-rate values are scaled against the highest value.
  */
 export const CategoryPerformanceCard = ({ categories = CATEGORY_PERFORMANCE }) => {
   const maxEr = Math.max(...categories.map((category) => category.er), 1);
@@ -22,7 +22,7 @@ export const CategoryPerformanceCard = ({ categories = CATEGORY_PERFORMANCE }) =
   return (
     <Card className="flex h-full flex-col">
       <CardHeader>
-        <CardTitle>Engagement per Kategori</CardTitle>
+        <CardTitle>Engagement by Category</CardTitle>
       </CardHeader>
       <CardContent className="flex-1">
         <ul role="list" className="space-y-4">
@@ -48,7 +48,7 @@ export const CategoryPerformanceCard = ({ categories = CATEGORY_PERFORMANCE }) =
                 </div>
                 <div
                   role="progressbar"
-                  aria-label={`Engagement kategori ${category.category}`}
+                  aria-label={`Engagement for ${category.category}`}
                   aria-valuenow={Math.round((category.er / maxEr) * 100)}
                   aria-valuemin={0}
                   aria-valuemax={100}
@@ -59,7 +59,7 @@ export const CategoryPerformanceCard = ({ categories = CATEGORY_PERFORMANCE }) =
                     style={{ width: barWidth }}
                   />
                 </div>
-                <p className="mt-1 text-[11px] text-slate-400">{category.videoCount} konten diunggah</p>
+                <p className="mt-1 text-[11px] text-slate-400">{category.videoCount} videos uploaded</p>
               </li>
             );
           })}

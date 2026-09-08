@@ -11,7 +11,7 @@ import { formatDateShort } from '@/utils/date';
 import { CampaignStatusBadge } from './CampaignStatusBadge';
 import { ProgressBar } from './ProgressBar';
 
-/** Menentukan status tahap (selesai/aktif/belum) dari progress kampanye. */
+/** Determines a step state (done/current/todo) from the campaign progress. */
 const resolveStepState = (threshold, progress) => {
   if (progress >= threshold) return 'done';
   if (progress > 0 && progress >= threshold - 15) return 'current';
@@ -19,8 +19,8 @@ const resolveStepState = (threshold, progress) => {
 };
 
 /**
- * Modal detail kampanye: informasi umum, progres, kreator, dan timeline
- * alur kerja dari brief hingga laporan akhir.
+ * Campaign detail modal: general info, progress, creators, and the workflow
+ * timeline from brief to final report.
  */
 export const CampaignDetailModal = ({ campaign, open, onClose }) => {
   const steps = useMemo(
@@ -35,7 +35,7 @@ export const CampaignDetailModal = ({ campaign, open, onClose }) => {
   if (!campaign) return null;
 
   const hasSchedule = Boolean(campaign.startDate && campaign.endDate);
-  const budgetText = campaign.budget > 0 ? formatRupiah(campaign.budget) : 'Belum disetel';
+  const budgetText = campaign.budget > 0 ? formatRupiah(campaign.budget) : 'Not set';
 
   return (
     <Modal
@@ -46,7 +46,7 @@ export const CampaignDetailModal = ({ campaign, open, onClose }) => {
       description={`${campaign.code} • ${campaign.brand}`}
     >
       <div className="space-y-6">
-        {/* Info ringkas */}
+        {/* Brief info */}
         <div className="flex flex-wrap items-center gap-2">
           <CampaignStatusBadge status={campaign.status} />
           <span className="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-medium text-slate-600">
@@ -63,12 +63,12 @@ export const CampaignDetailModal = ({ campaign, open, onClose }) => {
           </div>
           <div>
             <dt className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
-              <CalendarRange className="h-3.5 w-3.5" aria-hidden="true" /> Jadwal
+              <CalendarRange className="h-3.5 w-3.5" aria-hidden="true" /> Schedule
             </dt>
             <dd className="mt-1 text-sm font-semibold text-slate-800">
               {hasSchedule
                 ? `${formatDateShort(campaign.startDate)} – ${formatDateShort(campaign.endDate)}`
-                : 'Belum dijadwalkan'}
+                : 'Not scheduled'}
             </dd>
           </div>
           <div>
@@ -85,27 +85,27 @@ export const CampaignDetailModal = ({ campaign, open, onClose }) => {
           </div>
         </dl>
 
-        {/* Tujuan & KPI */}
+        {/* Goal & KPI */}
         <div className="rounded-xl bg-slate-50 p-4">
-          <h4 className="text-sm font-semibold text-slate-800">Tujuan Kampanye</h4>
+          <h4 className="text-sm font-semibold text-slate-800">Campaign Goal</h4>
           <p className="mt-1 text-sm leading-relaxed text-slate-600">{campaign.goal}</p>
           <p className="mt-2 text-xs font-medium text-slate-500">
-            Target KPI: <span className="font-semibold text-primary-700">{campaign.kpi}</span>
+            KPI Target: <span className="font-semibold text-primary-700">{campaign.kpi}</span>
           </p>
         </div>
 
-        {/* Progres */}
+        {/* Progress */}
         <div>
           <div className="flex items-center justify-between">
-            <h4 className="text-sm font-semibold text-slate-800">Progres</h4>
+            <h4 className="text-sm font-semibold text-slate-800">Progress</h4>
             <span className="text-xs font-semibold text-slate-500">{campaign.progress}%</span>
           </div>
           <ProgressBar value={campaign.progress} className="mt-2" />
         </div>
 
-        {/* Timeline alur kerja */}
+        {/* Workflow timeline */}
         <div>
-          <h4 className="text-sm font-semibold text-slate-800">Alur Kerja</h4>
+          <h4 className="text-sm font-semibold text-slate-800">Workflow</h4>
           <ol className="mt-3">
             {steps.map((step, index) => (
               <li key={step.key} className="relative flex gap-3 pb-5 last:pb-0">
@@ -138,14 +138,14 @@ export const CampaignDetailModal = ({ campaign, open, onClose }) => {
           </ol>
         </div>
 
-        {/* Daftar kreator */}
+        {/* Creator list */}
         <div>
           <h4 className="text-sm font-semibold text-slate-800">
-            Talenta ({campaign.talents.length})
+            Talent ({campaign.talents.length})
           </h4>
           {campaign.talents.length === 0 ? (
             <p className="mt-2 rounded-lg bg-slate-50 px-4 py-3 text-sm text-slate-500">
-              Belum ada kreator yang ditambahkan ke kampanye ini.
+              No creators added to this campaign yet.
             </p>
           ) : (
             <ul

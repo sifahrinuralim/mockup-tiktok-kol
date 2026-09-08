@@ -12,17 +12,17 @@ const AnalyticsPage = lazy(() => import('@/pages/analytics/AnalyticsPage'));
 const SavedListsPage = lazy(() => import('@/pages/saved-lists/SavedListsPage'));
 const ProfilePage = lazy(() => import('@/pages/profile/ProfilePage'));
 
-/** Fallback saat halaman lazy masih dimuat. */
+/** Fallback while a lazy page is still loading. */
 const PageFallback = () => (
   <div className="flex min-h-[60vh] items-center justify-center">
-    <Spinner label="Memuat halaman..." />
+    <Spinner label="Loading page..." />
   </div>
 );
 
 /**
- * Routing aplikasi TalentPulse TikTok Agency.
- * Halaman produk di bawah AppLayout; tiap modul sudah memiliki halaman
- * sendiri dengan data dummy masing-masing.
+ * TalentPulse TikTok Agency app routing.
+ * Product pages live under AppLayout; each module already has its own
+ * page with its own mock data.
  */
 export default function App() {
   return (
@@ -36,7 +36,7 @@ export default function App() {
           <Route path="/saved-lists" element={<SavedListsPage />} />
           <Route path="/profile" element={<ProfilePage />} />
 
-          {/* Peraga design system starter (dev reference) */}
+          {/* Starter design system showcase (dev reference) */}
           <Route path="/ui-kit" element={<ComponentsShowcase />} />
 
           <Route path="*" element={<Navigate to="/" replace />} />

@@ -8,14 +8,14 @@ import { formatRupiahShort } from '@/utils/currency';
 
 import { GrowthBadge } from './GrowthBadge';
 
-/** Gaya lingkaran nomor peringkat — tiga teratas diberi warna medali. */
+/** Rank number circle styles — the top three get medal colors. */
 const RANK_CIRCLE_CLASSES = {
   1: 'bg-amber-100 text-amber-700',
   2: 'bg-slate-200 text-slate-600',
   3: 'bg-orange-100 text-orange-700',
 };
 
-/** Nomor peringkat berbentuk lingkaran untuk baris tabel/list. */
+/** Circle rank number for table/list rows. */
 const RankBadge = ({ rank }) => (
   <span
     className={cn(
@@ -27,19 +27,19 @@ const RankBadge = ({ rank }) => (
   </span>
 );
 
-/** Tabel peringkat lengkap untuk layar lg ke atas. */
+/** Full ranking table for lg screens and up. */
 const DesktopLeaderboard = ({ talents }) => (
   <Table>
     <THead>
       <Tr>
-        <Th>Peringkat</Th>
-        <Th>Kreator</Th>
-        <Th>Kategori</Th>
+        <Th>Rank</Th>
+        <Th>Creator</Th>
+        <Th>Category</Th>
         <Th className="text-right">Followers</Th>
         <Th className="text-right">Total Views</Th>
         <Th className="text-right">Eng. Rate</Th>
-        <Th>Growth 30 Hari</Th>
-        <Th className="text-right">Rate 1 Video</Th>
+        <Th>30-Day Growth</Th>
+        <Th className="text-right">1-Video Rate</Th>
       </Tr>
     </THead>
     <TBody>
@@ -69,7 +69,7 @@ const DesktopLeaderboard = ({ talents }) => (
   </Table>
 );
 
-/** Daftar kartu pengganti tabel untuk layar di bawah lg. */
+/** Card list that replaces the table below lg. */
 const MobileLeaderboard = ({ talents }) => (
   <Card className="lg:hidden">
     <ul role="list" className="divide-y divide-slate-100">
@@ -106,7 +106,7 @@ const MobileLeaderboard = ({ talents }) => (
             </div>
             <div className="min-w-0 text-center">
               <dt className="truncate text-[11px] font-medium uppercase tracking-wide text-slate-400">
-                Rate 1 Video
+                1-Video Rate
               </dt>
               <dd className="mt-0.5 truncate text-sm font-bold text-primary-700">
                 {formatRupiahShort(talent.feeSingleMin)}
@@ -120,20 +120,20 @@ const MobileLeaderboard = ({ talents }) => (
 );
 
 /**
- * Tampilan daftar peringkat (table view).
- * Desktop: tabel penuh; mobile: daftar kartu agar tetap terbaca.
+ * Ranking list view (table view).
+ * Desktop: full table; mobile: card list to stay readable.
  */
 export const TopTalentsTable = ({ talents }) => (
   <>
     <Card className="hidden overflow-hidden lg:block">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 px-5 py-4">
         <div>
-          <h3 className="text-sm font-semibold text-slate-800">Peringkat Berdasarkan Skor</h3>
+          <h3 className="text-sm font-semibold text-slate-800">Ranked by Score</h3>
           <p className="text-xs text-slate-500">
-            Skor gabungan total views, followers, dan engagement rate.
+            Combined score of total views, followers, and engagement rate.
           </p>
         </div>
-        <Badge variant="secondary">{talents.length} kreator</Badge>
+        <Badge variant="secondary">{talents.length} creators</Badge>
       </div>
       <DesktopLeaderboard talents={talents} />
     </Card>

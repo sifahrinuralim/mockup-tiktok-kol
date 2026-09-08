@@ -1,5 +1,5 @@
 /**
- * Menggabungkan class Tailwind secara kondisional.
+ * Merges Tailwind classes conditionally.
  * @param {...(string|false|null|undefined)} classes
  * @returns {string}
  */

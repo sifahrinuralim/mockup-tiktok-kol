@@ -1,14 +1,14 @@
 /**
- * Data dummy (mock) daftar kreator tersimpan untuk modul Saved Lists.
- * Daftar menyimpan `talentIds` lalu diselesaikan menjadi objek talent penuh
- * saat diekspor agar komponen tidak perlu melakukan lookup sendiri.
- * Estimasi total anggaran dihitung dari rate card kreator (util bersama).
+ * Mock data of saved creator lists for the Saved Lists module.
+ * Lists store `talentIds`, which are resolved into full talent objects on
+ * export so components don't need to look them up themselves.
+ * Total budget estimates are derived from each creator's rate card (shared util).
  */
 
 import { MOCK_TALENTS } from '@/data/mockTalents';
 import { estimateRateCardTiers } from '@/utils/talentEstimate';
 
-/** Cari objek talent lengkap dari pustaka kreator berdasarkan id. */
+/** Finds the full talent object from the creator library by id. */
 const findTalentById = (id) => MOCK_TALENTS.find((talent) => talent.id === id);
 
 const RAW_SAVED_LISTS = [
@@ -18,7 +18,7 @@ const RAW_SAVED_LISTS = [
     category: 'Beauty',
     target: 'mega',
     description:
-      'Kreator beauty dengan engagement rate di atas 9% — cocok untuk campaign skincare dan kosmetik premium.',
+      'Beauty creators with an engagement rate above 9% — a fit for premium skincare and cosmetics campaigns.',
     tags: ['Skincare', 'ER ≥ 9%', 'Female'],
     talentIds: [1, 12, 6],
     createdAt: '2026-07-12',
@@ -26,12 +26,12 @@ const RAW_SAVED_LISTS = [
   },
   {
     id: 2,
-    name: 'Kuliner Nusantara',
+    name: 'Nusantara Food',
     category: 'Food',
     target: 'mixed',
     description:
-      'Food creator yang membahas kuliner tradisional dan modern dari berbagai kota di Indonesia.',
-    tags: ['Kuliner', 'Lokal', 'Food Review'],
+      'Food creators covering traditional and modern dishes from cities across Indonesia.',
+    tags: ['Food', 'Local', 'Food Review'],
     talentIds: [4, 9, 14],
     createdAt: '2026-06-03',
     updatedAt: '2026-09-01',
@@ -42,7 +42,7 @@ const RAW_SAVED_LISTS = [
     category: 'Gaming',
     target: 'mixed',
     description:
-      'Kreator gaming dengan gaya konten menghibur dan engagement tinggi untuk campaign game & aksesori.',
+      'Gaming creators with an entertaining content style and high engagement for game & accessory campaigns.',
     tags: ['Mobile Game', 'Live', 'Esports'],
     talentIds: [5, 11],
     createdAt: '2026-05-19',
@@ -54,20 +54,20 @@ const RAW_SAVED_LISTS = [
     category: 'Tech',
     target: 'macro',
     description:
-      'Tech reviewer yang dipercaya untuk ulasan jujur smartphone, laptop, dan perangkat pintar.',
-    tags: ['Review Jujur', 'Gadget', 'Mahasiswa'],
+      'Trusted tech reviewers for honest takes on smartphones, laptops, and smart devices.',
+    tags: ['Honest Reviews', 'Gadget', 'Students'],
     talentIds: [2, 7],
     createdAt: '2026-05-02',
     updatedAt: '2026-08-20',
   },
   {
     id: 5,
-    name: 'Fashion & Hijab Inspirasi',
+    name: 'Fashion & Hijab Inspiration',
     category: 'Fashion',
     target: 'mid',
     description:
-      'Kreator fashion modest untuk campaign busana muslimah dan brand apparel perempuan.',
-    tags: ['Modest Fashion', 'OOTD', 'Perempuan'],
+      'Modest-fashion creators for Muslimah-wear campaigns and women apparel brands.',
+    tags: ['Modest Fashion', 'OOTD', 'Women'],
     talentIds: [3, 8],
     createdAt: '2026-04-15',
     updatedAt: '2026-08-11',
@@ -75,10 +75,10 @@ const RAW_SAVED_LISTS = [
   {
     id: 6,
     name: 'Multi-Niche Top Talent',
-    category: 'Multi-kategori',
+    category: 'Multi-category',
     target: 'mega',
     description:
-      'Kumpulan kreator terbaik lintas kategori untuk kebutuhan campaign cepat dengan jangkauan maksimal.',
+      'Top creators across categories for fast campaigns that need maximum reach.',
     tags: ['Top Rated', 'Viral', 'Multi Brand'],
     talentIds: [1, 4, 5, 10, 11, 12],
     createdAt: '2026-03-28',
@@ -87,8 +87,8 @@ const RAW_SAVED_LISTS = [
 ];
 
 /**
- * Daftar siap pakai: tiap daftar dilengkapi anggota talent penuh, jumlah
- * anggota, dan estimasi total budget minimum (rate card 1 video per kreator).
+ * Ready-to-use lists: each list comes with its full talent members, member
+ * count, and an estimated minimum total budget (1-video rate card per creator).
  */
 export const MOCK_SAVED_LISTS = RAW_SAVED_LISTS.map((list) => {
   const members = list.talentIds.map(findTalentById).filter(Boolean);

@@ -10,8 +10,8 @@ import { formatRupiahShort } from '@/utils/currency';
 import { formatDateLong } from '@/utils/date';
 
 /**
- * Kartu satu daftar kreator tersimpan: aksen gradien, ringkasan anggota,
- * estimasi budget, dan aksi membuka detail.
+ * Card for one saved creator list: gradient accent, member summary,
+ * budget estimate, and an action to open the details.
  */
 export const SavedListCard = ({ list, accentIndex = 0, onOpen }) => {
   const gradient = LIST_GRADIENT_CLASSES[accentIndex % LIST_GRADIENT_CLASSES.length];
@@ -26,7 +26,7 @@ export const SavedListCard = ({ list, accentIndex = 0, onOpen }) => {
             <h3 className="truncate text-base font-semibold text-slate-900">{list.name}</h3>
             <p className="mt-0.5 flex items-center gap-1 text-xs text-slate-400">
               <Users className="h-3.5 w-3.5" aria-hidden="true" />
-              {list.memberCount} kreator
+              {list.memberCount} creators
             </p>
           </div>
           <CategoryChip category={list.category} className="shrink-0" />
@@ -53,7 +53,7 @@ export const SavedListCard = ({ list, accentIndex = 0, onOpen }) => {
           <div className="flex flex-col gap-1">
             <AvatarStack talents={list.members} imageClassName="h-7 w-7" />
             <p className="text-[11px] text-slate-400">
-              Estimasi mulai{' '}
+              Estimated from{' '}
               <span className="font-semibold text-slate-600">
                 {formatRupiahShort(list.estimatedBudget)}
               </span>
@@ -64,10 +64,10 @@ export const SavedListCard = ({ list, accentIndex = 0, onOpen }) => {
         <div className="mt-auto flex items-center justify-between gap-2 border-t border-slate-100 pt-4">
           <p className="inline-flex items-center gap-1 text-[11px] text-slate-400">
             <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" />
-            Diperbarui {formatDateLong(list.updatedAt)}
+            Updated {formatDateLong(list.updatedAt)}
           </p>
           <Button variant="outline" size="sm" onClick={() => onOpen(list.id)}>
-            Lihat Daftar
+            View List
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </Button>
         </div>

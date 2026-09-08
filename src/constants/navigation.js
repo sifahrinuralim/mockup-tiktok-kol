@@ -1,52 +1,52 @@
 import { BarChart3, Bookmark, Home, LayoutDashboard, Megaphone, UserRound, Users } from 'lucide-react';
 
 /**
- * Daftar menu navigasi utama.
- * Dipakai bersama oleh Sidebar (NavLink) dan komponen lain untuk label rute.
+ * Main navigation menu list.
+ * Shared by the Sidebar (NavLink) and other components for route labels.
  */
 export const NAV_ITEMS = [
   {
     to: '/',
     label: 'Dashboard',
     icon: LayoutDashboard,
-    description: 'Ringkasan performa akun TikTok dan kampanye agensi dalam satu layar.',
+    description: 'Overview of TikTok account performance and agency campaigns in one screen.',
     end: true,
   },
   {
     to: '/top-talents',
     label: 'Top Talents',
     icon: Users,
-    description: 'Jelajahi, bandingkan, dan pilih kreator TikTok unggulan untuk kampanye.',
+    description: 'Explore, compare, and pick top TikTok creators for your campaigns.',
   },
   {
     to: '/campaigns',
     label: 'Campaign Manager',
     icon: Megaphone,
-    description: 'Kelola alur kampanye dari brief hingga laporan akhir.',
+    description: 'Manage the campaign workflow from brief to final report.',
   },
   {
     to: '/analytics',
     label: 'Analytics',
     icon: BarChart3,
-    description: 'Analisis tren konten, audiens, dan performa kampanye secara mendalam.',
+    description: 'In-depth analysis of content trends, audiences, and campaign performance.',
   },
   {
     to: '/saved-lists',
     label: 'Saved Lists',
     icon: Bookmark,
-    description: 'Kumpulan daftar kreator yang Anda simpan untuk kampanye mendatang.',
+    description: 'A collection of creator lists you have saved for upcoming campaigns.',
   },
   {
     to: '/profile',
     label: 'Profile',
     icon: UserRound,
-    description: 'Kelola profil pengguna, preferensi akun, dan pengaturan lainnya.',
+    description: 'Manage your user profile, account preferences, and other settings.',
   },
 ];
 
 /**
- * Item bottom navigation untuk layar mobile (di bawah lg).
- * Subset navigasi utama dengan label ringkas ala aplikasi native.
+ * Bottom navigation items for mobile screens (below lg).
+ * A subset of the main navigation with compact, native-app-style labels.
  */
 export const BOTTOM_NAV_ITEMS = [
   { to: '/', label: 'Home', icon: Home, end: true },

@@ -1,11 +1,11 @@
 import { Inbox } from 'lucide-react';
 
 /**
- * Empty state UI untuk tampilan daftar data yang masih kosong.
+ * Empty state UI for data lists that have no content yet.
  */
 export const EmptyState = ({
   icon: Icon = Inbox,
-  title = 'Belum ada data',
+  title = 'No data yet',
   description,
   action,
 }) => (

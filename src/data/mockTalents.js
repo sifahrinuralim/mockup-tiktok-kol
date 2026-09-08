@@ -1,18 +1,18 @@
 /**
- * Data dummy (mock) kreator TikTok untuk platform TalentPulse.
+ * Mock TikTok creators data for the TalentPulse platform.
  *
- * Catatan format data:
- * - Nilai metrik (followers, totalViews, dst.) sengaja disimpan sebagai
- *   string ringkas siap-tampil ('2.8M', '350K', '9.4%') agar langsung
- *   dirender di tabel/kartu mockup. Pada API sungguhan, nilai ini umumnya
- *   berupa angka mentah (integer/float) yang diformat lewat util tersendiri.
- * - Kategori kreator dipusatkan di TALENT_CATEGORIES agar bisa dipakai
- *   ulang untuk filter dan opsi form.
+ * Data format notes:
+ * - Metric values (followers, totalViews, etc.) are intentionally stored as
+ *   ready-to-display compact strings ('2.8M', '350K', '9.4%') so they can be
+ *   rendered straight into mockup tables/cards. On a real API these would
+ *   usually be raw numbers (integer/float) formatted through a dedicated util.
+ * - Creator categories are centralized in TALENT_CATEGORIES so they can be
+ *   reused for filters and form options.
  */
 
 /**
- * Daftar kategori konten kreator.
- * Dipakai sebagai nilai field `category` sekaligus opsi filter.
+ * Creator content categories.
+ * Used both as the `category` field value and as filter options.
  */
 export const TALENT_CATEGORIES = {
   BEAUTY: 'Beauty',
@@ -23,14 +23,14 @@ export const TALENT_CATEGORIES = {
   ENTERTAINMENT: 'Entertainment',
 };
 
-/** Daftar kategori sebagai array — siap dipakai untuk opsi dropdown/filter. */
+/** Category list as an array — ready for dropdown/filter options. */
 export const TALENT_CATEGORY_LIST = Object.values(TALENT_CATEGORIES);
 
 /**
- * Kreator TikTok dummy.
- * Field mengikuti kontrak yang umum dipakai platform pencarian talent:
- * identitas (id, name, username, avatarUrl), kategori, metrik performa,
- * lokasi, badge, dan cuplikan video terbaru.
+ * Dummy TikTok creators.
+ * Fields follow the contract commonly used by talent search platforms:
+ * identity (id, name, username, avatarUrl), category, performance metrics,
+ * location, badges, and recent video snippets.
  */
 export const MOCK_TALENTS = [
   {
@@ -49,19 +49,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 101,
-        title: 'GRWM Soft Glam untuk Kondangan',
+        title: 'GRWM Soft Glam for a Wedding Party',
         thumbnailUrl: 'https://picsum.photos/seed/rara-video-1/360/640',
         views: '4.2M',
       },
       {
         id: 102,
-        title: 'Rahasia Bibir Ombre Hanya 5 Menit',
+        title: 'The 5-Minute Ombre Lip Secret',
         thumbnailUrl: 'https://picsum.photos/seed/rara-video-2/360/640',
         views: '2.8M',
       },
       {
         id: 103,
-        title: 'Unboxing Skincare Baru + Review Jujur',
+        title: 'New Skincare Unboxing + Honest Review',
         thumbnailUrl: 'https://picsum.photos/seed/rara-video-3/360/640',
         views: '1.9M',
       },
@@ -83,19 +83,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 201,
-        title: 'Review Laptop Baru Setelah 1 Bulan',
+        title: 'Laptop Review After 1 Month of Use',
         thumbnailUrl: 'https://picsum.photos/seed/dimas-video-1/360/640',
         views: '2.1M',
       },
       {
         id: 202,
-        title: 'Top 5 HP di Bawah 5 Juta',
+        title: 'Top 5 Phones Under 5 Million',
         thumbnailUrl: 'https://picsum.photos/seed/dimas-video-2/360/640',
         views: '1.4M',
       },
       {
         id: 203,
-        title: 'Kenapa Saya Kembali ke Android?',
+        title: 'Why I Switched Back to Android?',
         thumbnailUrl: 'https://picsum.photos/seed/dimas-video-3/360/640',
         views: '860K',
       },
@@ -117,19 +117,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 301,
-        title: 'Mix & Match Outfit Kantor ala Eropa',
+        title: 'European-Style Office Outfit Mix & Match',
         thumbnailUrl: 'https://picsum.photos/seed/nadia-video-1/360/640',
         views: '2.9M',
       },
       {
         id: 302,
-        title: 'Thrift Haul Bandung Semua di Bawah 100K',
+        title: 'Bandung Thrift Haul, All Under 100K',
         thumbnailUrl: 'https://picsum.photos/seed/nadia-video-2/360/640',
         views: '1.6M',
       },
       {
         id: 303,
-        title: '5 Style Hijab yang Tetap Elegan',
+        title: '5 Hijab Styles That Stay Elegant',
         thumbnailUrl: 'https://picsum.photos/seed/nadia-video-3/360/640',
         views: '1.1M',
       },
@@ -151,19 +151,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 401,
-        title: 'Coba Makan 1 Kg Sambal dalam 10 Menit',
+        title: 'Trying to Eat 1 Kg of Sambal in 10 Minutes',
         thumbnailUrl: 'https://picsum.photos/seed/kevin-video-1/360/640',
         views: '12.4M',
       },
       {
         id: 402,
-        title: 'Rahasia Rendang 2 Jam Mirip Restoran',
+        title: 'The 2-Hour Restaurant-Style Rendang Secret',
         thumbnailUrl: 'https://picsum.photos/seed/kevin-video-2/360/640',
         views: '7.3M',
       },
       {
         id: 403,
-        title: 'Resep Ayam Geprek Renyah Seharian',
+        title: 'Crispy Ayam Geprek Recipe That Stays Crunchy All Day',
         thumbnailUrl: 'https://picsum.photos/seed/kevin-video-3/360/640',
         views: '4.8M',
       },
@@ -186,19 +186,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 501,
-        title: 'Mabar PUBG sampai Pagi + Giveaway',
+        title: 'PUBG Squad All Night + Giveaway',
         thumbnailUrl: 'https://picsum.photos/seed/bima-video-1/360/640',
         views: '8.9M',
       },
       {
         id: 502,
-        title: 'Trik Free Fire Anti-Die yang Jarang Diketahui',
+        title: 'Rare Free Fire Tricks to Survive Longer',
         thumbnailUrl: 'https://picsum.photos/seed/bima-video-2/360/640',
         views: '6.4M',
       },
       {
         id: 503,
-        title: 'Rank Push Solo sampai Diamond, Nyesek Banget',
+        title: 'Solo Rank Push to Diamond, So Painful',
         thumbnailUrl: 'https://picsum.photos/seed/bima-video-3/360/640',
         views: '5.1M',
       },
@@ -220,19 +220,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 601,
-        title: 'Review Semua Lipstick Pink yang Lagi Viral',
+        title: 'Reviewing Every Viral Pink Lipstick',
         thumbnailUrl: 'https://picsum.photos/seed/salsa-video-1/360/640',
         views: '1.2M',
       },
       {
         id: 602,
-        title: 'Skincare Pagi untuk Kulit Berminyak',
+        title: 'Morning Skincare for Oily Skin',
         thumbnailUrl: 'https://picsum.photos/seed/salsa-video-2/360/640',
         views: '980K',
       },
       {
         id: 603,
-        title: 'Rutinitas Rambut Anti-Rontok ala Aku',
+        title: 'My Anti-Hair-Loss Hair Routine',
         thumbnailUrl: 'https://picsum.photos/seed/salsa-video-3/360/640',
         views: '640K',
       },
@@ -254,19 +254,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 701,
-        title: 'Coding 12 Jam Nonstop, Ini Hasilnya',
+        title: 'Coding 12 Hours Nonstop, Here Is the Result',
         thumbnailUrl: 'https://picsum.photos/seed/andre-video-1/360/640',
         views: '1.1M',
       },
       {
         id: 702,
-        title: 'Tutorial Deploy Website Pertama Tanpa Ribet',
+        title: 'Deploying Your First Website Without the Hassle',
         thumbnailUrl: 'https://picsum.photos/seed/andre-video-2/360/640',
         views: '890K',
       },
       {
         id: 703,
-        title: 'Kulihat Lagi Project Pertamaku Tahun Lalu',
+        title: 'Revisiting My First Project From Last Year',
         thumbnailUrl: 'https://picsum.photos/seed/andre-video-3/360/640',
         views: '530K',
       },
@@ -288,19 +288,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 801,
-        title: 'Liburan ke Bali, 6 Outfit Cukup 1 Koper',
+        title: 'Bali Trip: 6 Outfits in One Suitcase',
         thumbnailUrl: 'https://picsum.photos/seed/tiara-video-1/360/640',
         views: '2.4M',
       },
       {
         id: 802,
-        title: 'OOTD Sehari-hari ala Perempuan Jepang',
+        title: 'Everyday OOTDs Inspired by Japanese Women',
         thumbnailUrl: 'https://picsum.photos/seed/tiara-video-2/360/640',
         views: '1.3M',
       },
       {
         id: 803,
-        title: 'Tas Vintage yang Harganya Naik Drastis',
+        title: 'Vintage Bags Whose Prices Skyrocketed',
         thumbnailUrl: 'https://picsum.photos/seed/tiara-video-3/360/640',
         views: '970K',
       },
@@ -322,19 +322,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 901,
-        title: 'Ide Bekal Sekolah 5 Hari, Hemat dan Enak',
+        title: '5 Days of School Lunch Ideas, Cheap and Tasty',
         thumbnailUrl: 'https://picsum.photos/seed/devina-video-1/360/640',
         views: '2.2M',
       },
       {
         id: 902,
-        title: 'Masak Nasi Goreng Pakai Sisa Semalam',
+        title: 'Cooking Fried Rice With Last Night Leftovers',
         thumbnailUrl: 'https://picsum.photos/seed/devina-video-2/360/640',
         views: '1.8M',
       },
       {
         id: 903,
-        title: 'Cookies Coklat yang Lumer di Mulut',
+        title: 'Chocolate Cookies That Melt in Your Mouth',
         thumbnailUrl: 'https://picsum.photos/seed/devina-video-3/360/640',
         views: '1.5M',
       },
@@ -357,19 +357,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 1001,
-        title: 'Review Hidup: Gaji Pertama vs Kebutuhan',
+        title: 'Life Review: First Salary vs Living Costs',
         thumbnailUrl: 'https://picsum.photos/seed/akbar-video-1/360/640',
         views: '11.3M',
       },
       {
         id: 1002,
-        title: 'Komedi Situasi: Ketemu Teman Lama di Mall',
+        title: 'Situational Comedy: Old Friend at the Mall',
         thumbnailUrl: 'https://picsum.photos/seed/akbar-video-2/360/640',
         views: '9.8M',
       },
       {
         id: 1003,
-        title: 'Prank Deadline Boss sampai Nangis',
+        title: 'Pranking the Boss With a Fake Deadline',
         thumbnailUrl: 'https://picsum.photos/seed/akbar-video-3/360/640',
         views: '7.1M',
       },
@@ -391,19 +391,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 1101,
-        title: 'Main Horror Game Sendiri Jam 2 Malam',
+        title: 'Playing a Horror Game Alone at 2 AM',
         thumbnailUrl: 'https://picsum.photos/seed/vina-video-1/360/640',
         views: '8.8M',
       },
       {
         id: 1102,
-        title: 'Girl Gamer Push Rank sampai Mythic',
+        title: 'Girl Gamer Pushing Rank to Mythic',
         thumbnailUrl: 'https://picsum.photos/seed/vina-video-2/360/640',
         views: '5.6M',
       },
       {
         id: 1103,
-        title: 'Coba Game Baru yang Lagi Hits',
+        title: 'Trying Out a Trending New Game',
         thumbnailUrl: 'https://picsum.photos/seed/vina-video-3/360/640',
         views: '3.4M',
       },
@@ -425,19 +425,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 1201,
-        title: 'Transformasi Makeup: Biasa Menjadi Glow Up',
+        title: 'Makeup Transformation: From Plain to Glow Up',
         thumbnailUrl: 'https://picsum.photos/seed/alya-video-1/360/640',
         views: '4.7M',
       },
       {
         id: 1202,
-        title: 'Produk Makeup Lokal yang Wajib Dicoba',
+        title: 'Local Makeup Products You Must Try',
         thumbnailUrl: 'https://picsum.photos/seed/alya-video-2/360/640',
         views: '2.6M',
       },
       {
         id: 1203,
-        title: 'Tutorial Eyeliner untuk Mata Turun',
+        title: 'Eyeliner Tutorial for Hooded Eyes',
         thumbnailUrl: 'https://picsum.photos/seed/alya-video-3/360/640',
         views: '1.8M',
       },
@@ -459,19 +459,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 1301,
-        title: 'Standup Percintaan Anak Kos',
+        title: 'Standup About Dorm Life and Dating',
         thumbnailUrl: 'https://picsum.photos/seed/farhan-video-1/360/640',
         views: '1.6M',
       },
       {
         id: 1302,
-        title: 'Ketika Aku Pinjam Mobil Ayah',
+        title: 'When I Borrowed My Dad’s Car',
         thumbnailUrl: 'https://picsum.photos/seed/farhan-video-2/360/640',
         views: '890K',
       },
       {
         id: 1303,
-        title: 'Sketsa: Interview Kerja Imajiner',
+        title: 'Sketch: Imaginary Job Interview',
         thumbnailUrl: 'https://picsum.photos/seed/farhan-video-3/360/640',
         views: '720K',
       },
@@ -493,19 +493,19 @@ export const MOCK_TALENTS = [
     recentVideos: [
       {
         id: 1401,
-        title: 'Kulineran 24 Jam di Malang, Total Habisnya Bikin Nangis',
+        title: '24 Hours of Eating in Malang, the Bill Made Me Cry',
         thumbnailUrl: 'https://picsum.photos/seed/citra-video-1/360/640',
         views: '3.5M',
       },
       {
         id: 1402,
-        title: 'Resep Rawon yang Bikin Nagih',
+        title: 'An Addictive Rawon Recipe',
         thumbnailUrl: 'https://picsum.photos/seed/citra-video-2/360/640',
         views: '2.1M',
       },
       {
         id: 1403,
-        title: 'Jajan Pasar Tradisional, Semua Aku Ranking',
+        title: 'Traditional Market Snacks, Ranked by Me',
         thumbnailUrl: 'https://picsum.photos/seed/citra-video-3/360/640',
         views: '1.4M',
       },

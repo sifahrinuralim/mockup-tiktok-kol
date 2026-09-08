@@ -4,8 +4,8 @@ import { AlertCircle } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
 /**
- * Textarea ber-label yang seragam dengan <Input> (support error & hint).
- * Dipakai untuk input multi-baris seperti catatan tindak lanjut.
+ * Labeled Textarea consistent with <Input> (supports error & hint).
+ * Used for multi-line input such as follow-up notes.
  */
 export const Textarea = forwardRef(function Textarea(
   { label, error, hint, id, className, rows = 4, ...props },

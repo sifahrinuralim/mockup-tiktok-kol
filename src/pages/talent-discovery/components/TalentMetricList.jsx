@@ -1,6 +1,6 @@
 import { cn } from '@/utils/cn';
 
-/** Kolom metrik bawaan yang ditampilkan pada kartu/list kompak. */
+/** Default metric columns shown in compact card/list views. */
 const METRIC_FIELDS = [
   { key: 'followers', label: 'Followers' },
   { key: 'totalViews', label: 'Total Views' },
@@ -8,10 +8,10 @@ const METRIC_FIELDS = [
 ];
 
 /**
- * Grid tiga metrik kreator (default: followers, total views, engagement rate).
- * Kolom bisa diganti lewat prop `fields` (mis. kartu memakai avg views);
- * tiap kolom boleh membawa `valueClassName` untuk memberi aksen warna nilai.
- * Nilai diambil langsung dari field string siap-tampil di mock data.
+ * Three-metric grid for a creator (default: followers, total views, engagement rate).
+ * Columns can be replaced via the `fields` prop (e.g. cards use avg views);
+ * each column may carry a `valueClassName` to accent the value color.
+ * Values are read straight from the ready-to-display strings in the mock data.
  */
 export const TalentMetricList = ({ talent, fields = METRIC_FIELDS, className }) => (
   <dl className={cn('grid grid-cols-3 gap-2', className)}>

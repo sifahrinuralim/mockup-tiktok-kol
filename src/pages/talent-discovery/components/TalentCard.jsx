@@ -15,7 +15,7 @@ const VERIFIED_BADGE = 'Verified';
 const MAX_NON_VERIFIED_BADGES = 2;
 const MAX_VIDEO_THUMBS = 3;
 
-/** Metrik yang disorot kartu: followers, rata-rata views, engagement rate. */
+/** Metrics highlighted on the card: followers, average views, engagement rate. */
 const CARD_METRIC_FIELDS = [
   { key: 'followers', label: 'Followers' },
   { key: 'avgViewsPerVideo', label: 'Avg Views' },
@@ -23,10 +23,11 @@ const CARD_METRIC_FIELDS = [
 ];
 
 /**
- * Kartu profil kreator untuk grid view.
- * Menampilkan identitas, kategori, metrik utama, tiga video terakhir dengan
- * overlay jumlah view, serta aksi "Add to Campaign" & "View Details" (Quick View).
- * Status pilihan campaign diangkat ke halaman (`isInCampaign`/`onToggleCampaign`).
+ * Creator profile card for the grid view.
+ * Shows identity, category, key metrics, the three most recent videos with a
+ * views-count overlay, plus "Add to Campaign" & "View Details" (Quick View)
+ * actions.
+ * Campaign selection state is lifted to the page (`isInCampaign`/`onToggleCampaign`).
  */
 export const TalentCard = ({ talent, isInCampaign = false, onToggleCampaign = () => {}, className }) => {
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
@@ -41,11 +42,11 @@ export const TalentCard = ({ talent, isInCampaign = false, onToggleCampaign = ()
     <>
       <Card className={cn('h-full transition-shadow hover:shadow-md', className)}>
         <CardContent className="flex h-full flex-col p-5">
-          {/* Identitas kreator */}
+          {/* Creator identity */}
           <div className="flex items-start gap-3">
             <img
               src={talent.avatarUrl}
-              alt={`Foto ${talent.name}`}
+              alt={`Photo of ${talent.name}`}
               loading="lazy"
               className="h-14 w-14 shrink-0 rounded-xl object-cover ring-1 ring-slate-200"
             />
@@ -55,7 +56,7 @@ export const TalentCard = ({ talent, isInCampaign = false, onToggleCampaign = ()
                 {isVerified && (
                   <>
                     <BadgeCheck className="h-4 w-4 shrink-0 text-cyan-600" aria-hidden="true" />
-                    <span className="sr-only">Terverifikasi</span>
+                    <span className="sr-only">Verified</span>
                   </>
                 )}
               </div>
@@ -68,14 +69,14 @@ export const TalentCard = ({ talent, isInCampaign = false, onToggleCampaign = ()
             <CategoryChip category={talent.category} className="shrink-0" />
           </div>
 
-          {/* Metrik utama */}
+          {/* Key metrics */}
           <TalentMetricList
             talent={talent}
             fields={CARD_METRIC_FIELDS}
             className="mt-4 rounded-lg bg-slate-50 px-3 py-3"
           />
 
-          {/* Badge pendukung */}
+          {/* Supporting badges */}
           {(visibleBadges.length > 0 || hiddenBadgeCount > 0) && (
             <div className="mt-3 flex flex-wrap items-start gap-1.5">
               {visibleBadges.map((badge) => (
@@ -85,20 +86,20 @@ export const TalentCard = ({ talent, isInCampaign = false, onToggleCampaign = ()
               ))}
               {hiddenBadgeCount > 0 && (
                 <span className="text-xs font-medium text-slate-400">
-                  +{hiddenBadgeCount} lainnya
+                  +{hiddenBadgeCount} more
                 </span>
               )}
             </div>
           )}
 
-          {/* Cuplikan tiga video terakhir */}
+          {/* Three most recent video thumbnails */}
           {latestVideos.length > 0 && (
             <div className="mt-4">
               <div className="flex items-center justify-between gap-2">
                 <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-                  Video Terbaru
+                  Latest Videos
                 </p>
-                <span className="text-xs text-slate-400">{latestVideos.length} konten</span>
+                <span className="text-xs text-slate-400">{latestVideos.length} posts</span>
               </div>
               <ul className="mt-2 grid grid-cols-3 gap-2" role="list">
                 {latestVideos.map((video) => (
@@ -131,7 +132,7 @@ export const TalentCard = ({ talent, isInCampaign = false, onToggleCampaign = ()
             </div>
           )}
 
-          {/* Aksi: tambah campaign & lihat detail */}
+          {/* Actions: add to campaign & view details */}
           <div className="mt-auto flex flex-col gap-2 border-t border-slate-100 pt-4">
             <AddToCampaignButton
               isInCampaign={isInCampaign}

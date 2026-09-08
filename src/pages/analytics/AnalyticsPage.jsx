@@ -1,8 +1,8 @@
 /**
- * Halaman Analytics — analisis performa akun & kampanye.
- * Terdiri dari KPI, grafik tren (views/engagement) yang bisa diganti metrik,
- * performa per kategori, konten terbaik, dan demografi audiens.
- * Data dummy di src/data/mockAnalytics.js.
+ * Analytics page — account & campaign performance analysis.
+ * Made of KPIs, a trend chart (views/engagement) with a switchable metric,
+ * per-category performance, top content, and audience demographics.
+ * Mock data lives in src/data/mockAnalytics.js.
  */
 
 import { useEffect, useMemo, useState } from 'react';
@@ -23,9 +23,9 @@ import { KpiCards } from './components/KpiCards';
 import { TopContentsCard } from './components/TopContentsCard';
 import { TrendChart } from './components/TrendChart';
 
-/** Skeleton placeholder halaman saat simulasi loading berjalan. */
+/** Page skeleton placeholder while the simulated loading runs. */
 const AnalyticsSkeleton = () => (
-  <div aria-label="Memuat analytics..." className="space-y-4">
+  <div aria-label="Loading analytics..." className="space-y-4">
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
       {Array.from({ length: 4 }, (_, index) => (
         <div key={index} className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
@@ -42,13 +42,13 @@ const AnalyticsSkeleton = () => (
   </div>
 );
 
-/** Opsi metrik grafik tren. */
+/** Trend chart metric options. */
 const TREND_METRICS = [
   { value: 'views', label: 'Views' },
   { value: 'engagement', label: 'Engagement' },
 ];
 
-/** Segmen kontrol kecil (periode / metrik) bergaya pill. */
+/** Small pill-style segmented control (period / metric). */
 const SegmentedControl = ({ options, value, onChange, ariaLabel }) => (
   <div className="inline-flex rounded-lg border border-slate-200 bg-white p-0.5" role="group" aria-label={ariaLabel}>
     {options.map((option) => {
@@ -75,14 +75,14 @@ const SegmentedControl = ({ options, value, onChange, ariaLabel }) => (
 );
 
 /**
- * Halaman utama modul Analytics.
+ * Main page of the Analytics module.
  */
 export default function AnalyticsPage() {
   const [period, setPeriod] = useState(ANALYTICS_DEFAULT_PERIOD);
   const [metric, setMetric] = useState('views');
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulasi request awal agar skeleton state sempat terlihat nyata.
+  // Simulate the initial request so the skeleton state is visibly rendered.
   useEffect(() => {
     const timer = window.setTimeout(() => setIsLoading(false), 700);
     return () => window.clearTimeout(timer);
@@ -100,13 +100,13 @@ export default function AnalyticsPage() {
     <div className="space-y-6">
       <PageHeader
         title="Analytics"
-        description="Pantau tren konten, audiens, dan performa kampanye Anda dalam satu dasbor."
+        description="Track content trends, audiences, and campaign performance in one dashboard."
         action={
           <SegmentedControl
             options={ANALYTICS_PERIOD_OPTIONS}
             value={period}
             onChange={setPeriod}
-            ariaLabel="Pilih rentang waktu pelaporan"
+            ariaLabel="Select reporting time range"
           />
         }
       />
@@ -117,21 +117,21 @@ export default function AnalyticsPage() {
         <>
           <KpiCards data={periodData} />
 
-          {/* Grafik tren + kategori */}
-          <section aria-label="Grafik performa" className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {/* Trend chart + categories */}
+          <section aria-label="Performance chart" className="grid grid-cols-1 gap-4 lg:grid-cols-3">
             <Card className="lg:col-span-2">
               <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <CardTitle>Tren Harian</CardTitle>
+                  <CardTitle>Daily Trend</CardTitle>
                   <p className="mt-0.5 text-sm text-slate-500">
-                    {periodData.days} hari terakhir — pilih metrik untuk mengubah grafik.
+                    {periodData.days} last days — pick a metric to change the chart.
                   </p>
                 </div>
                 <SegmentedControl
                   options={TREND_METRICS}
                   value={metric}
                   onChange={setMetric}
-                  ariaLabel="Pilih metrik grafik"
+                  ariaLabel="Select chart metric"
                 />
               </CardHeader>
               <CardContent>
@@ -147,8 +147,8 @@ export default function AnalyticsPage() {
             <CategoryPerformanceCard />
           </section>
 
-          {/* Konten terbaik + audiens */}
-          <section aria-label="Konten dan audiens" className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+          {/* Top content + audience */}
+          <section aria-label="Content and audience" className="grid grid-cols-1 gap-4 lg:grid-cols-3">
             <div className="lg:col-span-2">
               <TopContentsCard />
             </div>

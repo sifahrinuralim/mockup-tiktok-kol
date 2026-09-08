@@ -10,7 +10,7 @@ const badgeVariants = {
 };
 
 /**
- * Badge generik untuk label singkat (status, role, dsb.).
+ * Generic badge for short labels (status, role, etc.).
  */
 export const Badge = ({ variant = 'secondary', className, children, ...props }) => (
   <span

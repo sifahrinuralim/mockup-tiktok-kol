@@ -7,7 +7,7 @@ import { formatRupiahShort } from '@/utils/currency';
 
 import { GrowthBadge } from './GrowthBadge';
 
-/** Gaya visual tiap peringkat podium — ditulis lengkap agar aman bagi JIT Tailwind. */
+/** Visual style per podium rank — written out in full so the Tailwind JIT scanner is safe. */
 const RANK_STYLES = {
   1: {
     accent: 'from-amber-300 to-yellow-500',
@@ -29,7 +29,7 @@ const RANK_STYLES = {
   },
 };
 
-/** Satu kolom podium: kartu kreator dengan aksen peringkat. */
+/** A single podium column: a creator card with a per-rank accent. */
 const PodiumCard = ({ talent }) => {
   const style = RANK_STYLES[talent.rank];
 
@@ -40,7 +40,7 @@ const PodiumCard = ({ talent }) => {
         talent.rank === 1 && 'md:-mt-4',
       )}
     >
-      {/* Aksen gradasi atas sesuai peringkat */}
+      {/* Top gradient accent per rank */}
       <div className={cn('h-1.5 w-full bg-gradient-to-r', style.accent)} aria-hidden="true" />
 
       <div className="flex flex-1 flex-col items-center px-5 pb-5 pt-6">
@@ -50,13 +50,13 @@ const PodiumCard = ({ talent }) => {
             style.rankBadge,
           )}
         >
-          Skor {talent.score}
+          Score {talent.score}
         </span>
 
         <div className="relative">
           <img
             src={talent.avatarUrl}
-            alt={`Foto ${talent.name}`}
+            alt={`Photo of ${talent.name}`}
             loading="lazy"
             className={cn(
               'rounded-2xl object-cover ring-4',
@@ -106,7 +106,7 @@ const PodiumCard = ({ talent }) => {
         <div className="mt-4 flex w-full items-center justify-between gap-2">
           <div className="min-w-0 text-left">
             <p className="text-[11px] font-medium uppercase tracking-wide text-slate-400">
-              Rate 1 Video
+              1-Video Rate
             </p>
             <p className="truncate text-sm font-bold text-slate-800">
               {formatRupiahShort(talent.feeSingleMin)}
@@ -120,18 +120,18 @@ const PodiumCard = ({ talent }) => {
 };
 
 /**
- * Podium tiga kreator terbaik.
- * Pada md+ kreator peringkat 1 dinaikkan sedikit agar terlihat menonjol.
+ * Podium for the three best creators.
+ * On md+ the rank-1 creator is raised slightly so they stand out.
  */
 export const PodiumRanking = ({ talents }) => (
   <section aria-labelledby="heading-podium" className="space-y-3">
     <div className="flex items-center justify-between">
       <div>
         <h2 id="heading-podium" className="text-lg font-semibold text-slate-900">
-          Podium Kreator Terbaik
+          Top Creators Podium
         </h2>
         <p className="mt-0.5 text-sm text-slate-600">
-          Tiga kreator dengan skor performa tertinggi bulan ini.
+          The three creators with the highest performance score this month.
         </p>
       </div>
     </div>

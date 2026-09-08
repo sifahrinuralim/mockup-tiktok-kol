@@ -6,16 +6,16 @@ import { NAV_ITEMS } from '@/constants/navigation';
 import { cn } from '@/utils/cn';
 
 /**
- * Navigasi samping (sidebar) aplikasi.
- * - lg (>=1024px) ke atas: panel tetap berada di kiri, tepat di bawah header.
- * - di bawah lg: drawer yang bergeser dari kiri (dikendalikan prop `open`).
+ * App side navigation (sidebar).
+ * - lg (>=1024px) and up: fixed panel on the left, right below the header.
+ * - below lg: drawer sliding in from the left (controlled by the `open` prop).
  */
 export const Sidebar = ({ open = false, onClose }) => {
   const year = new Date().getFullYear();
 
   return (
     <>
-      {/* Backdrop — hanya tampil untuk drawer mobile */}
+      {/* Backdrop — only shown for the mobile drawer */}
       {open && (
         <div
           className="fixed inset-x-0 bottom-0 top-16 z-30 bg-slate-900/50 backdrop-blur-sm lg:hidden"
@@ -25,19 +25,19 @@ export const Sidebar = ({ open = false, onClose }) => {
       )}
 
       <aside
-        aria-label="Navigasi utama"
+        aria-label="Main navigation"
         className={cn(
           'fixed bottom-0 left-0 top-16 z-40 flex w-64 flex-col border-r border-slate-200 bg-white transition-transform duration-200 ease-out lg:translate-x-0',
           open ? 'translate-x-0' : '-translate-x-full',
         )}
       >
-        {/* Tombol tutup drawer (hanya mobile) */}
+        {/* Drawer close button (mobile only) */}
         <div className="flex justify-end px-3 pt-3 lg:hidden">
           <button
             type="button"
             onClick={onClose}
             className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-            aria-label="Tutup menu navigasi"
+            aria-label="Close navigation menu"
           >
             <X className="h-5 w-5" aria-hidden="true" />
           </button>
@@ -45,7 +45,7 @@ export const Sidebar = ({ open = false, onClose }) => {
 
         <nav className="flex-1 overflow-y-auto px-3 pb-2 pt-1 lg:pt-5">
           <p className="px-3 pb-2 text-[11px] font-semibold uppercase tracking-wider text-slate-500">
-            Menu Utama
+            Main Menu
           </p>
           <ul className="space-y-1">
             {NAV_ITEMS.map((item) => (

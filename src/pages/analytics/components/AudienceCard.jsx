@@ -3,8 +3,8 @@ import { AUDIENCE_AGE_GROUPS, GENDER_SPLIT, TOP_REGIONS } from '@/data/mockAnaly
 import { cn } from '@/utils/cn';
 
 /**
- * Ringkasan audiens: komposisi umur, gender, dan wilayah teratas.
- * Nilai persen statis dari data mock analytics.
+ * Audience summary: age, gender, and top-region breakdown.
+ * Static percentage values from the mock analytics data.
  */
 export const AudienceCard = () => {
   const totalGender = GENDER_SPLIT.reduce((sum, item) => sum + item.pct, 0) || 1;
@@ -17,10 +17,10 @@ export const AudienceCard = () => {
         <CardTitle>Audience</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 space-y-6">
-        {/* Rentang umur */}
+        {/* Age ranges */}
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-            Rentang Umur
+            Age Range
           </h4>
           <ul role="list" className="mt-3 space-y-3">
             {AUDIENCE_AGE_GROUPS.map((group) => (
@@ -43,7 +43,7 @@ export const AudienceCard = () => {
         {/* Gender */}
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-400">Gender</h4>
-          <div className="mt-3 flex h-2.5 w-full overflow-hidden rounded-full bg-slate-100" role="img" aria-label={`${femalePct}% perempuan dan ${malePct}% laki-laki`}>
+          <div className="mt-3 flex h-2.5 w-full overflow-hidden rounded-full bg-slate-100" role="img" aria-label={`${femalePct}% female and ${malePct}% male`}>
             <div className="h-full bg-emerald-400" style={{ width: `${(femalePct / totalGender) * 100}%` }} />
             <div className="h-full bg-sky-500" style={{ width: `${(malePct / totalGender) * 100}%` }} />
           </div>
@@ -53,7 +53,7 @@ export const AudienceCard = () => {
                 <span
                   className={cn(
                     'h-2.5 w-2.5 rounded-full',
-                    gender.label === 'Perempuan' ? 'bg-emerald-400' : 'bg-sky-500',
+                    gender.label === 'Female' ? 'bg-emerald-400' : 'bg-sky-500',
                   )}
                   aria-hidden="true"
                 />
@@ -63,10 +63,10 @@ export const AudienceCard = () => {
           </div>
         </div>
 
-        {/* Wilayah teratas */}
+        {/* Top regions */}
         <div>
           <h4 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
-            Wilayah Teratas
+            Top Regions
           </h4>
           <ul role="list" className="mt-3 grid grid-cols-1 gap-2">
             {TOP_REGIONS.map((region) => (

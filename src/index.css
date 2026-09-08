@@ -27,7 +27,7 @@
   }
 }
 
-/* Animasi overlay */
+/* Overlay animation */
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -37,7 +37,7 @@
   }
 }
 
-/* Animasi munculnya panel Modal */
+/* Modal panel entrance animation */
 @keyframes modal-in {
   from {
     opacity: 0;
@@ -57,7 +57,7 @@
   animation: modal-in 0.2s ease-out;
 }
 
-/* Hormati preferensi pengguna yang mengurangi gerakan animasi */
+/* Respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *,
   ::before,
@@ -69,15 +69,15 @@
   }
 }
 
-/* Area aman (notch/home indicator) pada perangkat mobile */
+/* Safe area (notch/home indicator) on mobile devices */
 .pb-safe {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
 /*
- * Offset bawah untuk elemen mengambang di atas Bottom Navigation mobile
- * (tinggi nav 3.5rem + jarak 1rem + area aman). Hanya aktif di bawah lg;
- * pada lg+ elemen memakai `bottom-6` biasa dari Tailwind.
+ * Bottom offset for floating elements above the mobile Bottom Navigation
+ * (nav height 3.5rem + 1rem gap + safe area). Only active below lg;
+ * on lg+ elements use the regular Tailwind `bottom-6`.
  */
 @media (max-width: 1023px) {
   .dock-offset {

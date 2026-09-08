@@ -5,15 +5,15 @@ import { CURRENT_USER } from '@/constants/app';
 import { useDismiss } from '@/hooks/useDismiss';
 import { cn } from '@/utils/cn';
 
-/** Aksi menu akun. Masih placeholder — sambungkan saat halaman terkait dibangun. */
+/** Account menu actions. Still placeholders — wire them up once the related page is built. */
 const MENU_ITEMS = [
-  { label: 'Lihat Profil', icon: User },
-  { label: 'Pengaturan Akun', icon: Settings },
+  { label: 'View Profile', icon: User },
+  { label: 'Account Settings', icon: Settings },
 ];
 
 /**
- * Blok profil pengguna di Navbar lengkap dengan menu akun dropdown.
- * Identitas pengguna diambil dari CURRENT_USER (mock).
+ * User profile block in the Navbar with an account dropdown menu.
+ * User identity comes from CURRENT_USER (mock).
  */
 export const ProfileMenu = () => {
   const [open, setOpen] = useState(false);
@@ -24,7 +24,7 @@ export const ProfileMenu = () => {
       <button
         type="button"
         onClick={() => setOpen((prev) => !prev)}
-        aria-label={`Akun ${CURRENT_USER.name}`}
+        aria-label={`Account for ${CURRENT_USER.name}`}
         aria-haspopup="true"
         aria-expanded={open}
         className="flex items-center gap-2 rounded-lg p-1.5 transition-colors hover:bg-slate-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
@@ -55,7 +55,7 @@ export const ProfileMenu = () => {
       {open && (
         <div
           role="menu"
-          aria-label="Menu akun"
+          aria-label="Account menu"
           className="animate-fade-in absolute right-0 z-50 mt-2 w-56 overflow-hidden rounded-xl border border-slate-200 bg-white py-1.5 shadow-xl shadow-slate-900/10"
         >
           <div className="border-b border-slate-100 px-4 py-3">
@@ -85,7 +85,7 @@ export const ProfileMenu = () => {
             className="flex w-full items-center gap-2.5 px-4 py-3 text-sm text-rose-600 transition-colors hover:bg-rose-50 hover:text-rose-700"
           >
             <LogOut className="h-4 w-4" aria-hidden="true" />
-            Keluar
+            Sign out
           </button>
         </div>
       )}

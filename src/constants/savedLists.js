@@ -1,20 +1,20 @@
 /**
- * Konstanta domain Saved Lists:
- * opsi segmen (target followers) dan palet gradien untuk kartu daftar.
+ * Saved Lists domain constants:
+ * segment options (follower targets) and a gradient palette for list cards.
  */
 
-/** Opsi segmen / target ukuran kreator pada sebuah daftar. */
+/** Segment / creator-size target options for a list. */
 export const LIST_TARGET_OPTIONS = [
   { value: 'micro', label: 'Micro (10K – 100K)' },
   { value: 'mid', label: 'Mid Tier (100K – 500K)' },
   { value: 'macro', label: 'Macro (500K – 1M)' },
-  { value: 'mega', label: 'Mega (1M ke atas)' },
-  { value: 'mixed', label: 'Campuran (semua ukuran)' },
+  { value: 'mega', label: 'Mega (1M and above)' },
+  { value: 'mixed', label: 'Mixed (all sizes)' },
 ];
 
 /**
- * Palet gradien untuk aksen header kartu daftar (diputar berurutan).
- * Ditulis lengkap agar aman dideteksi JIT Tailwind.
+ * Gradient palette for list-card header accents (rotated in order).
+ * Written out in full so the Tailwind JIT scanner picks them up safely.
  */
 export const LIST_GRADIENT_CLASSES = [
   'from-cyan-400 to-sky-500',

@@ -3,8 +3,8 @@ import { TrendingDown, TrendingUp } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
 /**
- * Badge pertumbuhan 30 hari kreator: panah naik/turun + persentase.
- * Warna hijau untuk pertumbuhan positif, merah untuk negatif, netral saat datar.
+ * 30-day creator growth badge: up/down arrow + percentage.
+ * Green for positive growth, red for negative, neutral when flat.
  */
 export const GrowthBadge = ({ value, className }) => {
   const isPositive = value > 0.05;

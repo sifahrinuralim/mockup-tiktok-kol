@@ -3,11 +3,11 @@ import { useId } from 'react';
 import { cn } from '@/utils/cn';
 import { formatCompactNumber } from '@/utils/metrics';
 
-/** Dimensi kanvas SVG (dipakai bersama viewBox agar responsif). */
+/** SVG canvas dimensions (shared with the viewBox so the chart stays responsive). */
 const VIEWBOX_WIDTH = 680;
 const VIEWBOX_HEIGHT = 240;
 
-/** Ruang kosong tiap sisi kanvas untuk label sumbu. */
+/** Empty space on each side of the canvas for axis labels. */
 const PADDING = {
   top: 16,
   right: 16,
@@ -15,7 +15,7 @@ const PADDING = {
   left: 60,
 };
 
-/** Jumlah segmen garis bantu horizontal (sumbu Y). */
+/** Number of horizontal guide-line segments (Y axis). */
 const GRID_SEGMENTS = 4;
 
 const toX = (index, count, plotWidth) => {
@@ -26,15 +26,15 @@ const toX = (index, count, plotWidth) => {
 const toY = (value, maxValue, plotHeight) =>
   PADDING.top + (1 - value / maxValue) * plotHeight;
 
-/** Indeks label sumbu X: awal, dua titik tengah, dan titik terakhir. */
+/** X-axis label indexes: the start, two middle points, and the last point. */
 const getXLabelIndexes = (count) => {
   if (count <= 1) return [0];
   return [0, Math.round((count - 1) / 3), Math.round(((count - 1) * 2) / 3), count - 1];
 };
 
 /**
- * Grafik garis (area chart) SVG tanpa dependency untuk tren total views harian.
- * Responsif via viewBox sehingga nyaman ditampilkan di dalam Quick View.
+ * Dependency-free SVG line/area chart for the daily total-views trend.
+ * Responsive via viewBox so it renders comfortably inside Quick View.
  */
 export const ViewsTrendChart = ({ data, className }) => {
   const gradientId = `views-trend-${useId().replace(/:/g, '')}`;
@@ -74,15 +74,14 @@ export const ViewsTrendChart = ({ data, className }) => {
       <svg
         viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
         role="img"
-        aria-label={`Grafik total views harian 30 hari terakhir. Puncak ${formatCompactNumber(
+        aria-label={`Daily total views chart for the last 30 days. Peak ${formatCompactNumber(
           rawMax,
           1,
-        )} view per hari.`}
+        )} views per day.`}
         className="h-auto w-full"
       >
         <desc>
-          Grafik garis yang menunjukkan tren kenaikan total views harian kreator dalam 30 hari
-          terakhir.
+          A line chart showing the creator's daily total-views trend over the last 30 days.
         </desc>
         <defs>
           <linearGradient id={gradientId} x1="0" y1="0" x2="0" y2="1">
@@ -91,7 +90,7 @@ export const ViewsTrendChart = ({ data, className }) => {
           </linearGradient>
         </defs>
 
-        {/* Grid horizontal + label sumbu Y */}
+        {/* Horizontal grid + Y-axis labels */}
         {gridValues.map((value, index) => {
           const y = toY(value, maxValue, plotHeight);
           return (
@@ -112,7 +111,7 @@ export const ViewsTrendChart = ({ data, className }) => {
           );
         })}
 
-        {/* Area + garis tren */}
+        {/* Area + trend line */}
         <path d={areaPath} fill={`url(#${gradientId})`} />
         <path
           d={linePath}
@@ -123,7 +122,7 @@ export const ViewsTrendChart = ({ data, className }) => {
           strokeLinejoin="round"
         />
 
-        {/* Titik akhir data */}
+        {/* End data point */}
         <circle
           cx={lastPoint.x}
           cy={lastPoint.y}
@@ -133,7 +132,7 @@ export const ViewsTrendChart = ({ data, className }) => {
           strokeWidth="3"
         />
 
-        {/* Label sumbu X */}
+        {/* X-axis labels */}
         {xLabelIndexes.map((index) => (
           <text
             key={`x-${index}`}
@@ -143,7 +142,7 @@ export const ViewsTrendChart = ({ data, className }) => {
             fontSize="11"
             fill="#94a3b8"
           >
-            {index === count - 1 ? 'Hari ini' : `${count - index} hari lalu`}
+            {index === count - 1 ? 'Today' : `${count - index} days ago`}
           </text>
         ))}
       </svg>

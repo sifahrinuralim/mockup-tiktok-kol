@@ -1,39 +1,39 @@
 /**
- * Notifikasi mock untuk menu lonceng di Navbar.
- * `type` dipetakan ke ikon & warna di komponen NotificationsMenu.
- * Struktur field meniru kontrak API notifikasi (id, judul, isi, waktu, status baca).
+ * Mock notifications for the bell menu in the Navbar.
+ * `type` is mapped to icons & colors in the NotificationsMenu component.
+ * The field structure mimics a notification API contract (id, title, body, time, read status).
  */
 export const NOTIFICATIONS = [
   {
     id: 1,
     type: 'campaign',
-    title: 'Kampanye “Glow Up x @rara.may” disetujui',
-    body: 'Penayangan konten kreator dimulai Senin pukul 09.00 WIB.',
-    time: '12 menit lalu',
+    title: 'Campaign “Glow Up x @rara.may” approved',
+    body: 'Creator content goes live Monday at 09:00 (GMT+7).',
+    time: '12 minutes ago',
     unread: true,
   },
   {
     id: 2,
     type: 'metric',
-    title: 'Metrik @devina.erlita naik',
-    body: 'Engagement rate naik 24% dibanding minggu lalu.',
-    time: '1 jam lalu',
+    title: '@devina.erlita metrics are up',
+    body: 'Engagement rate is up 24% compared to last week.',
+    time: '1 hour ago',
     unread: true,
   },
   {
     id: 3,
     type: 'list',
-    title: 'Daftar “Beauty Micro-Influencer” diunduh',
-    body: 'Daftar diunduh oleh rekan tim campaign Anda.',
-    time: '3 jam lalu',
+    title: 'List “Beauty Micro-Influencer” downloaded',
+    body: 'The list was downloaded by a teammate on your campaign.',
+    time: '3 hours ago',
     unread: false,
   },
   {
     id: 4,
     type: 'system',
-    title: 'Kuota pencarian mingguan hampir habis',
-    body: 'Sisa 18 dari 25 pencarian untuk minggu ini.',
-    time: 'Kemarin',
+    title: 'Weekly search quota almost reached',
+    body: '18 of 25 searches left for this week.',
+    time: 'Yesterday',
     unread: false,
   },
 ];

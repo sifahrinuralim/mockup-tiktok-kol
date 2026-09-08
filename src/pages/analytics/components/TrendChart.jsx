@@ -3,17 +3,17 @@ import { useId } from 'react';
 import { cn } from '@/utils/cn';
 import { formatCompactNumber } from '@/utils/metrics';
 
-/** Dimensi kanvas SVG (viewBox agar responsif). */
+/** SVG canvas dimensions (viewBox so it stays responsive). */
 const VIEWBOX_WIDTH = 720;
 const VIEWBOX_HEIGHT = 260;
 
-/** Ruang kosong tiap sisi kanvas untuk label sumbu. */
+/** Empty space on each side of the canvas for axis labels. */
 const PADDING = { top: 18, right: 18, bottom: 34, left: 64 };
 
-/** Jumlah segmen garis bantu horizontal. */
+/** Number of horizontal guide-line segments. */
 const GRID_SEGMENTS = 4;
 
-/** Palet garis sesuai metrik: views (indigo) & engagement (cyan). */
+/** Line palette per metric: views (indigo) & engagement (cyan). */
 const ACCENTS = {
   indigo: { stroke: '#4f46e5', areaTop: '#4f46e5', areaOpacity: '0.28' },
   cyan: { stroke: '#06b6d4', areaTop: '#06b6d4', areaOpacity: '0.24' },
@@ -24,20 +24,20 @@ const toX = (index, count, plotWidth) =>
 
 const toY = (value, maxValue, plotHeight) => PADDING.top + (1 - value / maxValue) * plotHeight;
 
-/** Label sumbu X: indeks awal, dua titik tengah, dan terakhir. */
+/** X-axis labels: the start, two middle points, and the last one. */
 const getXLabelIndexes = (count) => {
   if (count <= 1) return [0];
   return [0, Math.round((count - 1) / 3), Math.round(((count - 1) * 2) / 3), count - 1];
 };
 
-/** Format label angka sumbu Y (persen memakai satu desimal + simbol %). */
+/** Formats Y-axis tick labels (percents use one decimal + the % symbol). */
 const formatTick = (value, unit) =>
   unit === 'percent' ? `${value.toFixed(1)}%` : formatCompactNumber(value, 0);
 
 /**
- * Grafik area (line chart) SVG tanpa dependency.
- * Dipakai untuk tren views & engagement analytics dengan label sumbu X
- * yang sudah dihitung dari tanggal periode (util date).
+ * Dependency-free SVG area/line chart.
+ * Used for the analytics views & engagement trends, with X-axis labels
+ * computed from the period dates (date util).
  */
 export const TrendChart = ({ data, labels, unit = 'count', accent = 'indigo', className }) => {
   const gradientId = `trend-${useId().replace(/:/g, '')}`;
@@ -77,7 +77,7 @@ export const TrendChart = ({ data, labels, unit = 'count', accent = 'indigo', cl
       <svg
         viewBox={`0 0 ${VIEWBOX_WIDTH} ${VIEWBOX_HEIGHT}`}
         role="img"
-        aria-label={`Grafik tren harian. Puncak ${formatTick(rawMax, unit)} per hari.`}
+        aria-label={`Daily trend chart. Peak ${formatTick(rawMax, unit)} per day.`}
         className="h-auto w-full"
       >
         <defs>

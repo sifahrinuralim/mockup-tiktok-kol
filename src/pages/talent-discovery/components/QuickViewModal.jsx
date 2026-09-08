@@ -18,7 +18,7 @@ import { ViewsTrendChart } from './ViewsTrendChart';
 
 const VERIFIED_BADGE = 'Verified';
 
-/** Ikon & warna tiap metrik pada blok ringkasan performa. */
+/** Icon & color per metric in the performance summary block. */
 const METRIC_TILES = [
   {
     key: 'followers',
@@ -52,7 +52,7 @@ const METRIC_TILES = [
   },
 ];
 
-/** Judul seksi di dalam Quick View (h4 + aksi kanan opsional). */
+/** Section title inside Quick View (h4 + optional right-side action). */
 const SectionHeading = ({ id, title, action }) => (
   <div className="flex flex-wrap items-center justify-between gap-2">
     <h4 id={id} className="text-sm font-semibold text-slate-800">
@@ -62,7 +62,7 @@ const SectionHeading = ({ id, title, action }) => (
   </div>
 );
 
-/** Ubin metrik ringkas untuk blok ringkasan performa. */
+/** Compact metric tile for the performance summary block. */
 const MetricTile = ({ label, value, icon: Icon, iconClassName }) => (
   <li className="rounded-lg border border-slate-200 p-3">
     <span className={cn('flex h-8 w-8 items-center justify-center rounded-lg', iconClassName)}>
@@ -75,18 +75,18 @@ const MetricTile = ({ label, value, icon: Icon, iconClassName }) => (
   </li>
 );
 
-/** Tanda centang kreator terverifikasi. */
+/** Verified creator checkmark. */
 const VerifiedMark = () => (
   <>
     <BadgeCheck className="h-4 w-4 shrink-0 text-cyan-600" aria-hidden="true" />
-    <span className="sr-only">Terverifikasi</span>
+    <span className="sr-only">Verified</span>
   </>
 );
 
 /**
- * Quick View Modal — ringkasan detail kreator.
- * Muncul saat tombol "View Details" diklik pada TalentCard.
- * Responsif: full-screen di mobile, dialog terpusat `xl` di laptop.
+ * Quick View Modal — a creator detail summary.
+ * Opens when "View Details" is clicked on a TalentCard.
+ * Responsive: full-screen on mobile, centered `xl` dialog on laptop.
  */
 export const QuickViewModal = ({
   talent,
@@ -110,24 +110,24 @@ export const QuickViewModal = ({
     <Modal
       open={open}
       onClose={onClose}
-      title="Profil Kreator"
-      description="Ringkasan performa, estimasi harga, audio favorit, dan portofolio video."
+      title="Creator Profile"
+      description="Performance summary, price estimates, favorite audios, and video portfolio."
       size="xl"
       fullScreenMobile
       footer={
         <>
           <Button type="button" variant="outline" onClick={onClose} className="min-h-11">
-            Tutup
+            Close
           </Button>
           <AddToCampaignButton isInCampaign={isInCampaign} onClick={onToggleCampaign} />
         </>
       }
     >
       <div className="space-y-6 sm:space-y-7">
-        <section aria-label="Identitas kreator" className="flex flex-col gap-4 sm:flex-row sm:items-start">
+        <section aria-label="Creator identity" className="flex flex-col gap-4 sm:flex-row sm:items-start">
           <img
             src={talent.avatarUrl}
-            alt={`Foto ${talent.name}`}
+            alt={`Photo of ${talent.name}`}
             className="h-20 w-20 shrink-0 rounded-2xl object-cover ring-1 ring-slate-200 sm:h-24 sm:w-24"
           />
           <div className="min-w-0 flex-1">
@@ -153,7 +153,7 @@ export const QuickViewModal = ({
           </div>
         </section>
 
-        <section aria-label="Ringkasan metrik performa">
+        <section aria-label="Performance metrics summary">
           <ul role="list" className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
             {METRIC_TILES.map(({ key, label, icon, iconClassName }) => (
               <MetricTile
@@ -171,10 +171,10 @@ export const QuickViewModal = ({
           <div className="flex flex-wrap items-end justify-between gap-2">
             <div>
               <h4 id="quick-view-trend-title" className="text-sm font-semibold text-slate-800">
-                Pertumbuhan Views
+                Views Growth
               </h4>
               <p className="mt-0.5 text-xs text-slate-500">
-                Total views harian — 30 hari terakhir.
+                Daily total views — last 30 days.
               </p>
             </div>
             <span className="inline-flex items-center gap-1 rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-700">
@@ -191,11 +191,11 @@ export const QuickViewModal = ({
           <section aria-labelledby="quick-view-rate-title">
             <SectionHeading
               id="quick-view-rate-title"
-              title="Estimasi Rate Card"
-              action={<Badge variant="outline">Perkiraan</Badge>}
+              title="Estimated Rate Card"
+              action={<Badge variant="outline">Estimate</Badge>}
             />
             <p className="mt-0.5 text-xs text-slate-500">
-              Kisaran harga per konten berdasar performa kreator saat ini.
+              Price range per post based on the creator's current performance.
             </p>
             <ul className="mt-3 divide-y divide-slate-100 rounded-xl border border-slate-200">
               {rateCardTiers.map((tier) => (
@@ -209,7 +209,7 @@ export const QuickViewModal = ({
                   <div className="min-w-0">
                     <p className="flex flex-wrap items-center gap-2 text-sm font-semibold text-slate-800">
                       {tier.label}
-                      {tier.highlight && <Badge variant="success">Paling diminati</Badge>}
+                      {tier.highlight && <Badge variant="success">Most popular</Badge>}
                     </p>
                     <p className="mt-0.5 text-xs text-slate-500">{tier.hint}</p>
                   </div>
@@ -220,15 +220,15 @@ export const QuickViewModal = ({
               ))}
             </ul>
             <p className="mt-2 text-xs text-slate-400">
-              Estimasi otomatis dari metrik publik; nominal final menunggu negosiasi brand.
+              Auto-estimated from public metrics; final rates are subject to brand negotiation.
             </p>
           </section>
 
           <section aria-labelledby="quick-view-audio-title">
             <SectionHeading
               id="quick-view-audio-title"
-              title="Audio Favorit"
-              action={<span className="text-xs text-slate-400">{favoriteAudios.length} audio</span>}
+              title="Favorite Audios"
+              action={<span className="text-xs text-slate-400">{favoriteAudios.length} audios</span>}
             />
             {favoriteAudios.length > 0 ? (
               <ul className="mt-3 space-y-1" role="list">
@@ -245,13 +245,13 @@ export const QuickViewModal = ({
                       <p className="truncate text-xs text-slate-400">{audio.creator}</p>
                     </div>
                     <span className="shrink-0 text-xs font-semibold text-slate-500">
-                      {audio.usageCount} video
+                      {audio.usageCount} videos
                     </span>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p className="mt-3 text-sm text-slate-500">Belum ada data audio favorit.</p>
+              <p className="mt-3 text-sm text-slate-500">No favorite audio data yet.</p>
             )}
           </section>
         </div>
@@ -259,8 +259,8 @@ export const QuickViewModal = ({
         <section aria-labelledby="quick-view-portfolio-title">
           <SectionHeading
             id="quick-view-portfolio-title"
-            title="Portofolio Video"
-            action={<Badge variant="secondary">{talent.recentVideos.length} video</Badge>}
+            title="Video Portfolio"
+            action={<Badge variant="secondary">{talent.recentVideos.length} videos</Badge>}
           />
           <ul className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-3" role="list">
             {talent.recentVideos.map((video) => (

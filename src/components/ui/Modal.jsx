@@ -12,11 +12,12 @@ const modalSizes = {
 };
 
 /**
- * Modal generik yang dapat diakses (accessible):
- * - Tutup via tombol ×, klik backdrop, atau tombol Escape.
- * - Mengunci scroll body selama modal terbuka.
- * - Prop `fullScreenMobile` membuat modal tampil full-screen di mobile dan
- *   kembali menjadi dialog terpusat sejak breakpoint `sm` (dipakai Quick View).
+ * Accessible generic modal:
+ * - Close via the × button, backdrop click, or the Escape key.
+ * - Locks body scroll while the modal is open.
+ * - The `fullScreenMobile` prop makes the modal full-screen on mobile and
+ *   turns it back into a centered dialog from the `sm` breakpoint up
+ *   (used by Quick View).
  */
 export const Modal = ({
   open,
@@ -94,7 +95,7 @@ export const Modal = ({
               type="button"
               onClick={onClose}
               className="-m-1.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
-              aria-label="Tutup modal"
+              aria-label="Close modal"
             >
               <X className="h-5 w-5" />
             </button>

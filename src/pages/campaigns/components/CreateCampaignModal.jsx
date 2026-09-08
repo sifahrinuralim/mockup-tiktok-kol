@@ -7,7 +7,7 @@ import { Select } from '@/components/ui/Select';
 import { Textarea } from '@/components/ui/Textarea';
 import { CAMPAIGN_CATEGORIES } from '@/constants/campaigns';
 
-/** Nilai awal form (selalu bersih saat modal dibuka). */
+/** Initial form values (always clean when the modal opens). */
 const EMPTY_FORM = {
   name: '',
   brand: '',
@@ -18,20 +18,19 @@ const EMPTY_FORM = {
   goal: '',
 };
 
-/** Durasi simulasi proses simpan agar tombol isLoading sempat terlihat. */
+/** Simulated save duration so the button isLoading state is visible. */
 const SUBMIT_DELAY_MS = 700;
 
 /**
- * Modal pembuatan kampanye baru (mockup): mengumpulkan data inti lalu
- * meneruskannya via `onCreate`. Hasilnya langsung tampil di tabel sebagai
- * kampanye status draft.
+ * New campaign modal (mockup): collects the core data and forwards it via
+ * `onCreate`. The result appears immediately in the table as a draft campaign.
  */
 export const CreateCampaignModal = ({ open, onClose, onCreate }) => {
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Reset form setiap modal dibuka agar data lama tidak menumpuk.
+  // Reset the form each time the modal opens so stale data never lingers.
   useEffect(() => {
     if (open) {
       setForm(EMPTY_FORM);
@@ -45,8 +44,8 @@ export const CreateCampaignModal = ({ open, onClose, onCreate }) => {
     event.preventDefault();
 
     const nextErrors = {};
-    if (!form.name.trim()) nextErrors.name = 'Nama kampanye wajib diisi.';
-    if (!form.brand.trim()) nextErrors.brand = 'Nama brand wajib diisi.';
+    if (!form.name.trim()) nextErrors.name = 'Campaign name is required.';
+    if (!form.brand.trim()) nextErrors.brand = 'Brand name is required.';
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length > 0) return;
 
@@ -55,7 +54,7 @@ export const CreateCampaignModal = ({ open, onClose, onCreate }) => {
       onCreate({
         ...form,
         budget: Number(form.budget) > 0 ? Number(form.budget) : 0,
-        goal: form.goal.trim() || 'Belum ada deskripsi — lengkapi brief sebelum mengirim ke talenta.',
+        goal: form.goal.trim() || 'No description yet — complete the brief before sending it to talent.',
       });
       setIsSubmitting(false);
       onClose();
@@ -66,38 +65,38 @@ export const CreateCampaignModal = ({ open, onClose, onCreate }) => {
     <Modal
       open={open}
       onClose={onClose}
-      title="Buat Kampanye Baru"
-      description="Kampanye baru dibuat dengan status Draft dan dapat dilengkapi belakangan."
+      title="Create New Campaign"
+      description="New campaigns start as Draft and can be completed later."
       size="lg"
       footer={
         <>
           <Button variant="outline" onClick={onClose} disabled={isSubmitting}>
-            Batal
+            Cancel
           </Button>
-          <Button type="submit" form="form-buat-kampanye" isLoading={isSubmitting} loadingText="Menyimpan...">
-            Buat Kampanye
+          <Button type="submit" form="form-create-campaign" isLoading={isSubmitting} loadingText="Saving...">
+            Create Campaign
           </Button>
         </>
       }
     >
-      <form id="form-buat-kampanye" onSubmit={handleSubmit} noValidate className="space-y-4">
+      <form id="form-create-campaign" onSubmit={handleSubmit} noValidate className="space-y-4">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <Input
-            label="Nama Kampanye"
-            placeholder="cth. Glow Up Challenge"
+            label="Campaign Name"
+            placeholder="e.g. Glow Up Challenge"
             value={form.name}
             onChange={(event) => updateField('name', event.target.value)}
             error={errors.name}
           />
           <Input
-            label="Brand / Klien"
-            placeholder="cth. GlowSkin ID"
+            label="Brand / Client"
+            placeholder="e.g. GlowSkin ID"
             value={form.brand}
             onChange={(event) => updateField('brand', event.target.value)}
             error={errors.brand}
           />
           <Select
-            label="Kategori Brand"
+            label="Brand Category"
             value={form.category}
             onChange={(event) => updateField('category', event.target.value)}
           >
@@ -112,28 +111,28 @@ export const CreateCampaignModal = ({ open, onClose, onCreate }) => {
             type="number"
             min="0"
             step="1000000"
-            placeholder="cth. 150000000"
+            placeholder="e.g. 150000000"
             value={form.budget}
             onChange={(event) => updateField('budget', event.target.value)}
-            hint="Kosongkan bila budget belum disetujui."
+            hint="Leave empty if the budget is not approved yet."
           />
           <Input
-            label="Tanggal Mulai"
+            label="Start Date"
             type="date"
             value={form.startDate}
             onChange={(event) => updateField('startDate', event.target.value)}
           />
           <Input
-            label="Tanggal Selesai"
+            label="End Date"
             type="date"
             value={form.endDate}
             onChange={(event) => updateField('endDate', event.target.value)}
           />
         </div>
         <Textarea
-          label="Deskripsi / Tujuan Singkat"
+          label="Short Description / Goal"
           rows={3}
-          placeholder="Ceritakan tujuan kampanye secara singkat…"
+          placeholder="Briefly describe the campaign goal…"
           value={form.goal}
           onChange={(event) => updateField('goal', event.target.value)}
         />

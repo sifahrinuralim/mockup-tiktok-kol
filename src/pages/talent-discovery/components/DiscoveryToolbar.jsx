@@ -10,15 +10,15 @@ import {
 } from '@/constants/discovery';
 import { cn } from '@/utils/cn';
 
-/** Opsi segmented control mode tampilan hasil. */
+/** Options for the results view-mode segmented control. */
 const VIEW_OPTIONS = [
   { value: 'grid', label: 'Grid', icon: LayoutGrid },
-  { value: 'table', label: 'Tabel', icon: TableIcon },
+  { value: 'table', label: 'Table', icon: TableIcon },
 ];
 
 /**
- * Filter bar & search kreator: kata kunci (name/@username), filter kategori,
- * sortir, dan toggle mode tampilan grid/table.
+ * Creator search & filter bar: keyword (name/@username), category filter,
+ * sorting, and the grid/table view-mode toggle.
  */
 export const DiscoveryToolbar = ({
   query,
@@ -34,7 +34,7 @@ export const DiscoveryToolbar = ({
 }) => (
   <Card>
     <CardContent className="space-y-3 p-4 sm:p-5">
-      {/* Baris pencarian */}
+      {/* Search row */}
       <div className="relative">
         <Search
           className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
@@ -44,15 +44,15 @@ export const DiscoveryToolbar = ({
           type="search"
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
-          placeholder="Cari nama atau @username…"
-          aria-label="Cari kreator berdasarkan nama atau username"
+          placeholder="Search name or @username…"
+          aria-label="Search creators by name or username"
           className="min-h-11 pl-10"
           rightElement={
             query ? (
               <button
                 type="button"
                 onClick={() => onQueryChange('')}
-                aria-label="Bersihkan kata kunci pencarian"
+                aria-label="Clear search keyword"
                 className="rounded-md p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
@@ -62,13 +62,13 @@ export const DiscoveryToolbar = ({
         />
       </div>
 
-      {/* Baris kontrol filter */}
+      {/* Filter controls row */}
       <div className="flex flex-wrap items-center gap-3 border-t border-slate-100 pt-3">
         <div className="w-full sm:w-44">
           <Select
             value={category}
             onChange={(event) => onCategoryChange(event.target.value)}
-            aria-label="Filter kategori kreator"
+            aria-label="Filter creator category"
             className="min-h-11 bg-white"
           >
             {DISCOVERY_CATEGORY_OPTIONS.map((option) => (
@@ -83,7 +83,7 @@ export const DiscoveryToolbar = ({
           <Select
             value={sortKey}
             onChange={(event) => onSortChange(event.target.value)}
-            aria-label="Urutkan hasil"
+            aria-label="Sort results"
             className="min-h-11 bg-white"
           >
             {DISCOVERY_SORT_OPTIONS.map((option) => (
@@ -101,10 +101,10 @@ export const DiscoveryToolbar = ({
           </Button>
         )}
 
-        {/* Toggle Grid vs Table */}
+        {/* Grid vs Table toggle */}
         <div
           role="group"
-          aria-label="Mode tampilan hasil"
+          aria-label="Results view mode"
           className="ml-auto flex shrink-0 items-center gap-1 rounded-lg border border-slate-300 bg-white p-0.5 shadow-sm"
         >
           {VIEW_OPTIONS.map(({ value, label, icon: Icon }) => {

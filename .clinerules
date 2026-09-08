@@ -1,264 +1,260 @@
 # Cline Rules — mockup-tiktok-kol
 
-> Aturan kerja untuk AI (Cline) pada frontend **mockup TikTok KOL** berbasis
-> template **Educore UI Starter** (Vite + React + Tailwind CSS).
-> Patuhi aturan ini untuk menjaga konsistensi, kualitas, dan kemudahan
-> perawatan kode.
+> Working rules for AI (Cline) on the **mockup TikTok KOL** frontend, based on
+> the **Educore UI Starter** template (Vite + React + Tailwind CSS).
+> Follow these rules to keep the code consistent, high-quality, and maintainable.
 
 ---
 
 ## 1. Role & Mindset
 
-- Bertindak sebagai **Senior Frontend Engineer** spesialis React + Tailwind CSS.
-- Fokus membangun UI yang **clean, responsive, modular, accessible**, dan
-  mudah dimigrasikan dari mockup ke aplikasi sungguhan.
-- Gunakan bahasa **Indonesia** untuk komentar, JSDoc, pesan error/toast,
-  dan komunikasi — konsisten dengan kode & README yang sudah ada.
-- Kode dianggap selesai hanya jika bebas dari: dead code, kode ter-komentar,
-  `console.log`, import tidak terpakai, dan duplikasi yang bisa diekstrak.
+- Act as a **Senior Frontend Engineer** specialized in React + Tailwind CSS.
+- Focus on UI that is **clean, responsive, modular, accessible**, and easy to
+  migrate from mockup to a real application.
+- Use **English** for comments, JSDoc, error/toast messages, and communication —
+  consistent with the existing code & README.
+- Code is considered done only when free of: dead code, commented-out code,
+  `console.log`, unused imports, and duplication that can be extracted.
 
 ---
 
-## 2. Konteks Proyek
+## 2. Project Context
 
-- Ini adalah proyek **mockup/UI-only** (belum ada backend yang tersambung).
-  Seluruh data berasal dari **mock data**; pola async dibuat meniru request
-  sungguhan (delay simulasi) agar state loading/empty/error tetap teruji.
-- Struktur ini adalah **blank starter**: identitas aplikasi masih generik di
-  `src/constants/app.js`, routing di `src/App.jsx`, dan halaman baru belum ada.
-- Ketika user meminta fitur baru, bangun **halaman + komponen + mock data**
-  yang kohesif, jangan hanya potongan JSX terisolasi.
+- This is a **mockup/UI-only** project (no backend connected). All data comes
+  from **mock data**; async patterns mimic real requests (simulated delay) so
+  loading/empty/error states stay tested.
+- This structure is a **blank starter**: app identity is still generic in
+  `src/constants/app.js`, routing lives in `src/App.jsx`, and new pages are
+  not created yet.
+- When the user requests a new feature, build a cohesive **page + components +
+  mock data**, not just an isolated JSX snippet.
 
 ## 3. Tech Stack & Constraints
 
-| Area            | Pilihan                                                                 |
-| --------------- | ----------------------------------------------------------------------- |
-| Framework       | React 18 + Vite 5                                                        |
-| Bahasa          | JavaScript (`.jsx`/`.js`) — **bukan TypeScript**                         |
-| Styling         | Tailwind CSS v3 + PostCSS/Autoprefixer                                   |
-| Ikon            | `lucide-react` (impor named, tree-shaking otomatis)                      |
-| Routing         | `react-router-dom` v6 (dipasang di `main.jsx` sebagai `BrowserRouter`)    |
-| Class util      | `cn()` dari `src/utils/cn.js`                                            |
-| Alias path      | `@/` → `src/` (via `vite.config.js` + `jsconfig.json`)                   |
+| Area            | Choice                                                                 |
+| --------------- | ---------------------------------------------------------------------- |
+| Framework       | React 18 + Vite 5                                                       |
+| Language        | JavaScript (`.jsx`/`.js`) — **not TypeScript**                          |
+| Styling         | Tailwind CSS v3 + PostCSS/Autoprefixer                                  |
+| Icons           | `lucide-react` (named imports, automatic tree-shaking)                  |
+| Routing         | `react-router-dom` v6 (mounted as `BrowserRouter` in `main.jsx`)        |
+| Class utility   | `cn()` from `src/utils/cn.js`                                           |
+| Path alias      | `@/` → `src/` (via `vite.config.js` + `jsconfig.json`)                  |
 
-- Dependency tambahan (mis. `react-hook-form`, `zod`, `@tanstack/react-query`,
-  `axios`, `react-hot-toast`) hanya boleh ditambahkan **setelah konfirmasi
-  user** — jangan install sendiri tanpa izin.
-- Belum ada ESLint/Prettier di proyek; jaga format manual agar **identik
-  dengan file di sekitarnya** (2 spasi, single quotes, semicolon, trailing
-  comma pada multiline, CRLF).
+- Additional dependencies (e.g. `react-hook-form`, `zod`,
+  `@tanstack/react-query`, `axios`, `react-hot-toast`) may only be added
+  **after user confirmation** — never install them by yourself.
+- There is no ESLint/Prettier yet; keep formatting manually **identical to the
+  surrounding files** (2 spaces, single quotes, semicolons, trailing commas on
+  multiline, CRLF).
 
-### Commands yang tersedia
+### Available commands
 
 ```bash
-npm run dev       # Jalankan dev server (port 5173)
-npm run build     # Build produksi ke dist/
-npm run preview   # Pratinjau hasil build
+npm run dev       # Start the dev server (port 5173)
+npm run build     # Production build to dist/
+npm run preview   # Preview the built output
 ```
 
----
+## 4. Folder & File Structure
 
-## 4. Struktur Folder & File
-
-Struktur ini **wajib dipertahankan**; folder baru boleh ditambah sesuai fitur.
+This structure **must be kept**; new folders may be added per feature.
 
 ```
 src/
 ├── components/
-│   ├── ui/          # Komponen dasar generik (Button, Input, Modal, Table, dll.)
-│   └── common/      # Layout aplikasi (AppLayout, Sidebar, Navbar, PageHeader)
-├── constants/       # Identitas aplikasi, enum status, metadata statis
-├── pages/           # Halaman (default export), dipetakan di src/App.jsx
-│   └── <fitur>/components/   # Sub-komponen khusus satu halaman
-├── data/            # (opsional) Mock data per domain, mis. data/kols.js
-├── hooks/           # (opsional) Custom hooks (use*)
-├── context/         # (opsional) React Context untuk UI/global state
-├── services/        # (opsional) Lapisan API — baru saat backend tersedia
-├── utils/           # Util murni & formatter (cn, date, currency)
-└── index.css        # Tokens global: .input-base, .input-error, animasi
+│   ├── ui/          # Generic base components (Button, Input, Modal, Table, etc.)
+│   └── common/      # App layout (AppLayout, Sidebar, Navbar, PageHeader)
+├── constants/       # App identity, status enums, static metadata
+├── pages/           # Pages (default export), mapped in src/App.jsx
+│   └── <feature>/components/   # Sub-components specific to one page
+├── data/            # (optional) Mock data per domain, e.g. data/talents.js
+├── hooks/           # (optional) Custom hooks (use*)
+├── context/         # (optional) React Context for UI/global state
+├── services/        # (optional) API layer — add once a backend exists
+├── utils/           # Pure utils & formatters (cn, date, currency)
+└── index.css        # Global tokens: .input-base, .input-error, animations
 ```
 
 **Naming conventions:**
 
-- Komponen: `PascalCase.jsx` — `src/components/ui/Button.jsx`.
-- Util/constants/hooks: `camelCase.js` — `src/utils/cn.js`, `src/constants/app.js`.
-- Folder halaman/fitur: lowercase (multi-kata pakai `kebab-case`).
-- Nama file **harus sama dengan nama export utama**-nya.
+- Components: `PascalCase.jsx` — `src/components/ui/Button.jsx`.
+- Utils/constants/hooks: `camelCase.js` — `src/utils/cn.js`,
+  `src/constants/app.js`.
+- Page/feature folders: lowercase (multi-word uses `kebab-case`).
 
 ---
 
 ## 5. Coding Conventions
 
-1. **Komponen UI reusable → named export** (`export const Button = ...`);
-   **halaman → default export** (`export default function ...`). Konsisten
-   dengan file yang sudah ada.
-2. **Urutan import:** library eksternal → internal alias `@/` → relative;
-   pisahkan tiap kelompok dengan blank line.
+1. **Reusable UI components → named exports** (`export const Button = ...`);
+   **pages → default exports** (`export default function ...`). Stay consistent
+   with existing files.
+2. **Import order:** external libraries → internal `@/` aliases → relative;
+   separate each group with a blank line.
    ```jsx
    import { forwardRef } from 'react';
    import { Loader2 } from 'lucide-react';
 
    import { cn } from '@/utils/cn';
    ```
-3. Wajib pakai alias `@/` untuk import lintas folder; hindari relative
-   `../../` yang dalam. Relative hanya untuk tetangga dekat (mis. demo page).
-4. Sentralkan nilai berulang (label, status, opsi select, menu) di
-   `src/constants/` — jangan hardcode tersebar di komponen.
-5. Komentar & JSDoc singkat **dalam Bahasa Indonesia**, hanya untuk
-   menjelaskan "mengapa" atau kontrak komponen; jangan komentar yang
-   mengulangi kode.
-6. Nama deskriptif: hindari variabel satu huruf & magic numbers. Fungsi kecil
-   satu tanggung jawab. Jangan jalankan efek samping di dalam render.
-7. Format props multi-baris agar mudah dibaca dan selalu beri trailing comma
-   (ikuti pola `Button.jsx`).
+3. Always use the `@/` alias for cross-folder imports; avoid deep relative
+   `../../` paths. Use relative only for close neighbors (e.g. demo pages).
+4. Centralize repeated values (labels, statuses, select options, menus) in
+   `src/constants/` — don't hardcode them scattered across components.
+5. Keep comments & JSDoc short, **in English**, only to explain "why" or the
+   component contract; avoid comments that restate the code.
+6. Use descriptive names: avoid single-letter variables and magic numbers.
+   Keep functions small with a single responsibility. Don't run side effects
+   during render.
+7. Format multi-line props for readability and always add a trailing comma
+   (follow the `Button.jsx` pattern).
 
 ---
 
 ## 6. React & Component Design Rules
 
-1. **Reusability first** — SELALU pakai komponen yang sudah ada di
-   `src/components/ui/*` dan `src/components/common/*`. JANGAN membuat
-   input/button/modal baru dari JSX mentah bila komponen base sudah tersedia.
-2. **Base components (`ui/`) wajib:** meneruskan native props (`...props`),
-   menerima `className` (digabung via `cn()`), mendukung `forwardRef` untuk
-   elemen interaktif/form, dan **bebas dari logika bisnis/domain**.
-3. Pecah halaman kompleks menjadi sub-komponen kecil di
-   `src/pages/<fitur>/components/`. Batasi ukuran file halaman agar tetap
-   mudah dibaca.
-4. Lebih suka **composition over configuration**: pakai `children` /
-   compound components; hindari akumulasi props boolean & prop drilling.
-5. Ekstrak logika bisnis ke **custom hooks** (`use*`); komponen cenderung
+1. **Reusability first** — ALWAYS reuse existing components in
+   `src/components/ui/*` and `src/components/common/*`. DO NOT rebuild
+   inputs/buttons/modals from raw JSX when a base component exists.
+2. **Base components (`ui/`) must:** forward native props (`...props`), accept
+   a `className` (merged via `cn()`), support `forwardRef` for interactive/form
+   elements, and stay **free of business/domain logic**.
+3. Split complex pages into small sub-components under
+   `src/pages/<feature>/components/`. Keep page files small and readable.
+4. Prefer **composition over configuration**: use `children` / compound
+   components; avoid accumulating boolean props & prop drilling.
+5. Extract business logic into **custom hooks** (`use*`); keep components
    presentational.
-6. Icon dekoratif memakai `lucide-react`; beri `aria-hidden="true"` dan
-   ukuran lewat `className` (`h-4 w-4`).
-7. State/global client (auth session, theme, UI state) boleh pakai React
-   Context; **jangan** simpan nilai yang bisa di-derive — hindari rantai
-   `useEffect` → `setState` yang tidak perlu.
+6. Decorative icons use `lucide-react`; add `aria-hidden="true"` and size them
+   via `className` (`h-4 w-4`).
+7. Client/global state (auth session, theme, UI state) may use React Context;
+   **don't** store values that can be derived — avoid unnecessary
+   `useEffect` → `setState` chains.
 
 ---
 
 ## 7. Styling & UI/UX Rules (Design System)
 
-Tokens resmi template ini:
+Official tokens of this template:
 
-- **Warna:** `primary` (Indigo/Navy) untuk aksi utama; `slate` netral;
-  `emerald` sukses/aktif; `amber` warning; `rose` danger.
-- **Font:** Inter (`font-sans`). **Radius:** input/button `rounded-lg`,
-  kartu `rounded-xl`, modal `rounded-2xl`.
-- Class global yang boleh dipakai ulang: `.input-base`, `.input-error`,
-  `.animate-fade-in`, `.animate-modal-in` (didefinisikan di `index.css`).
+- **Colors:** `primary` (Indigo/Navy) for primary actions; `slate` neutral;
+  `emerald` success/active; `amber` warning; `rose` danger.
+- **Font:** Inter (`font-sans`). **Radius:** inputs/buttons `rounded-lg`,
+  cards `rounded-xl`, modals `rounded-2xl`.
+- Reusable global classes: `.input-base`, `.input-error`,
+  `.animate-fade-in`, `.animate-modal-in` (defined in `index.css`).
 
-Aturan:
+Rules:
 
-1. **Mobile-first & responsive:** pastikan tampil baik di mobile, tablet,
-   dan desktop (`sm:`, `md:`, `lg:`). Gunakan `flex`/`grid` Tailwind, bukan
-   inline `style`, kecuali untuk nilai dinamis yang benar-benar satu kali.
-2. Jangan pakai nilai arbitrary (`w-[17px]`, `text-[13px]`) bila skala
-   standar Tailwind tersedia; sesuaikan skala bila perlu.
-3. Elemen interaktif (tombol, link, input) wajib punya **focus ring yang
-   terlihat** — ikuti pola `focus-visible:ring-2` di `Button.jsx`.
-4. Status visual lengkap untuk setiap konten data: **loading (skeleton/
-   spinner) → empty state → error**.
-5. Aksi destruktif/konfirmasi lewat `ConfirmDialog`; konten overlay lewat
-   `Modal`; umpan balik aksi singkat via toast (bila sudah dipasang).
-6. Kontras teks memenuhi WCAG 2.1 AA; status tidak disampaikan lewat warna
-   saja (sertakan teks/ikon).
+1. **Mobile-first & responsive:** render well on mobile, tablet, and desktop
+   (`sm:`, `md:`, `lg:`). Use Tailwind `flex`/`grid`, not inline `style`,
+   except for one-off truly dynamic values.
+2. Don't use arbitrary values (`w-[17px]`, `text-[13px]`) when a standard
+   Tailwind scale exists; adjust the scale when needed.
+3. Interactive elements (buttons, links, inputs) must have a **visible focus
+   ring** — follow the `focus-visible:ring-2` pattern in `Button.jsx`.
+4. Provide the full visual state set for any data content: **loading
+   (skeleton/spinner) → empty state → error**.
+5. Destructive/confirmation actions go through `ConfirmDialog`; overlay content
+   through `Modal`; short action feedback via toast (when installed).
+6. Text contrast meets WCAG 2.1 AA; never communicate status with color alone
+   (include text/icons).
 
 ---
 
 ## 8. Accessibility (a11y) & Semantic HTML
 
-- Gunakan markup semantik: `<main>`, `<section>`, `<header>`, `<nav>`,
-  `<table>`, dan heading berjenjang (`h1` → `h2` …).
-- Form: setiap input punya `<label htmlFor>` yang cocok dengan `id`; pesan
-  error dihubungkan via `aria-describedby`, dan tandai `aria-invalid`.
-- Ikon dekoratif: `aria-hidden="true"`. Tombol ikon-saja: `aria-label`
-  berbahasa Indonesia (contoh: "Tutup menu", "Tutup modal").
-- Modal wajib: `role="dialog"` + `aria-modal`, tutup via Escape, tombol ×,
-  klik backdrop, serta lock scroll body (sudah ditangani `Modal.jsx`).
-- Pastikan navigasi penuh via keyboard: tab order logis + visible focus ring.
+- Use semantic markup: `<main>`, `<section>`, `<header>`, `<nav>`, `<table>`,
+  and proper heading levels (`h1` → `h2` …).
+- Forms: every input has a matching `<label htmlFor>`; error messages are
+  linked via `aria-describedby` and inputs are marked `aria-invalid`.
+- Decorative icons: `aria-hidden="true"`. Icon-only buttons: an `aria-label`
+  (examples: "Close navigation menu", "Close modal").
+- Modals must: `role="dialog"` + `aria-modal`, close on Escape, a × button,
+  and a backdrop click, plus body scroll lock (already handled by `Modal.jsx`).
+- Ensure full keyboard navigation: logical tab order + a visible focus ring.
 
 ---
 
-## 9. Mock Data & State Handling (khusus mockup)
+## 9. Mock Data & State Handling (mockup-specific)
 
-- Simpan mock data terstruktur di `src/data/` (mis. `kols.js`,
-  `campaigns.js`), satu file per domain — jangan menumpuk data di komponen.
-- Tirukan perilaku async dengan helper delay, misal
-  `await new Promise((r) => setTimeout(r, 600))`, agar Skeleton/Spinner dan
-  error state terlihat nyata.
-- Struktur objek mock dibuat **mendekati kontrak API** yang mungkin datang
-  (field `id`, `name`, `status`, `createdAt`) supaya migrasi ke backend
-  nyata nanti minim refactor.
-- Tulis util formatter (tanggal, angka, Rupiah, durasi video) di `src/utils/`
-  sebagai fungsi murni.
+- Store structured mock data in `src/data/` (e.g. `talents.js`,
+  `campaigns.js`), one file per domain — never pile data inside components.
+- Mimic async behavior with a delay helper, e.g.
+  `await new Promise((r) => setTimeout(r, 600))`, so Skeleton/Spinner and
+  error states look real.
+- Shape mock objects **close to a likely API contract** (fields such as `id`,
+  `name`, `status`, `createdAt`) so a later migration to a real backend needs
+  minimal refactoring.
+- Write formatters (dates, numbers, Rupiah, video duration) as pure functions
+  in `src/utils/`.
 
 ---
 
 ## 10. Error Handling & UI States
 
-- Standarisasi urutan render data: **loading → empty → error → content**
-  (pakai `Skeleton`/`Spinner`, `EmptyState`, lalu konten).
-- Error ditampilkan sebagai pesan ramah-user dalam Bahasa Indonesia; jangan
-  pernah tampilkan stack trace mentah.
-- Tombol submit/aksi diberi state `isLoading` (spinner) dan `disabled` saat
-  proses berjalan — prop ini sudah didukung `Button`.
-- Untuk aksi penting (hapus, publish, submit) gunakan konfirmasi `Modal`/
-  `ConfirmDialog` dan beri umpan balik hasil yang jelas.
+- Standardize data render order: **loading → empty → error → content**
+  (use `Skeleton`/`Spinner`, `EmptyState`, then content).
+- Show errors as user-friendly English messages; never show raw stack traces.
+- Submit/action buttons get an `isLoading` state (spinner) and `disabled`
+  while running — `Button` already supports these props.
+- For important actions (delete, publish, submit) confirm via `Modal`/
+  `ConfirmDialog` and give clear feedback about the result.
 
 ---
 
 ## 11. Performance
 
-- Lazy-load halaman rute dengan `React.lazy` + `Suspense` bila halaman
-  bertambah banyak (kecuali entry utama).
-- Jangan optimasi prematur; gunakan `React.memo`/`useMemo`/`useCallback`
-  hanya untuk props referensial atau komputasi mahal.
-- Jangan membuat object/array/arrow function baru langsung di JSX props bila
-  menyebabkan render ulang tidak perlu.
-- Impor icon Lucide secara named per icon agar tree-shaking optimal.
+- Lazy-load route pages with `React.lazy` + `Suspense` when the number of
+  pages grows (except the main entry).
+- Don't optimize prematurely; use `React.memo`/`useMemo`/`useCallback` only
+  for referential props or expensive computations.
+- Don't create objects/arrays/arrow functions inline in JSX props when it
+  causes unnecessary re-renders.
+- Import Lucide icons by name per icon for optimal tree-shaking.
 
 ---
 
 ## 12. Security & Data Handling
 
-- Jangan pernah hardcode secret/token/key; bila nanti butuh env, gunakan
-  prefix `VITE_` via `import.meta.env`.
-- Jangan render HTML mentah dari sumber luar (`dangerouslySetInnerHTML`).
-- Jangan percaya penuh pada input user; validasi di sisi form.
-- Ingat: ini frontend **mockup** — jangan tulis logika autentikasi sungguhan
-  tanpa instruksi eksplisit dari user.
+- Never hardcode secrets/tokens/keys; when env vars are needed later, use the
+  `VITE_` prefix via `import.meta.env`.
+- Don't render raw external HTML (`dangerouslySetInnerHTML`).
+- Never fully trust user input; validate on the form side.
+- Remember: this is a **mockup** frontend — don't write real authentication
+  logic without explicit user instructions.
 
 ---
 
 ## 13. Git & Workflow
 
-- Commit message mengikuti **Conventional Commits**:
-  `feat:`, `fix:`, `refactor:`, `style:`, `docs:`, `chore:`, dengan scope
-  opsional (contoh: `feat(kol): tambah tabel daftar kreator`).
-- Commit kecil & atomik: satu perubahan logis per commit; jangan campur file
-  yang tidak terkait atau artefak build (`dist/` sudah di-`.gitignore`).
-- Kerjakan satu tugas pada satu waktu; setelah satu fitur/komponen selesai,
-  ringkas perubahan dan minta review sebelum lanjut ke tugas berikutnya.
-- Sebelum menyerahkan: pastikan `npm run build` sukses (bila node_modules
-  tersedia) dan tidak merusak halaman/komponen yang sudah ada.
+- Commit messages follow **Conventional Commits**:
+  `feat:`, `fix:`, `refactor:`, `style:`, `docs:`, `chore:`, with an optional
+  scope (example: `feat(kol): add creator list table`).
+- Keep commits small & atomic: one logical change per commit; don't mix
+  unrelated files or build artifacts (`dist/` is already in `.gitignore`).
+- Work on one task at a time; after each feature/component is done, summarize
+  the changes and ask for review before moving on.
+- Before handoff: make sure `npm run build` succeeds (when node_modules is
+  available) and existing pages/components are not broken.
 
 ---
 
-## 14. Ringkasan Do & Don't
+## 14. Do & Don't Summary
 
 **DO**
 
-- Gunakan kembali komponen `ui/*` & `common/*`, serta util `cn()`.
-- Ikuti struktur folder, naming, urutan import, dan format file yang ada.
-- Sertakan state loading/empty/error + a11y (label, aria, focus) di UI baru.
-- Simpan data & metadata di `constants/`/`data/`, util murni di `utils/`.
+- Reuse `ui/*` & `common/*` components and the `cn()` util.
+- Follow the existing folder structure, naming, import order, and file format.
+- Include loading/empty/error states + a11y (labels, aria, focus) in new UI.
+- Keep data & metadata in `constants/`/`data/`, pure utils in `utils/`.
 
 **DON'T**
 
-- Jangan menambah dependency tanpa konfirmasi user.
-- Jangan menulis ulang komponen dasar dari nol bila sudah tersedia.
-- Jangan menaruh mock data, magic strings, atau class Tailwind raksasa yang
-  berulang di dalam komponen halaman.
-- Jangan commit `console.log`, kode mati, atau mengubah file di luar lingkup
-  tugas.
+- Don't add dependencies without user confirmation.
+- Don't rewrite base components from scratch when one already exists.
+- Don't put mock data, magic strings, or huge repeated Tailwind class strings
+  inside page components.
+- Don't commit `console.log`, dead code, or modify files outside the task scope.
+- The file name **must match its main export name**.

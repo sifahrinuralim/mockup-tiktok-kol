@@ -6,7 +6,7 @@ import { MOCK_TALENTS } from '@/data/mockTalents';
 import { cn } from '@/utils/cn';
 import { formatCompactNumber, parseCompactNumber } from '@/utils/metrics';
 
-/** Menghitung nilai ringkasan platform langsung dari daftar talent mock. */
+/** Computes the platform summary values straight from the mock talent list. */
 const buildStats = (talents) => {
   const total = talents.length;
 
@@ -26,7 +26,7 @@ const buildStats = (talents) => {
       key: 'talents',
       label: 'Total Talents Available',
       value: `${total}`,
-      note: total ? 'Kreator siap untuk kampanye' : 'Belum ada kreator terdaftar',
+      note: total ? 'Creators ready for campaigns' : 'No registered creators yet',
       icon: Users,
       iconClass: 'bg-primary-100 text-primary-700',
     },
@@ -34,7 +34,7 @@ const buildStats = (talents) => {
       key: 'engagement',
       label: 'Avg Engagement Rate',
       value: `${averageEngagementRate.toFixed(1)}%`,
-      note: 'Rata-rata engagement seluruh kreator',
+      note: 'Average engagement across all creators',
       icon: Activity,
       iconClass: 'bg-emerald-100 text-emerald-700',
     },
@@ -42,7 +42,7 @@ const buildStats = (talents) => {
       key: 'views',
       label: 'Total Views Reached',
       value: formatCompactNumber(totalViews),
-      note: 'Akumulasi total views semua kreator',
+      note: 'Accumulated total views of all creators',
       icon: Eye,
       iconClass: 'bg-sky-100 text-sky-600',
     },
@@ -50,7 +50,7 @@ const buildStats = (talents) => {
       key: 'campaigns',
       label: 'Active Campaigns',
       value: `${ACTIVE_CAMPAIGNS_COUNT}`,
-      note: 'Sedang berjalan pada bulan ini',
+      note: 'Running this month',
       icon: Megaphone,
       iconClass: 'bg-fuchsia-100 text-fuchsia-600',
     },
@@ -58,15 +58,15 @@ const buildStats = (talents) => {
 };
 
 /**
- * Hero ringkasan (stats summary) halaman utama.
- * Nilai dihitung dari mock data agar selalu sinkron dengan isi direktori.
+ * Hero stats summary of the main page.
+ * Values are computed from mock data so they always stay in sync with the directory.
  */
 export const DiscoveryStats = ({ talents = MOCK_TALENTS }) => {
   const stats = buildStats(talents);
 
   return (
     <section
-      aria-label="Ringkasan statistik talent"
+      aria-label="Talent statistics summary"
       className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4"
     >
       {stats.map(({ key, label, value, note, icon: Icon, iconClass }) => (

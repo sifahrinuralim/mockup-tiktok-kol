@@ -1,11 +1,11 @@
 /**
- * Data dummy peringkat Top Talents.
+ * Mock Top Talents ranking data.
  *
- * Seluruh nilai diturunkan deterministik dari MOCK_TALENTS lewat util
- * bersama (parseCompactNumber, buildViewsTrendSeries, computeGrowthPercent,
- * estimateRateCardTiers) sehingga angka konsisten antar halaman dan stabil
- * antar render. `score` adalah gabungan total views, followers, dan
- * engagement rate untuk menentukan peringkat.
+ * All values are derived deterministically from MOCK_TALENTS through shared
+ * utils (parseCompactNumber, buildViewsTrendSeries, computeGrowthPercent,
+ * estimateRateCardTiers) so numbers stay consistent across pages and stable
+ * across renders. `score` combines total views, followers, and engagement
+ * rate to determine the ranking.
  */
 
 import { MOCK_TALENTS } from '@/data/mockTalents';
@@ -16,7 +16,7 @@ import {
   estimateRateCardTiers,
 } from '@/utils/talentEstimate';
 
-/** Hitung skor performa gabungan untuk kebutuhan peringkat. */
+/** Computes the combined performance score used for ranking. */
 const computeScore = (talent) => {
   const viewsMillion = parseCompactNumber(talent.totalViews) / 1e6;
   const followersMillion = parseCompactNumber(talent.followers) / 1e6;
@@ -26,9 +26,9 @@ const computeScore = (talent) => {
 };
 
 /**
- * Peringkat kreator terbaik (mock): diurutkan dari skor tertinggi ke
- * terendah dan diberi `rank` 1..N. Growth 30 hari & estimasi rate card
- * disertakan agar tabel peringkat tidak perlu menghitung ulang di komponen.
+ * Best creator ranking (mock): sorted from highest to lowest score and given
+ * a `rank` of 1..N. 30-day growth & rate card estimates are included so the
+ * ranking table doesn't need to recompute them in components.
  */
 export const MOCK_TOP_TALENTS = MOCK_TALENTS.map((talent) => {
   const trendSeries = buildViewsTrendSeries(talent, 30);
@@ -44,5 +44,5 @@ export const MOCK_TOP_TALENTS = MOCK_TALENTS.map((talent) => {
   .sort((first, second) => second.score - first.score)
   .map((entry, index) => ({ ...entry, rank: index + 1 }));
 
-/** Konfigurasi ringkasan halaman: jumlah teratas yang dipakai di hero stats. */
+/** Page summary config: the number of top creators used in the hero stats. */
 export const TOP_TALENTS_PODIUM_COUNT = 3;

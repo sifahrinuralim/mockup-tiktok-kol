@@ -1,8 +1,8 @@
 import { cn } from '@/utils/cn';
 
 /**
- * Bilah kemajuan (progress bar) generik dengan teks persentase opsional.
- * Warna mengikuti nilai kemajuan: emerald ≥ 100, primary ≥ 60, sisanya slate.
+ * Generic progress bar with an optional percentage label.
+ * Color follows the progress value: emerald ≥ 100, primary ≥ 60, slate otherwise.
  */
 export const ProgressBar = ({ value, showLabel = false, className }) => {
   const percent = Math.min(Math.max(value, 0), 100);
@@ -16,7 +16,7 @@ export const ProgressBar = ({ value, showLabel = false, className }) => {
 
   return (
     <div className="flex items-center gap-2">
-      <div className={barClass} role="progressbar" aria-valuenow={percent} aria-valuemin={0} aria-valuemax={100} aria-label="Kemajuan kampanye">
+      <div className={barClass} role="progressbar" aria-valuenow={percent} aria-valuemin={0} aria-valuemax={100} aria-label="Campaign progress">
         <div className={cn('h-full rounded-full transition-all', fillClass)} style={{ width: `${percent}%` }} />
       </div>
       {showLabel && (

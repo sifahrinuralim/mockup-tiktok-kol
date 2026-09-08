@@ -9,7 +9,7 @@ const spinnerSizes = {
   xl: 'h-12 w-12',
 };
 
-export const Spinner = ({ size = 'md', className, label = 'Memuat...' }) => (
+export const Spinner = ({ size = 'md', className, label = 'Loading...' }) => (
   <Loader2
     role="status"
     aria-label={label}

@@ -3,11 +3,11 @@ import { ClipboardList, FileDown, Users, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 /**
- * Floating action bar shortlist kampanye yang muncul di bawah layar ketika
- * satu atau lebih kreator terpilih lewat "Add to Campaign".
+ * Floating campaign-shortlist action bar shown at the bottom of the screen
+ * once one or more creators are selected via "Add to Campaign".
  *
- * Posisi sengaja berada di atas Bottom Navigation mobile (util `dock-offset`,
- * hanya aktif di bawah lg) dan mengambang bebas pada layar lebar.
+ * It is deliberately positioned above the mobile Bottom Navigation (using the
+ * `dock-offset` util, active only below lg) and floats freely on wide screens.
  */
 export const CampaignSelectionBar = ({ selectedCount, onClear, onExport, onCreate }) => {
   if (selectedCount === 0) return null;
@@ -16,7 +16,7 @@ export const CampaignSelectionBar = ({ selectedCount, onClear, onExport, onCreat
     <div className="dock-offset fixed inset-x-0 z-50 px-4 sm:px-6 lg:bottom-6">
       <div className="animate-modal-in mx-auto w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-900/15 sm:p-3.5">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
-          {/* Ringkasan jumlah talent terpilih */}
+          {/* Summary of the selected talent count */}
           <div className="flex w-full min-w-0 items-center gap-3 lg:w-auto">
             <span
               className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary-100 text-primary-700"
@@ -28,7 +28,7 @@ export const CampaignSelectionBar = ({ selectedCount, onClear, onExport, onCreat
               <p aria-live="polite" className="truncate text-sm font-bold text-slate-800">
                 {selectedCount} Talents Selected
               </p>
-              <p className="truncate text-xs text-slate-500">Siap diekspor atau dibuatkan kampanye.</p>
+              <p className="truncate text-xs text-slate-500">Ready to export or turn into a campaign.</p>
             </div>
             <Button
               type="button"
@@ -42,7 +42,7 @@ export const CampaignSelectionBar = ({ selectedCount, onClear, onExport, onCreat
             </Button>
           </div>
 
-          {/* Aksi mock: export shortlist & buat kampanye */}
+          {/* Mock actions: export shortlist & create campaign */}
           <div className="flex flex-col gap-2 sm:flex-row sm:justify-end lg:flex-none">
             <Button
               type="button"

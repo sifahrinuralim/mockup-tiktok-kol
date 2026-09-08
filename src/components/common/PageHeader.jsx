@@ -1,5 +1,5 @@
 /**
- * Header halaman yang seragam: judul + deskripsi + aksi (opsional).
+ * Uniform page header: title + description + action (optional).
  */
 export const PageHeader = ({ title, description, action }) => (
   <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

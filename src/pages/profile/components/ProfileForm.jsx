@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/Textarea';
 
 const SAVE_DELAY_MS = 700;
 
-/** Form profil (nama, peran, telepon, bio) dengan simulasi penyimpanan. */
+/** Profile form (name, role, phone, bio) with simulated saving. */
 export const ProfileForm = ({ profile }) => {
   const [form, setForm] = useState({
     name: profile.name,
@@ -19,7 +19,7 @@ export const ProfileForm = ({ profile }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 
-  // Sinkronkan form bila data awal profil berubah (mis. reset dari halaman).
+  // Sync the form when the profile source data changes (e.g. page reset).
   useEffect(() => {
     setForm({
       name: profile.name,
@@ -46,19 +46,19 @@ export const ProfileForm = ({ profile }) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Informasi Profil</CardTitle>
+        <CardTitle>Profile Information</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} noValidate className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Input
-              label="Nama Lengkap"
+              label="Full Name"
               value={form.name}
               onChange={(event) => updateField('name', event.target.value)}
               required
             />
             <Input
-              label="Jabatan"
+              label="Job Title"
               value={form.role}
               onChange={(event) => updateField('role', event.target.value)}
             />
@@ -67,17 +67,17 @@ export const ProfileForm = ({ profile }) => {
               type="email"
               value={profile.email}
               disabled
-              hint="Email dipakai untuk login — hubungi admin bila ingin mengganti."
+              hint="Email is used to sign in — contact an admin to change it."
             />
             <Input
-              label="No. Handphone"
+              label="Phone Number"
               type="tel"
               value={form.phone}
               onChange={(event) => updateField('phone', event.target.value)}
             />
           </div>
           <Textarea
-            label="Bio Singkat"
+            label="Short Bio"
             rows={3}
             value={form.bio}
             onChange={(event) => updateField('bio', event.target.value)}
@@ -87,7 +87,7 @@ export const ProfileForm = ({ profile }) => {
             {isSaved && (
               <p className="mr-auto inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600" role="status">
                 <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-                Profil berhasil disimpan
+                Profile saved successfully
               </p>
             )}
             <Button
@@ -103,10 +103,10 @@ export const ProfileForm = ({ profile }) => {
               }
               disabled={isSaving}
             >
-              Batal
+              Cancel
             </Button>
-            <Button type="submit" isLoading={isSaving} loadingText="Menyimpan...">
-              Simpan Perubahan
+            <Button type="submit" isLoading={isSaving} loadingText="Saving...">
+              Save Changes
             </Button>
           </div>
         </form>

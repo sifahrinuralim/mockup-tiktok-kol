@@ -1,26 +1,26 @@
 /**
- * Data dummy (mock) kampanye untuk modul Campaign Manager.
+ * Mock campaign data for the Campaign Manager module.
  *
- * Nilai tanggal memakai format 'YYYY-MM-DD' agar siap dimigrasikan ke API
- * sungguhan; tampilan diformat lewat src/utils/date.js. Anggaran disimpan
- * sebagai number mentah (Rupiah) dan diformat lewat src/utils/currency.js.
- * Kategori brand memakai konstanta CAMPAIGN_CATEGORIES agar opsinya terpusat.
+ * Dates use the 'YYYY-MM-DD' format so they can migrate to a real API later;
+ * display formatting is handled by src/utils/date.js. Budgets are stored as
+ * raw numbers (Rupiah) and formatted via src/utils/currency.js.
+ * Brand categories use the CAMPAIGN_CATEGORIES constants so options stay centralized.
  */
 
 import { MOCK_TALENTS } from '@/data/mockTalents';
 
-/** Manajer bawaan seluruh kampanye mock (mockup — belum ada auth sungguhan). */
+/** Default manager for all mock campaigns (mockup — no real auth yet). */
 const DEFAULT_MANAGER = { name: 'Sarah Rahmawati', initials: 'SR' };
 
-/** Cari objek talent lengkap dari pustaka kreator berdasarkan id. */
+/** Finds the full talent object from the creator library by id. */
 const findTalentById = (id) => MOCK_TALENTS.find((talent) => talent.id === id);
 
-/** Merangkai ringkasan deliverable, mis. '6 video + 1 live'. */
+/** Builds a deliverable summary, e.g. '6 videos + 1 live'. */
 const buildDeliverableLabel = ({ videos = 0, lives = 0, stories = 0 }) => {
   const parts = [];
-  if (videos > 0) parts.push(`${videos} video`);
-  if (lives > 0) parts.push(`${lives} live`);
-  if (stories > 0) parts.push(`${stories} story`);
+  if (videos > 0) parts.push(`${videos} ${videos === 1 ? 'video' : 'videos'}`);
+  if (lives > 0) parts.push(`${lives} ${lives === 1 ? 'live' : 'lives'}`);
+  if (stories > 0) parts.push(`${stories} ${stories === 1 ? 'story' : 'stories'}`);
   return parts.join(' + ');
 };
 
@@ -38,11 +38,11 @@ const RAW_CAMPAIGNS = [
     startDate: '2026-08-14',
     endDate: '2026-09-30',
     kpi: 'ER ≥ 6% & 12M total views',
-    goal: 'Meningkatkan brand awareness serum terbaru GlowSkin ID lewat kreator beauty dengan jangkauan luas.',
+    goal: 'Raising awareness of the newest GlowSkin ID serum through beauty creators with wide reach.',
   },
   {
     id: 2,
-    name: 'Kuliner Legendaris Nusantara',
+    name: 'Nusantara Legendary Food',
     brand: 'Dapur Nusantara',
     category: 'Food & Beverage',
     status: 'active',
@@ -52,8 +52,8 @@ const RAW_CAMPAIGNS = [
     progress: 62,
     startDate: '2026-08-20',
     endDate: '2026-10-05',
-    kpi: 'Min. 1,5M views per video & CTR toko 3%',
-    goal: 'Mendorong trafik ke gerai & penjualan menu musiman melalui ulasan kuliner autentik.',
+    kpi: 'Min. 1.5M views per video & 3% store CTR',
+    goal: 'Driving foot traffic and seasonal menu sales through authentic food reviews.',
   },
   {
     id: 3,
@@ -67,14 +67,14 @@ const RAW_CAMPAIGNS = [
     progress: 28,
     startDate: '2026-08-28',
     endDate: '2026-10-15',
-    kpi: '12M impressions & 30K klik link toko',
-    goal: 'Meluncurkan lini aksesori gaming baru dengan demo gameplay kreator top gaming.',
+    kpi: '12M impressions & 30K store-link clicks',
+    goal: 'Launching a new gaming accessories line with gameplay demos from top gaming creators.',
   },
   {
     id: 4,
     name: 'Smartphone Midrange 2026',
     brand: 'TeknoCell',
-    category: 'Teknologi',
+    category: 'Technology',
     status: 'awaiting',
     budget: 175_000_000,
     talentIds: [2, 7],
@@ -82,8 +82,8 @@ const RAW_CAMPAIGNS = [
     progress: 10,
     startDate: '2026-09-12',
     endDate: '2026-10-12',
-    kpi: 'ER ≥ 5% & review jujur tanpa script berlebih',
-    goal: 'Membangun persepsi HP midrange terbaik 2026 untuk audiens mahasiswa & pekerja muda.',
+    kpi: 'ER ≥ 5% & honest reviews without over-scripting',
+    goal: 'Positioning the best midrange phone of 2026 for students and young professionals.',
   },
   {
     id: 5,
@@ -97,8 +97,8 @@ const RAW_CAMPAIGNS = [
     progress: 80,
     startDate: '2026-07-20',
     endDate: '2026-09-18',
-    kpi: 'ER ≥ 7% & 8M views gabungan',
-    goal: 'Memperkenalkan koleksi hijab premium dengan padu padan gaya harian.',
+    kpi: 'ER ≥ 7% & 8M combined views',
+    goal: 'Introducing a premium hijab collection with everyday styling combos.',
   },
   {
     id: 6,
@@ -112,8 +112,8 @@ const RAW_CAMPAIGNS = [
     progress: 75,
     startDate: '2026-08-01',
     endDate: '2026-09-15',
-    kpi: '6M views & 4K komentar challenge',
-    goal: 'Mengajak audiens ikut membuat video reaksi rasa snack Krezz.',
+    kpi: '6M views & 4K challenge comments',
+    goal: 'Getting the audience to create their own reaction videos to Krezz snacks.',
   },
   {
     id: 7,
@@ -127,8 +127,8 @@ const RAW_CAMPAIGNS = [
     progress: 100,
     startDate: '2026-05-10',
     endDate: '2026-07-15',
-    kpi: '10M views & ER rata-rata 8%',
-    goal: 'Edukasi rutinitas skincare dasar untuk calon pengguna baru.',
+    kpi: '10M views & 8% average ER',
+    goal: 'Educating new users on basic skincare routines.',
   },
   {
     id: 8,
@@ -142,8 +142,8 @@ const RAW_CAMPAIGNS = [
     progress: 100,
     startDate: '2026-06-01',
     endDate: '2026-08-01',
-    kpi: '8M views & 60K mention brand',
-    goal: 'Mengangkat suasana brand lewat konten humor anak muda di kafe.',
+    kpi: '8M views & 60K brand mentions',
+    goal: 'Boosting brand vibe through young-adult humor content at the cafe.',
   },
   {
     id: 9,
@@ -157,8 +157,8 @@ const RAW_CAMPAIGNS = [
     progress: 100,
     startDate: '2026-06-20',
     endDate: '2026-08-20',
-    kpi: '5M views & 25K unduhan kupon',
-    goal: 'Merayakan ulang tahun aplikasi GoRasa dengan konten kolaborasi kreator kuliner.',
+    kpi: '5M views & 25K coupon downloads',
+    goal: 'Celebrating the GoRasa app anniversary with collaborative food-creator content.',
   },
   {
     id: 10,
@@ -173,13 +173,13 @@ const RAW_CAMPAIGNS = [
     startDate: '2026-09-15',
     endDate: '2026-10-10',
     kpi: 'ER ≥ 8% & 3M views',
-    goal: 'Launching lip tint baru dengan demo warna di berbagai tone kulit.',
+    goal: 'Launching a new lip tint with shade demos across skin tones.',
   },
   {
     id: 11,
     name: 'Back to Campus Gadget Fair',
     brand: 'EduMart',
-    category: 'Teknologi',
+    category: 'Technology',
     status: 'draft',
     budget: 0,
     talentIds: [2, 7],
@@ -187,15 +187,15 @@ const RAW_CAMPAIGNS = [
     progress: 0,
     startDate: null,
     endDate: null,
-    kpi: 'Belum disusun',
-    goal: 'Paket hemat gadget untuk mahasiswa — menunggu finalisasi budget & jadwal.',
+    kpi: 'Not set yet',
+    goal: 'Affordable gadget bundle for students — waiting for budget & schedule finalization.',
   },
 ];
 
 /**
- * Kampanye siap pakai: menyisipkan kode unik, label deliverable ringkas,
- * manajer, dan menyelesaikan `talentIds` menjadi array objek talent penuh
- * agar komponen halaman tinggal merender tanpa perlu lookup ulang.
+ * Ready-to-use campaigns: injects a unique code, a compact deliverable label,
+ * the manager, and resolves `talentIds` into an array of full talent objects
+ * so page components can render without re-looking them up.
  */
 export const MOCK_CAMPAIGNS = RAW_CAMPAIGNS.map((campaign) => ({
   ...campaign,

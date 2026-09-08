@@ -9,14 +9,14 @@ import { cn } from '@/utils/cn';
 
 import { TalentMetricList } from './TalentMetricList';
 
-/** Kolom numerik yang bisa diurutkan lewat header tabel. */
+/** Numeric columns that can be sorted via the table headers. */
 const SORTABLE_COLUMNS = [
   { key: 'followers', label: 'Followers' },
   { key: 'totalViews', label: 'Total Views' },
   { key: 'engagementRate', label: 'Engagement Rate' },
 ];
 
-/** Header kolom numerik yang bisa diklik untuk mengurutkan hasil. */
+/** Clickable numeric column header used to sort the results. */
 const SortableHeader = ({ column, sortKey, sortDirection, onSortHeader }) => {
   const isActive = sortKey === column.key;
   const DirectionIcon = isActive ? (sortDirection === 'asc' ? ArrowUp : ArrowDown) : ArrowUpDown;
@@ -29,7 +29,7 @@ const SortableHeader = ({ column, sortKey, sortDirection, onSortHeader }) => {
       <button
         type="button"
         onClick={() => onSortHeader(column.key)}
-        aria-label={`${column.label} — klik untuk mengubah urutan`}
+        aria-label={`${column.label} — click to change the order`}
         className={cn(
           'inline-flex items-center gap-1.5 rounded font-semibold uppercase tracking-wider transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
           isActive ? 'text-primary-700' : 'text-slate-500 hover:text-slate-800',
@@ -45,13 +45,13 @@ const SortableHeader = ({ column, sortKey, sortDirection, onSortHeader }) => {
   );
 };
 
-/** Tabel lengkap — hanya dirender pada layar laptop/desktop (lg ke atas). */
+/** Full table — only rendered on laptop/desktop screens (lg and up). */
 const DesktopTable = ({ talents, sortKey, sortDirection, onSortHeader }) => (
   <Table>
     <THead>
       <Tr>
-        <Th>Kreator</Th>
-        <Th>Kategori</Th>
+        <Th>Creator</Th>
+        <Th>Category</Th>
         {SORTABLE_COLUMNS.map((column) => (
           <SortableHeader
             key={column.key}
@@ -61,7 +61,7 @@ const DesktopTable = ({ talents, sortKey, sortDirection, onSortHeader }) => (
             onSortHeader={onSortHeader}
           />
         ))}
-        <Th>Lokasi</Th>
+        <Th>Location</Th>
       </Tr>
     </THead>
     <TBody>
@@ -86,8 +86,8 @@ const DesktopTable = ({ talents, sortKey, sortDirection, onSortHeader }) => (
 );
 
 /**
- * Card-based list pengganti tabel untuk layar di bawah lg.
- * Setiap baris tabel "dibungkus" menjadi kartu kompak agar tidak terpotong.
+ * Card-based list that replaces the table below lg.
+ * Each table row is "wrapped" into a compact card so nothing gets cut off.
  */
 const MobileTableList = ({ talents }) => (
   <Card className="lg:hidden">
@@ -106,19 +106,19 @@ const MobileTableList = ({ talents }) => (
 );
 
 /**
- * Tampilan tabel (table view).
- * Desktop: tabel penuh dengan header yang bisa diurutkan.
- * Mobile/tablet: otomatis berubah menjadi daftar kartu agar tetap terbaca.
+ * Table view.
+ * Desktop: full table with sortable headers.
+ * Mobile/tablet: automatically turns into a card list to stay readable.
  */
 export const TalentTable = ({ talents, sortKey, sortDirection, onSortHeader }) => (
   <>
     <Card className="hidden overflow-hidden lg:block">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 px-5 py-4">
         <div>
-          <h3 className="text-sm font-semibold text-slate-800">Daftar Kreator</h3>
-          <p className="text-xs text-slate-500">Klik judul kolom untuk mengubah urutan.</p>
+          <h3 className="text-sm font-semibold text-slate-800">Creator List</h3>
+          <p className="text-xs text-slate-500">Click a column header to change the order.</p>
         </div>
-        <Badge variant="secondary">{talents.length} kreator</Badge>
+        <Badge variant="secondary">{talents.length} creators</Badge>
       </div>
       <DesktopTable
         talents={talents}

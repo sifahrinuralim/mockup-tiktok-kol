@@ -2,10 +2,10 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { MOCK_TOP_CONTENTS } from '@/data/mockAnalytics';
 
-/** Jumlah konten yang ditampilkan pada kartu. */
+/** Number of contents shown on the card. */
 const VISIBLE_CONTENT_COUNT = 5;
 
-/** Baris satu konten terbaik. */
+/** Row for a single top-performing content. */
 const TopContentRow = ({ content }) => (
   <li className="flex items-center gap-4 px-5 py-4">
     <img
@@ -37,14 +37,14 @@ const TopContentRow = ({ content }) => (
     </dl>
     <div className="shrink-0 text-right text-xs text-slate-400">
       <p>{content.likes} likes</p>
-      <p>{content.comments} komentar</p>
+      <p>{content.comments} comments</p>
       <p className="mt-1 text-slate-500">{content.postedAt}</p>
     </div>
   </li>
 );
 
 /**
- * Daftar konten dengan performa terbaik lintas kampanye (30 hari).
+ * List of the best-performing content across campaigns (30 days).
  */
 export const TopContentsCard = ({ contents = MOCK_TOP_CONTENTS }) => {
   const visibleContents = contents.slice(0, VISIBLE_CONTENT_COUNT);
@@ -52,7 +52,7 @@ export const TopContentsCard = ({ contents = MOCK_TOP_CONTENTS }) => {
   return (
     <Card className="flex h-full flex-col">
       <CardHeader>
-        <CardTitle>Konten Terbaik</CardTitle>
+        <CardTitle>Top Content</CardTitle>
       </CardHeader>
       <CardContent className="flex-1 p-0">
         <ul role="list" className="divide-y divide-slate-100">

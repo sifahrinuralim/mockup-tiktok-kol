@@ -1,8 +1,8 @@
 import { cn } from '@/utils/cn';
 
 /**
- * Tumpukan avatar kreator yang saling menimpa (overlap) + indikator jumlah
- * tersembunyi. Mengembalikan null bila daftar kreator kosong.
+ * Overlapping stack of creator avatars + a count indicator for the hidden
+ * remainder. Returns null when the creator list is empty.
  */
 export const AvatarStack = ({ talents, max = 3, imageClassName = 'h-7 w-7', className }) => {
   if (!talents || talents.length === 0) return null;
@@ -11,7 +11,7 @@ export const AvatarStack = ({ talents, max = 3, imageClassName = 'h-7 w-7', clas
   const hiddenCount = talents.length - visible.length;
 
   return (
-    <div className={cn('flex items-center -space-x-2', className)} aria-label={`${talents.length} kreator`}>
+    <div className={cn('flex items-center -space-x-2', className)} aria-label={`${talents.length} creators`}>
       {visible.map((talent) => (
         <img
           key={talent.id}

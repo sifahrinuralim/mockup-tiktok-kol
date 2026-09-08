@@ -4,7 +4,7 @@ import { AlertCircle, ChevronDown } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
 /**
- * Komponen Select ber-label, seragam dengan Input (support error & hint).
+ * Labeled Select component, consistent with Input (supports error & hint).
  */
 export const Select = forwardRef(function Select(
   { label, error, hint, id, className, children, ...props },

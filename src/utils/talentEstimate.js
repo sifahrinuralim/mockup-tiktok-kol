@@ -1,19 +1,19 @@
 import { parseCompactNumber } from '@/utils/metrics';
 
-/** Perkiraan tarif per view (Rupiah) untuk satu video sponsorship. */
+/** Estimated rate per view (Rupiah) for a single sponsored video. */
 const RATE_PER_VIEW_MIN = 12;
 const RATE_PER_VIEW_MAX = 20;
 
-/** Pembulatan harga agar angka estimasi tampak "rapi" (500 ribu). */
+/** Price rounding so estimates look "clean" (500 thousand). */
 const ROUND_STEP = 500_000;
 
-/** Membulatkan nilai ke kelipatan langkah tertentu. */
+/** Rounds a value up to a multiple of the given step. */
 const roundToStep = (value, step) => Math.round(value / step) * step;
 
 /**
- * Estimasi rate card (harga campaign) kreator, dihitung deterministik dari
- * rata-rata views per video agar selalu konsisten & masuk akal. Pada API
- * sungguhan, nilai ini umumnya disimpan sebagai field terpisah.
+ * Estimates a creator's rate card (campaign prices) deterministically from
+ * the average views per video so the numbers stay consistent and sensible.
+ * On a real API these values would usually be stored as separate fields.
  *
  * @param {object} talent
  * @returns {Array<{key: string, label: string, hint: string, min: number, max: number, highlight?: boolean}>}
@@ -28,14 +28,14 @@ export const estimateRateCardTiers = (talent) => {
     {
       key: 'single',
       label: '1 Video',
-      hint: 'Satu konten feed untuk produk/layanan.',
+      hint: 'One feed post for a product/service.',
       min: singleMin,
       max: singleMax,
     },
     {
       key: 'package',
-      label: 'Paket 3 Video',
-      hint: 'Tiga konten dalam rentang satu bulan.',
+      label: '3 Video Package',
+      hint: 'Three posts within one month.',
       min: roundToStep(singleMin * 2.4, ROUND_STEP),
       max: roundToStep(singleMax * 2.6, ROUND_STEP),
       highlight: true,
@@ -43,23 +43,23 @@ export const estimateRateCardTiers = (talent) => {
     {
       key: 'live',
       label: 'Live / Event',
-      hint: 'Sesi live streaming atau hadir di acara.',
+      hint: 'A live streaming session or an event appearance.',
       min: roundToStep(singleMin * 0.55, ROUND_STEP),
       max: roundToStep(singleMax * 0.7, ROUND_STEP),
     },
   ];
 };
 
-/** PRNG deterministik (seed numerik) agar deret data tidak berubah antar render. */
+/** Deterministic PRNG (numeric seed) so data series stay stable across renders. */
 const pseudoNoise = (seed) => {
   const x = Math.sin(seed * 127.1 + 311.7) * 43758.5453;
   return x - Math.floor(x);
 };
 
 /**
- * Membangun deret total views harian (mock) dari `totalViews` kreator.
- * Total deret kira-kira mendekati `totalViews` dengan tren menanjak sehingga
- * grafik "30 hari terakhir" terlihat sedang naik.
+ * Builds a mock daily total-views series from a creator's `totalViews`.
+ * The series total roughly matches `totalViews`, with an upward trend so
+ * the "last 30 days" chart looks like it is climbing.
  *
  * @param {object} talent
  * @param {number} [points=30]
@@ -83,8 +83,8 @@ export const buildViewsTrendSeries = (talent, points = 30) => {
 };
 
 /**
- * Pertumbuhan persen antara nilai terakhir dan pertama deret.
- * Misal 23.4 berarti naik 23.4% selama periode tersebut.
+ * Percentage growth between the last and the first value of a series.
+ * E.g. 23.4 means the series grew 23.4% during that period.
  *
  * @param {number[]} series
  * @returns {number}

@@ -1,4 +1,4 @@
-/** Faktor pengali untuk angka ringkas berakhiran K/M/B. */
+/** Multiplier factors for compact numbers ending in K/M/B. */
 const COMPACT_SUFFIX_MULTIPLIERS = {
   K: 1e3,
   M: 1e6,
@@ -6,8 +6,8 @@ const COMPACT_SUFFIX_MULTIPLIERS = {
 };
 
 /**
- * Mengubah angka ringkas siap-tampil ('2.8M', '890K', '9.4%') menjadi
- * angka mentah untuk keperluan sorting/perhitungan.
+ * Converts a display-ready compact number ('2.8M', '890K', '9.4%') back into
+ * a raw number for sorting/calculations.
  *
  * @param {string|number} value
  * @returns {number}
@@ -28,14 +28,14 @@ export const parseCompactNumber = (value) => {
   return suffix ? number * COMPACT_SUFFIX_MULTIPLIERS[suffix] : number;
 };
 
-/** Membuang trailing zero pada desimal hasil toFixed, mis. '8.50' → '8.5'. */
+/** Removes trailing zeros from a toFixed result, e.g. '8.50' → '8.5'. */
 const trimFixed = (number, decimals) => {
   const fixed = number.toFixed(decimals);
   return fixed.replace(/\.0+$/, '').replace(/(\.\d*?)0+$/, '$1');
 };
 
 /**
- * Memformat angka mentah menjadi angka ringkas ('930.7M', '1.2B').
+ * Formats a raw number into a compact display number ('930.7M', '1.2B').
  *
  * @param {number} value
  * @param {number} [decimals=1]

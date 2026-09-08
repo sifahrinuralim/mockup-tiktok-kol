@@ -1,8 +1,8 @@
 /**
- * Halaman Campaign Manager — kelola alur kampanye dari brief hingga laporan.
- * Menampilkan statistik pipeline, filter status, dan tabel kampanye.
- * Data dummy di src/data/mockCampaigns.js; pembuatan kampanye baru menambah
- * entri ke state lokal dengan status Draft.
+ * Campaign Manager page — manage the campaign workflow from brief to report.
+ * Shows pipeline statistics, status filters, and the campaign table.
+ * Mock data lives in src/data/mockCampaigns.js; creating a new campaign adds
+ * an entry to the local state with a Draft status.
  */
 
 import { useEffect, useMemo, useState } from 'react';
@@ -23,9 +23,9 @@ import { CampaignStats } from './components/CampaignStats';
 import { CampaignTable } from './components/CampaignTable';
 import { CreateCampaignModal } from './components/CreateCampaignModal';
 
-/** Penampung baris kampanye (skeleton) selama simulasi loading berjalan. */
+/** Campaign-row skeleton placeholders while the simulated loading runs. */
 const CampaignListSkeleton = () => (
-  <div aria-label="Memuat daftar kampanye..." className="space-y-3">
+  <div aria-label="Loading campaign list..." className="space-y-3">
     {Array.from({ length: 5 }, (_, index) => (
       <div
         key={index}
@@ -43,7 +43,7 @@ const CampaignListSkeleton = () => (
   </div>
 );
 
-/** Filter kampanye berdasarkan status dan kata kunci pencarian. */
+/** Filters campaigns by status and search keyword. */
 const filterCampaigns = (campaigns, status, query) => {
   const normalizedQuery = query.trim().toLowerCase();
 
@@ -60,7 +60,7 @@ const filterCampaigns = (campaigns, status, query) => {
   });
 };
 
-/** Menghitung jumlah kampanye per status + total untuk tab filter. */
+/** Counts campaigns per status + the total for the filter tabs. */
 const countByStatus = (campaigns) =>
   CAMPAIGN_STATUS_FILTERS.map((filter) => ({
     ...filter,
@@ -70,7 +70,7 @@ const countByStatus = (campaigns) =>
         : campaigns.filter((campaign) => campaign.status === filter.value).length,
   }));
 
-/** Membangun objek kampanye draft baru dari hasil form modal. */
+/** Builds a new draft campaign object from the modal form data. */
 const buildDraftCampaign = (form, nextId) => ({
   id: nextId,
   name: form.name.trim(),
@@ -81,18 +81,18 @@ const buildDraftCampaign = (form, nextId) => ({
   talentIds: [],
   talents: [],
   deliverables: { videos: 0, lives: 0, stories: 0 },
-  deliverableLabel: 'Belum disusun',
+  deliverableLabel: 'Not set yet',
   progress: 0,
   startDate: form.startDate || null,
   endDate: form.endDate || null,
-  kpi: 'Belum disusun',
+  kpi: 'Not set yet',
   goal: form.goal,
   manager: { name: 'Sarah Rahmawati', initials: 'SR' },
   code: `CMP-${String(nextId).padStart(3, '0')}`,
 });
 
 /**
- * Halaman utama modul Campaign Manager.
+ * Main page of the Campaign Manager module.
  */
 export default function CampaignManagerPage() {
   const [campaigns, setCampaigns] = useState(MOCK_CAMPAIGNS);
@@ -103,7 +103,7 @@ export default function CampaignManagerPage() {
   const [detailCampaign, setDetailCampaign] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
-  // Simulasi request awal agar skeleton state sempat terlihat nyata.
+  // Simulate the initial request so the skeleton state is visibly rendered.
   useEffect(() => {
     const timer = window.setTimeout(() => setIsLoading(false), SIMULATED_LOAD_DELAY_MS);
     return () => window.clearTimeout(timer);
@@ -125,7 +125,7 @@ export default function CampaignManagerPage() {
     const newCampaign = buildDraftCampaign(form, nextId);
 
     setCampaigns((current) => [newCampaign, ...current]);
-    setSuccessMessage(`Kampanye “${newCampaign.name}” berhasil dibuat sebagai Draft.`);
+    setSuccessMessage(`Campaign “${newCampaign.name}” was created as a Draft.`);
     window.setTimeout(() => setSuccessMessage(''), 6000);
   };
 
@@ -133,11 +133,11 @@ export default function CampaignManagerPage() {
     <div className="space-y-6">
       <PageHeader
         title="Campaign Manager"
-        description="Kelola alur kampanye dari brief hingga laporan akhir, pantau progres, dan lacak talenta yang terlibat."
+        description="Manage the campaign workflow from brief to final report, track progress, and follow the talent involved."
         action={
           <Button onClick={() => setCreateOpen(true)}>
             <Plus className="h-4 w-4" aria-hidden="true" />
-            Buat Kampanye
+            Create Campaign
           </Button>
         }
       />
@@ -157,7 +157,7 @@ export default function CampaignManagerPage() {
                 type="button"
                 onClick={() => setSuccessMessage('')}
                 className="rounded p-0.5 text-emerald-600 transition-colors hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-                aria-label="Tutup notifikasi"
+                aria-label="Close notification"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
@@ -166,25 +166,25 @@ export default function CampaignManagerPage() {
 
           <CampaignStats campaigns={campaigns} />
 
-          <section aria-labelledby="heading-daftar-kampanye" className="space-y-4">
+          <section aria-labelledby="heading-campaign-list" className="space-y-4">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div>
-                <h2 id="heading-daftar-kampanye" className="text-lg font-semibold text-slate-900">
-                  Daftar Kampanye
+                <h2 id="heading-campaign-list" className="text-lg font-semibold text-slate-900">
+                  Campaign List
                 </h2>
                 <p className="mt-0.5 text-sm text-slate-600">
-                  Saring berdasarkan status atau cari nama kampanye, brand, dan kode.
+                  Filter by status or search by campaign name, brand, and code.
                 </p>
               </div>
               <p aria-live="polite" className="text-sm text-slate-600">
-                Menampilkan{' '}
-                <span className="font-semibold text-slate-900">{results.length}</span> dari{' '}
-                {campaigns.length} kampanye
+                Showing{' '}
+                <span className="font-semibold text-slate-900">{results.length}</span> of{' '}
+                {campaigns.length} campaigns
               </p>
             </div>
 
-            {/* Tab filter status */}
-            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter status kampanye">
+            {/* Status filter tabs */}
+            <div className="flex flex-wrap gap-2" role="group" aria-label="Filter campaign status">
               {statusTabs.map((tab) => {
                 const isActive = activeStatus === tab.value;
 
@@ -219,16 +219,16 @@ export default function CampaignManagerPage() {
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Cari nama kampanye, brand, atau kode (cth. CMP-001)…"
-              aria-label="Cari kampanye"
+              placeholder="Search campaign name, brand, or code (e.g. CMP-001)…"
+              aria-label="Search campaigns"
             />
 
             {results.length === 0 ? (
               <Card>
                 <EmptyState
                   icon={SearchX}
-                  title="Kampanye tidak ditemukan"
-                  description="Tidak ada kampanye yang cocok dengan status atau kata kunci tersebut. Coba ubah pencarian atau reset filter."
+                  title="No campaigns found"
+                  description="No campaigns match that status or keyword. Try another search or reset the filters."
                   action={
                     <Button variant="outline" size="sm" onClick={resetFilters}>
                       Reset Filter

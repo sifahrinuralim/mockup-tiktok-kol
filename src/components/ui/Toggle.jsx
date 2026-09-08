@@ -3,8 +3,8 @@ import { Loader2 } from 'lucide-react';
 import { cn } from '@/utils/cn';
 
 /**
- * Toggle switch yang dapat diakses (role="switch").
- * Warna Emerald saat aktif — konsisten dengan badge status "Aktif".
+ * Accessible toggle switch (role="switch").
+ * Emerald when active — consistent with the "Active" status badge.
  */
 export const Toggle = ({
   checked = false,

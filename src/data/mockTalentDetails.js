@@ -1,40 +1,40 @@
 /**
- * Data pelengkap profil kreator untuk Quick View.
+ * Extra creator-profile data for Quick View.
  *
- * Dipisah dari MOCK_TALENTS agar data inti kartu/tabel tetap ringan.
- * Audio favorit dipilih deterministik dari pustaka audio global sehingga tiap
- * kreator mendapat kombinasi berbeda namun stabil antar render. Estimasi rate
- * card & deret views 30 hari dihitung via src/utils/talentEstimate.js.
+ * Kept separate from MOCK_TALENTS so the core card/table data stays light.
+ * Favorite audios are picked deterministically from a global audio library so
+ * every creator gets a different but render-stable combination. Rate card
+ * estimates & the 30-day views series are computed via src/utils/talentEstimate.js.
  */
 
 import { MOCK_TALENTS } from '@/data/mockTalents';
 
-/** Pustaka audio yang umum dipakai kreator (mock). */
+/** Audio library commonly used by creators (mock). */
 const AUDIO_LIBRARY = [
-  { title: 'Tak Ingin Usai (Versi Akustik)', creator: '@suara.akustik' },
-  { title: 'Suara Viral Anak Kucing', creator: '@cutecat.official' },
-  { title: 'Remix Joget Pantura', creator: '@dj.pantura' },
-  { title: 'Lagu Cover: Berakhir di Pelukanmu', creator: '@nadacover.id' },
-  { title: 'Original Sound: Santuy Saja', creator: '@santuy.creator' },
-  { title: 'Dangdut Koplo Pilihan Editor', creator: '@koplo.viral' },
+  { title: 'Never Want It to End (Acoustic Version)', creator: '@suara.akustik' },
+  { title: 'Viral Kitten Sounds', creator: '@cutecat.official' },
+  { title: 'Pantura Dance Remix', creator: '@dj.pantura' },
+  { title: 'Cover Song: Ending in Your Arms', creator: '@nadacover.id' },
+  { title: 'Original Sound: Just Chill', creator: '@santuy.creator' },
+  { title: 'Koplo Dangdut (Editor Pick)', creator: '@koplo.viral' },
   { title: 'Glow Up Challenge Beat', creator: '@beautybeat.id' },
-  { title: 'Senja di Pesisir (Piano)', creator: '@pianomood' },
-  { title: 'Beat GAMING: Boss Fight', creator: '@gamebeat.id' },
-  { title: 'Review Jujur Mode On', creator: '@honesttalk.id' },
+  { title: 'Sunset by the Shore (Piano)', creator: '@pianomood' },
+  { title: 'Gaming Beat: Boss Fight', creator: '@gamebeat.id' },
+  { title: 'Honest Review Mode On', creator: '@honesttalk.id' },
   { title: 'Maskulin Vibes (Hip Hop)', creator: '@hiphopindo' },
-  { title: 'Makan Enak Ga Pake Mikir', creator: '@foodiesound.id' },
-  { title: 'Kejar Deadline (Comedy Sound)', creator: '@officecomedy' },
-  { title: 'Aesthetic Lo-fi untuk Konten', creator: '@lofibeats.id' },
+  { title: 'Great Food, No Thinking Needed', creator: '@foodiesound.id' },
+  { title: 'Chasing Deadlines (Comedy Sound)', creator: '@officecomedy' },
+  { title: 'Aesthetic Lo-fi for Content', creator: '@lofibeats.id' },
   { title: 'Spill the Tea Official', creator: '@spilltea.id' },
   { title: 'Anime Opening Remix', creator: '@otakuremix' },
-  { title: 'Nuansa Bali Santai', creator: '@balisound' },
-  { title: 'Joget TikTok 2024', creator: '@tiktoktrend.id' },
+  { title: 'Chill Bali Vibes', creator: '@balisound' },
+  { title: 'TikTok Dance 2024', creator: '@tiktoktrend.id' },
 ];
 
-/** Jumlah audio favorit yang disimpan per kreator. */
+/** Number of favorite audios kept per creator. */
 const FAVORITE_AUDIO_COUNT = 3;
 
-/** Memilih audio favorit kreator secara deterministik tanpa duplikat. */
+/** Picks a creator's favorite audios deterministically without duplicates. */
 const buildFavoriteAudios = (talent) => {
   const selected = [];
   const usedIndices = new Set();
@@ -55,9 +55,9 @@ const buildFavoriteAudios = (talent) => {
 };
 
 /**
- * Detail Quick View per kreator, berisi audio favorit yang sering dipakai.
- * Deret views 30 hari & estimasi rate card dihitung dari metrik inti kreator
- * lewat util agar tidak menduplikasi data numerik.
+ * Per-creator Quick View details, including frequently used favorite audios.
+ * The 30-day views series & rate card estimates are derived from each
+ * creator's core metrics through utils so numeric data isn't duplicated.
  */
 export const MOCK_TALENT_DETAILS = MOCK_TALENTS.map((talent) => ({
   talentId: talent.id,

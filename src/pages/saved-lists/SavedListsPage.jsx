@@ -1,8 +1,8 @@
 /**
- * Halaman Saved Lists — kumpulan daftar kreator untuk campaign mendatang.
- * Menampilkan kartu daftar, detail anggota (hapus member), pembuatan daftar
- * baru, dan penghapusan daftar dengan konfirmasi.
- * Data dummy di src/data/mockSavedLists.js.
+ * Saved Lists page — a collection of creator lists for upcoming campaigns.
+ * Shows list cards, member details (remove members), creating new lists,
+ * and deleting lists with confirmation.
+ * Mock data lives in src/data/mockSavedLists.js.
  */
 
 import { useEffect, useState } from 'react';
@@ -21,10 +21,10 @@ import { CreateListModal } from './components/CreateListModal';
 import { SavedListCard } from './components/SavedListCard';
 import { SavedListDetail } from './components/SavedListDetail';
 
-/** Skeleton grid daftar saat simulasi loading berjalan. */
+/** List grid skeleton while the simulated loading runs. */
 const ListsGridSkeleton = () => (
   <div
-    aria-label="Memuat daftar tersimpan..."
+    aria-label="Loading saved lists..."
     className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"
   >
     {Array.from({ length: 6 }, (_, index) => (
@@ -39,15 +39,15 @@ const ListsGridSkeleton = () => (
   </div>
 );
 
-/** Tanggal hari ini format 'YYYY-MM-DD' untuk metadata list baru. */
+/** Today's date in 'YYYY-MM-DD' format for new list metadata. */
 const getTodayString = () => new Date().toISOString().slice(0, 10);
 
-/** Hitung ulang estimasi budget daftar dari daftar member terkini. */
+/** Recomputes a list's estimated budget from the current member list. */
 const sumEstimatedBudget = (members) =>
   members.reduce((total, member) => total + estimateRateCardTiers(member)[0].min, 0);
 
 /**
- * Halaman utama modul Saved Lists.
+ * Main page of the Saved Lists module.
  */
 export default function SavedListsPage() {
   const [lists, setLists] = useState(MOCK_SAVED_LISTS);
@@ -58,7 +58,7 @@ export default function SavedListsPage() {
   const [pendingMember, setPendingMember] = useState(null); // { listId, member }
   const [pendingDeleteList, setPendingDeleteList] = useState(null);
 
-  // Simulasi request awal agar skeleton state sempat terlihat nyata.
+  // Simulate the initial request so the skeleton state is visibly rendered.
   useEffect(() => {
     const timer = window.setTimeout(() => setIsLoading(false), SIMULATED_LOAD_DELAY_MS);
     return () => window.clearTimeout(timer);
@@ -80,7 +80,7 @@ export default function SavedListsPage() {
       name: form.name,
       category: form.category,
       target: form.target,
-      description: form.description || 'Belum ada deskripsi — tambahkan kriteria daftar ini.',
+      description: form.description || 'No description yet — add the criteria for this list.',
       tags: [],
       members: [],
       memberCount: 0,
@@ -90,7 +90,7 @@ export default function SavedListsPage() {
     };
 
     setLists((current) => [newList, ...current]);
-    notify(`Daftar “${newList.name}” berhasil dibuat.`);
+    notify(`List “${newList.name}” was created.`);
   };
 
   const handleRemoveMember = (listId, member) => {
@@ -109,25 +109,25 @@ export default function SavedListsPage() {
       }),
     );
     setPendingMember(null);
-    notify(`${member.name} dihapus dari daftar.`);
+    notify(`${member.name} removed from the list.`);
   };
 
   const handleDeleteList = (list) => {
     setLists((current) => current.filter((item) => item.id !== list.id));
     if (selectedId === list.id) setSelectedId(null);
     setPendingDeleteList(null);
-    notify(`Daftar “${list.name}” berhasil dihapus.`);
+    notify(`List “${list.name}” was deleted.`);
   };
 
   return (
     <div className="space-y-6">
       <PageHeader
         title="Saved Lists"
-        description="Simpan dan kelompokkan kreator favorit Anda untuk campaign mendatang."
+        description="Save and group your favorite creators for upcoming campaigns."
         action={
           <Button onClick={() => setCreateOpen(true)}>
             <Plus className="h-4 w-4" aria-hidden="true" />
-            Buat Daftar Baru
+            Create New List
           </Button>
         }
       />
@@ -146,7 +146,7 @@ export default function SavedListsPage() {
                 type="button"
                 onClick={() => setSuccessMessage('')}
                 className="rounded p-0.5 text-emerald-600 transition-colors hover:bg-emerald-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-                aria-label="Tutup notifikasi"
+                aria-label="Close notification"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
@@ -161,15 +161,15 @@ export default function SavedListsPage() {
               onRequestDelete={() => setPendingDeleteList(selectedList)}
             />
           ) : (
-            <section aria-labelledby="heading-daftar" className="space-y-4">
+            <section aria-labelledby="heading-lists" className="space-y-4">
               <div className="flex items-end justify-between gap-3">
                 <div>
-                  <h2 id="heading-daftar" className="flex items-center gap-2 text-lg font-semibold text-slate-900">
+                  <h2 id="heading-lists" className="flex items-center gap-2 text-lg font-semibold text-slate-900">
                     <Bookmark className="h-5 w-5 text-primary-600" aria-hidden="true" />
-                    Daftar Kreator Anda
+                    Your Creator Lists
                   </h2>
                   <p className="mt-0.5 text-sm text-slate-600">
-                    {lists.length} daftar tersimpan untuk campaign mendatang.
+                    {lists.length} saved lists for upcoming campaigns.
                   </p>
                 </div>
               </div>
@@ -178,12 +178,12 @@ export default function SavedListsPage() {
                 <Card>
                   <EmptyState
                     icon={Bookmark}
-                    title="Belum ada daftar tersimpan"
-                    description="Buat daftar pertama Anda untuk mengelompokkan kreator sesuai kebutuhan campaign."
+                    title="No saved lists yet"
+                    description="Create your first list to group creators by your campaign needs."
                     action={
                       <Button size="sm" onClick={() => setCreateOpen(true)}>
                         <Plus className="h-4 w-4" aria-hidden="true" />
-                        Buat Daftar Baru
+                        Create New List
                       </Button>
                     }
                   />
@@ -218,18 +218,18 @@ export default function SavedListsPage() {
           pendingMember &&
           handleRemoveMember(pendingMember.listId, pendingMember.member)
         }
-        title="Hapus Kreator dari Daftar"
-        description={`Yakin ingin menghapus ${pendingMember?.member.name ?? ''} dari daftar ini? Anda tetap bisa mencarinya kembali di Talent Discovery.`}
-        confirmText="Hapus"
+        title="Remove Creator from List"
+        description={`Are you sure you want to remove ${pendingMember?.member.name ?? ''} from this list? You can always find them again in Talent Discovery.`}
+        confirmText="Remove"
       />
 
       <ConfirmDialog
         open={Boolean(pendingDeleteList)}
         onClose={() => setPendingDeleteList(null)}
         onConfirm={() => pendingDeleteList && handleDeleteList(pendingDeleteList)}
-        title="Hapus Daftar"
-        description={`Daftar “${pendingDeleteList?.name ?? ''}” beserta seluruh anggotanya akan dihapus permanen. Tindakan ini tidak dapat dibatalkan.`}
-        confirmText="Hapus Daftar"
+        title="Delete List"
+        description={`List “${pendingDeleteList?.name ?? ''}” and all of its members will be permanently deleted. This action cannot be undone.`}
+        confirmText="Delete List"
       />
     </div>
   );

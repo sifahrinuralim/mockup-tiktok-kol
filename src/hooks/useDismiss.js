@@ -1,13 +1,13 @@
 import { useEffect, useRef } from 'react';
 
 /**
- * Hook untuk menutup dropdown/menu:
- * - saat klik terjadi di luar elemen pembungkus (`ref` hasil hook), atau
- * - saat tombol Escape ditekan.
+ * Hook for dismissing a dropdown/menu:
+ * - when a click happens outside the wrapper element (the hook's `ref`), or
+ * - when the Escape key is pressed.
  *
- * @param {boolean} open Apakah menu sedang terbuka.
- * @param {() => void} onDismiss Callback saat menu diminta untuk ditutup.
- * @returns {import('react').MutableRefObject<HTMLElement|null>} Ref elemen pembungkus.
+ * @param {boolean} open Whether the menu is currently open.
+ * @param {() => void} onDismiss Callback called when the menu should close.
+ * @returns {import('react').MutableRefObject<HTMLElement|null>} Ref to the wrapper element.
  */
 export const useDismiss = (open, onDismiss) => {
   const ref = useRef(null);

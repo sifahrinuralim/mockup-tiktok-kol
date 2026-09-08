@@ -8,7 +8,7 @@ import { NOTIFICATION_PREFERENCES } from '@/data/mockProfile';
 
 const SAVE_DELAY_MS = 600;
 
-/** Konversi objek preferensi statis ke daftar baris untuk dirender. */
+/** Converts the static preference object into rows ready to render. */
 const buildPreferenceRows = () =>
   Object.entries(NOTIFICATION_PREFERENCES).map(([key, preference]) => ({
     key,
@@ -17,7 +17,7 @@ const buildPreferenceRows = () =>
     enabled: preference.enabled,
   }));
 
-/** Pengaturan notifikasi: daftar toggle + tombol simpan (simulasi). */
+/** Notification settings: a list of toggles + a save button (simulated). */
 export const NotificationSettings = () => {
   const [rows, setRows] = useState(buildPreferenceRows);
   const [isSaving, setIsSaving] = useState(false);
@@ -41,7 +41,7 @@ export const NotificationSettings = () => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Preferensi Notifikasi</CardTitle>
+        <CardTitle>Notification Preferences</CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <ul role="list" className="divide-y divide-slate-100">
@@ -54,7 +54,7 @@ export const NotificationSettings = () => {
               <Toggle
                 checked={row.enabled}
                 onChange={() => toggleRow(row.key)}
-                aria-label={`${row.label} — aktif/nonaktif`}
+                aria-label={`${row.label} — on/off`}
               />
             </li>
           ))}
@@ -64,11 +64,11 @@ export const NotificationSettings = () => {
           {isSaved && (
             <p className="mr-auto inline-flex items-center gap-1.5 text-sm font-medium text-emerald-600" role="status">
               <CheckCircle2 className="h-4 w-4" aria-hidden="true" />
-              Preferensi tersimpan
+              Preferences saved
             </p>
           )}
-          <Button onClick={handleSave} isLoading={isSaving} loadingText="Menyimpan..." size="sm">
-            Simpan Preferensi
+          <Button onClick={handleSave} isLoading={isSaving} loadingText="Saving..." size="sm">
+            Save Preferences
           </Button>
         </div>
       </CardContent>

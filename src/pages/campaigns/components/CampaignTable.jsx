@@ -13,33 +13,33 @@ import { ProgressBar } from './ProgressBar';
 
 const MAX_VISIBLE_AVATARS = 3;
 
-/** Tumpukan avatar kreator (fallback teks saat kampanye belum punya talenta). */
+/** Avatar stack for campaign creators (text fallback when there are no talents yet). */
 const TalentAvatarStack = ({ talents }) =>
   talents.length === 0 ? (
-    <span className="text-sm text-slate-400">Belum ada</span>
+    <span className="text-sm text-slate-400">None yet</span>
   ) : (
     <AvatarStack talents={talents} max={MAX_VISIBLE_AVATARS} />
   );
 
-/** Teks rentang jadwal kampanye (atau 'Belum dijadwalkan'). */
+/** Campaign schedule range text (or 'Not scheduled'). */
 const formatSchedule = (campaign) => {
-  if (!campaign.startDate || !campaign.endDate) return 'Belum dijadwalkan';
+  if (!campaign.startDate || !campaign.endDate) return 'Not scheduled';
   return `${formatDateShort(campaign.startDate)} – ${formatDateShort(campaign.endDate)}`;
 };
 
-/** Tabel kampanye untuk layar lg ke atas. */
+/** Campaign table for lg screens and up. */
 const DesktopCampaignTable = ({ campaigns, onView }) => (
   <Table>
     <THead>
       <Tr>
-        <Th>Kampanye</Th>
+        <Th>Campaign</Th>
         <Th>Status</Th>
-        <Th>Talenta</Th>
-        <Th>Jadwal</Th>
-        <Th className="w-52">Progres</Th>
+        <Th>Talent</Th>
+        <Th>Schedule</Th>
+        <Th className="w-52">Progress</Th>
         <Th className="text-right">Budget</Th>
         <Th>
-          <span className="sr-only">Aksi</span>
+          <span className="sr-only">Actions</span>
         </Th>
       </Tr>
     </THead>
@@ -63,7 +63,7 @@ const DesktopCampaignTable = ({ campaigns, onView }) => (
             <ProgressBar value={campaign.progress} showLabel />
           </Td>
           <Td className="text-right font-semibold text-slate-800">
-            {campaign.budget > 0 ? formatRupiahShort(campaign.budget) : 'Belum disetel'}
+            {campaign.budget > 0 ? formatRupiahShort(campaign.budget) : 'Not set'}
           </Td>
           <Td>
             <Button variant="outline" size="sm" onClick={() => onView(campaign)}>
@@ -77,7 +77,7 @@ const DesktopCampaignTable = ({ campaigns, onView }) => (
   </Table>
 );
 
-/** Daftar kartu pengganti tabel untuk layar di bawah lg. */
+/** Card list that replaces the table below lg. */
 const MobileCampaignList = ({ campaigns, onView }) => (
   <Card className="lg:hidden">
     <ul role="list" className="divide-y divide-slate-100">
@@ -96,7 +96,7 @@ const MobileCampaignList = ({ campaigns, onView }) => (
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-slate-500">
             <span className="inline-flex items-center gap-1.5">
               <UserRound className="h-4 w-4" aria-hidden="true" />
-              {campaign.talents.length} talenta
+              {campaign.talents.length} talents
             </span>
             <span className="inline-flex items-center gap-1.5">
               <CalendarDays className="h-4 w-4" aria-hidden="true" />
@@ -104,7 +104,7 @@ const MobileCampaignList = ({ campaigns, onView }) => (
             </span>
             <span className="inline-flex items-center gap-1.5 font-semibold text-slate-700">
               <Wallet className="h-4 w-4" aria-hidden="true" />
-              {campaign.budget > 0 ? formatRupiahShort(campaign.budget) : 'Belum disetel'}
+              {campaign.budget > 0 ? formatRupiahShort(campaign.budget) : 'Not set'}
             </span>
           </div>
 
@@ -114,7 +114,7 @@ const MobileCampaignList = ({ campaigns, onView }) => (
             <TalentAvatarStack talents={campaign.talents} />
             <Button variant="outline" size="sm" onClick={() => onView(campaign)}>
               <Eye className="h-4 w-4" aria-hidden="true" />
-              Lihat Detail
+              View Details
             </Button>
           </div>
         </li>
@@ -124,18 +124,18 @@ const MobileCampaignList = ({ campaigns, onView }) => (
 );
 
 /**
- * Tampilan daftar kampanye (table view).
- * Desktop: tabel penuh; mobile: daftar kartu kompak.
+ * Campaign list view (table view).
+ * Desktop: full table; mobile: compact card list.
  */
 export const CampaignTable = ({ campaigns, onView }) => (
   <>
     <Card className="hidden overflow-hidden lg:block">
       <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 px-5 py-4">
         <div>
-          <h3 className="text-sm font-semibold text-slate-800">Daftar Kampanye</h3>
-          <p className="text-xs text-slate-500">Klik “Detail” untuk melihat progres & talenta.</p>
+          <h3 className="text-sm font-semibold text-slate-800">Campaign List</h3>
+          <p className="text-xs text-slate-500">Click “Details” to see progress & talent.</p>
         </div>
-        <Badge variant="secondary">{campaigns.length} kampanye</Badge>
+        <Badge variant="secondary">{campaigns.length} campaigns</Badge>
       </div>
       <DesktopCampaignTable campaigns={campaigns} onView={onView} />
     </Card>

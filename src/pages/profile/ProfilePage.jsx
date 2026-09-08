@@ -1,7 +1,7 @@
 /**
- * Halaman Profile — kelola profil pengguna, info agensi, preferensi
- * notifikasi, aktivitas terakhir, dan pengaturan akun.
- * Data dummy di src/data/mockProfile.js.
+ * Profile page — manage your user profile, agency info, notification
+ * preferences, recent activity, and account settings.
+ * Mock data lives in src/data/mockProfile.js.
  */
 
 import { Clock3 } from 'lucide-react';
@@ -16,11 +16,11 @@ import { NotificationSettings } from './components/NotificationSettings';
 import { ProfileForm } from './components/ProfileForm';
 import { ProfileSummaryCard } from './components/ProfileSummaryCard';
 
-/** Daftar aktivitas terakhir akun (mock). */
+/** List of recent account activity (mock). */
 const RecentActivityCard = ({ activities }) => (
   <Card>
     <CardHeader>
-      <CardTitle>Aktivitas Terakhir</CardTitle>
+      <CardTitle>Recent Activity</CardTitle>
     </CardHeader>
     <CardContent className="p-0">
       <ul role="list" className="divide-y divide-slate-100">
@@ -39,24 +39,24 @@ const RecentActivityCard = ({ activities }) => (
 );
 
 /**
- * Halaman utama modul Profile.
+ * Main page of the Profile module.
  */
 export default function ProfilePage() {
   return (
     <div className="space-y-6">
       <PageHeader
         title="Profile"
-        description="Kelola data diri, informasi agensi, preferensi notifikasi, dan pengaturan akun Anda."
+        description="Manage your personal details, agency info, notification preferences, and account settings."
       />
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
-        {/* Kolom kiri: identitas + agensi */}
+        {/* Left column: identity + agency */}
         <div className="space-y-4 lg:col-span-2">
           <ProfileSummaryCard profile={MOCK_PROFILE} />
           <AgencyCard agency={MOCK_PROFILE.agency} />
         </div>
 
-        {/* Kolom kanan: form & preferensi */}
+        {/* Right column: form & preferences */}
         <div className="space-y-4 lg:col-span-3">
           <ProfileForm profile={MOCK_PROFILE} />
           <NotificationSettings />

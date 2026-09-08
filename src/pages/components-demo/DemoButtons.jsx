@@ -12,7 +12,7 @@ const Group = ({ title, children }) => (
 
 export const DemoButtons = () => (
   <div className="space-y-6">
-    <Group title="Varian tombol">
+    <Group title="Button variants">
       <Button>Primary</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>
@@ -20,35 +20,35 @@ export const DemoButtons = () => (
       <Button variant="ghost">Ghost</Button>
     </Group>
 
-    <Group title="Ukuran & status">
-      <Button size="sm">Kecil</Button>
-      <Button size="md">Sedang</Button>
-      <Button size="lg">Besar</Button>
-      <Button isLoading loadingText="Memproses...">
-        Simpan
+    <Group title="Sizes & states">
+      <Button size="sm">Small</Button>
+      <Button size="md">Medium</Button>
+      <Button size="lg">Large</Button>
+      <Button isLoading loadingText="Processing...">
+        Save
       </Button>
       <Button variant="outline" disabled>
-        Nonaktif
+        Disabled
       </Button>
     </Group>
 
-    <Group title="Dengan ikon">
+    <Group title="With icons">
       <Button>
         <Plus className="h-4 w-4" aria-hidden="true" />
-        Tambah Baru
+        Add New
       </Button>
       <Button variant="outline">
         <Trash2 className="h-4 w-4 text-rose-600" aria-hidden="true" />
-        Hapus
+        Delete
       </Button>
     </Group>
 
-    <Group title="Badge status">
+    <Group title="Status badges">
       <Badge variant="primary">Primary</Badge>
       <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="success">Aktif</Badge>
+      <Badge variant="success">Active</Badge>
       <Badge variant="warning">Pending</Badge>
-      <Badge variant="danger">Nonaktif</Badge>
+      <Badge variant="danger">Disabled</Badge>
       <Badge variant="outline">Outline</Badge>
     </Group>
   </div>

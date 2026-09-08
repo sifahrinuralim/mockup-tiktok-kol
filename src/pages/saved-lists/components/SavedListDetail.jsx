@@ -14,18 +14,18 @@ import { formatDateLong } from '@/utils/date';
 
 const EXPORT_SUCCESS_MS = 2000;
 
-/** Label target ukuran kreator dari nilai tersimpan. */
+/** Target creator-size label from the stored value. */
 const findTargetLabel = (target) =>
   LIST_TARGET_OPTIONS.find((option) => option.value === target)?.label ?? target;
 
-/** Ringkasan statistik daftar (anggota, target, budget, diperbarui). */
+/** List stats summary (members, target, budget, updated). */
 const ListSummary = ({ list }) => (
   <dl className="grid grid-cols-2 gap-3 sm:grid-cols-4">
     <div className="rounded-lg bg-slate-50 px-3 py-2.5">
       <dt className="flex items-center gap-1 text-[11px] font-medium text-slate-400">
-        <Users className="h-3.5 w-3.5" aria-hidden="true" /> Anggota
+        <Users className="h-3.5 w-3.5" aria-hidden="true" /> Members
       </dt>
-      <dd className="mt-0.5 text-sm font-bold text-slate-800">{list.memberCount} kreator</dd>
+      <dd className="mt-0.5 text-sm font-bold text-slate-800">{list.memberCount} creators</dd>
     </div>
     <div className="rounded-lg bg-slate-50 px-3 py-2.5">
       <dt className="text-[11px] font-medium text-slate-400">Target</dt>
@@ -34,21 +34,21 @@ const ListSummary = ({ list }) => (
       </dd>
     </div>
     <div className="rounded-lg bg-slate-50 px-3 py-2.5">
-      <dt className="text-[11px] font-medium text-slate-400">Estimasi Budget</dt>
+      <dt className="text-[11px] font-medium text-slate-400">Estimated Budget</dt>
       <dd className="mt-0.5 truncate text-sm font-bold text-slate-800">
         {formatRupiah(list.estimatedBudget)}
       </dd>
     </div>
     <div className="rounded-lg bg-slate-50 px-3 py-2.5">
       <dt className="flex items-center gap-1 text-[11px] font-medium text-slate-400">
-        <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" /> Diperbarui
+        <CalendarDays className="h-3.5 w-3.5" aria-hidden="true" /> Updated
       </dt>
       <dd className="mt-0.5 text-sm font-bold text-slate-800">{formatDateLong(list.updatedAt)}</dd>
     </div>
   </dl>
 );
 
-/** Baris satu anggota daftar dengan aksi hapus. */
+/** Row for one list member with a remove action. */
 const MemberRow = ({ member, onRemove }) => (
   <li className="flex flex-col gap-3 px-4 py-3.5 sm:flex-row sm:items-center">
     <div className="min-w-0 flex-1">
@@ -73,15 +73,15 @@ const MemberRow = ({ member, onRemove }) => (
         className="text-rose-600 hover:bg-rose-50 hover:text-rose-700"
       >
         <Trash2 className="h-4 w-4" aria-hidden="true" />
-        <span className="sr-only sm:not-sr-only">Hapus</span>
+        <span className="sr-only sm:not-sr-only">Remove</span>
       </Button>
     </div>
   </li>
 );
 
 /**
- * Detail satu daftar tersimpan: info, ringkasan, dan daftar kreator anggota.
- * Aksi hapus member & hapus daftar diangkat ke halaman via callback.
+ * Detail of one saved list: info, summary, and the list of member creators.
+ * Remove-member & delete-list actions are lifted to the page via callbacks.
  */
 export const SavedListDetail = ({ list, onBack, onRemoveMember, onRequestDelete }) => {
   const [exportState, setExportState] = useState('idle'); // idle | loading | done
@@ -94,20 +94,20 @@ export const SavedListDetail = ({ list, onBack, onRemoveMember, onRequestDelete 
   };
 
   return (
-    <section aria-labelledby="judul-daftar" className="space-y-4">
+    <section aria-labelledby="list-title" className="space-y-4">
       <button
         type="button"
         onClick={onBack}
         className="inline-flex w-fit items-center gap-1.5 rounded text-sm font-medium text-slate-600 transition-colors hover:text-slate-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
       >
         <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-        Semua Daftar
+        All Lists
       </button>
 
       <Card>
         <CardHeader className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div className="min-w-0">
-            <h2 id="judul-daftar" className="text-lg font-bold text-slate-900">
+            <h2 id="list-title" className="text-lg font-bold text-slate-900">
               {list.name}
             </h2>
             <p className="mt-1 text-sm leading-relaxed text-slate-600">{list.description}</p>
@@ -115,7 +115,7 @@ export const SavedListDetail = ({ list, onBack, onRemoveMember, onRequestDelete 
               <CategoryChip category={list.category} />
               <span className="inline-flex items-center gap-1.5 text-xs text-slate-400">
                 <AvatarStack talents={list.members} imageClassName="h-5 w-5" />
-                {list.memberCount} kreator
+                {list.memberCount} creators
               </span>
             </div>
           </div>
@@ -127,13 +127,13 @@ export const SavedListDetail = ({ list, onBack, onRemoveMember, onRequestDelete 
               disabled={exportState === 'loading'}
             >
               {exportState === 'loading' ? (
-                'Mengunduh…'
+                'Downloading…'
               ) : exportState === 'done' ? (
-                <>✓ Terunduh</>
+                <>✓ Downloaded</>
               ) : (
                 <>
                   <Download className="h-4 w-4" aria-hidden="true" />
-                  Unduh CSV
+                  Download CSV
                 </>
               )}
             </Button>
@@ -144,7 +144,7 @@ export const SavedListDetail = ({ list, onBack, onRemoveMember, onRequestDelete 
               className="text-rose-600 hover:bg-rose-50 hover:text-rose-700"
             >
               <Trash2 className="h-4 w-4" aria-hidden="true" />
-              Hapus Daftar
+              Delete List
             </Button>
           </div>
         </CardHeader>
@@ -155,22 +155,22 @@ export const SavedListDetail = ({ list, onBack, onRemoveMember, onRequestDelete 
 
       <Card>
         <div className="border-b border-slate-100 px-5 py-4">
-          <h3 className="text-sm font-semibold text-slate-800">Anggota Kreator</h3>
+          <h3 className="text-sm font-semibold text-slate-800">Creators</h3>
           <p className="mt-0.5 text-xs text-slate-500">
-            Kreator dalam daftar ini dapat dipakai untuk campaign mendatang.
+            Creators in this list can be used for upcoming campaigns.
           </p>
         </div>
         {list.members.length === 0 ? (
           <EmptyState
             icon={FolderPlus}
-            title="Daftar masih kosong"
-            description="Tambahkan kreator dari Talent Discovery untuk mulai menyusun shortlist campaign Anda."
+            title="List is still empty"
+            description="Add creators from Talent Discovery to start building your campaign shortlist."
             action={
               <Link
                 to="/"
                 className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-primary-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2"
               >
-                Cari Kreator
+                Find Creators
               </Link>
             }
           />

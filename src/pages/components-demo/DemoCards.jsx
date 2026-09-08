@@ -3,10 +3,10 @@ import { ClipboardList, GraduationCap, TrendingUp, Users } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/Card';
 
 const STATS = [
-  { label: 'Total Pengguna', value: '1.248', icon: Users, iconClass: 'bg-indigo-100 text-indigo-600' },
-  { label: 'Registrasi Baru', value: '97', icon: ClipboardList, iconClass: 'bg-emerald-100 text-emerald-600' },
-  { label: 'Pengguna Aktif', value: '64', icon: GraduationCap, iconClass: 'bg-amber-100 text-amber-700' },
-  { label: 'Tingkat Kepuasan', value: '98%', icon: TrendingUp, iconClass: 'bg-rose-100 text-rose-600' },
+  { label: 'Total Users', value: '1.248', icon: Users, iconClass: 'bg-indigo-100 text-indigo-600' },
+  { label: 'New Sign-ups', value: '97', icon: ClipboardList, iconClass: 'bg-emerald-100 text-emerald-600' },
+  { label: 'Active Users', value: '64', icon: GraduationCap, iconClass: 'bg-amber-100 text-amber-700' },
+  { label: 'Satisfaction Rate', value: '98%', icon: TrendingUp, iconClass: 'bg-rose-100 text-rose-600' },
 ];
 
 export const DemoCards = () => (

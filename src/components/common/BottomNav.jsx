@@ -4,13 +4,13 @@ import { BOTTOM_NAV_ITEMS } from '@/constants/navigation';
 import { cn } from '@/utils/cn';
 
 /**
- * Bottom navigation khusus perangkat mobile (di bawah breakpoint lg) agar
- * pengalaman menjelajah menyerupai aplikasi native. Setiap item memakai
- * touch target setinggi minimal 44px (h-14 = 56px).
+ * Bottom navigation for mobile devices (below the lg breakpoint) so browsing
+ * feels like a native app. Every item uses a minimum touch target of 44px
+ * (h-14 = 56px).
  */
 export const BottomNav = () => (
   <nav
-    aria-label="Navigasi bawah"
+    aria-label="Bottom navigation"
     className="pb-safe fixed inset-x-0 bottom-0 z-20 border-t border-slate-200 bg-white/95 backdrop-blur-sm lg:hidden"
   >
     <ul className="grid grid-cols-4">

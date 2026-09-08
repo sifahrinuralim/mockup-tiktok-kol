@@ -18,34 +18,34 @@ const Section = ({ id, title, description, children }) => (
 );
 
 /**
- * Halaman pratinjau seluruh design system (tema Vite + React + Tailwind).
- * Gunakan sebagai referensi visual & titik mulai pengembangan halaman baru.
+ * Preview page for the whole design system (Vite + React + Tailwind theme).
+ * Use it as a visual reference and a starting point for building new pages.
  */
 export default function ComponentsShowcase() {
   return (
     <div className="space-y-6">
       <PageHeader
-        title="Preview Komponen"
-        description="Pratinjau seluruh elemen UI dari design system ini — warna, tombol, formulir, tabel, hingga umpan balik."
+        title="Component Preview"
+        description="Preview every UI element of this design system — colors, buttons, forms, tables, and feedback states."
       />
 
-      <Section id="tombol" title="Tombol & Badge" description="Varian, ukuran, status loading, dan badge status.">
+      <Section id="buttons" title="Buttons & Badges" description="Variants, sizes, loading states, and status badges.">
         <DemoButtons />
       </Section>
 
-      <Section id="formulir" title="Formulir" description="Input, select, textarea, toggle, serta state error dan hint.">
+      <Section id="forms" title="Forms" description="Input, select, textarea, toggle, plus error and hint states.">
         <DemoForms />
       </Section>
 
-      <Section id="kartu" title="Kartu & Statistik" description="Pola kartu statistik pada dashboard.">
+      <Section id="cards" title="Cards & Statistics" description="Statistic-card patterns used on dashboards.">
         <DemoCards />
       </Section>
 
-      <Section id="tabel" title="Tabel Data" description="Komponen tabel generik dengan aksi per baris.">
+      <Section id="tables" title="Data Table" description="Generic table component with per-row actions.">
         <DemoTable />
       </Section>
 
-      <Section id="feedback" title="Umpan Balik UI" description="Spinner, skeleton, empty state, modal, dan dialog konfirmasi.">
+      <Section id="feedback" title="UI Feedback" description="Spinner, skeleton, empty state, modal, and confirmation dialog.">
         <DemoFeedback />
       </Section>
     </div>

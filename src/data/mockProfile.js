@@ -1,58 +1,59 @@
 /**
- * Data dummy profil pengguna & preferensi untuk modul Profile.
- * Identitas inti (nama, email, inisial) disinkronkan dengan CURRENT_USER di
- * constants/app.js agar Navbar dan halaman Profile selalu menampilkan sama.
+ * Mock profile & preferences data for the Profile module.
+ * Core identity (name, email, initials) is kept in sync with CURRENT_USER in
+ * constants/app.js so the Navbar and the Profile page always show the same.
  */
 
 import { CURRENT_USER } from '@/constants/app';
 
-/** Preferensi notifikasi aplikasi (mock) dengan urutan tetap untuk di-render. */
+/** App notification preferences (mock) with a fixed render order. */
 export const NOTIFICATION_PREFERENCES = {
   campaignUpdates: {
-    label: 'Pembaruan Kampanye',
-    description: 'Status brief, konten, dan laporan kampanye yang Anda kelola.',
+    label: 'Campaign Updates',
+    description: 'Status of briefs, content, and reports for campaigns you manage.',
     enabled: true,
   },
   newTalentMatches: {
-    label: 'Kreator Baru yang Cocok',
-    description: 'Rekomendasi kreator baru sesuai daftar & kategori yang Anda ikuti.',
+    label: 'New Matching Creators',
+    description: 'Recommendations for new creators that match the lists & categories you follow.',
     enabled: true,
   },
   weeklyReport: {
-    label: 'Ringkasan Mingguan',
-    description: 'Ringkasan performa kampanye dan kreator setiap hari Senin pagi.',
+    label: 'Weekly Summary',
+    description: 'A performance summary of your campaigns and creators every Monday morning.',
     enabled: false,
   },
   productNews: {
-    label: 'Info Fitur Terbaru',
-    description: 'Pengumuman fitur baru TalentPulse dan tips singkat penggunaannya.',
+    label: 'New Feature Updates',
+    description: 'Announcements about new TalentPulse features and quick usage tips.',
     enabled: false,
   },
 };
 
-/** Pengaturan akun lain (bahasa, zona waktu) yang belum berbentuk toggle. */
+/** Other account settings (language, timezone) that aren't toggles yet. */
 export const PROFILE_SETTINGS = {
-  language: 'Bahasa Indonesia',
-  timezone: 'Asia/Jakarta (WIB)',
+  language: 'English',
+  timezone: 'Asia/Jakarta (UTC+7)',
   weeklyDigest: NOTIFICATION_PREFERENCES.weeklyReport.enabled,
 };
 
 /**
- * Profil lengkap halaman Profile. Field `agency`, `stats`, dan `joinedAt`
- * adalah tambahan mock di luar identitas inti yang dipakai Navbar.
+ * Full profile data for the Profile page. The `agency`, `stats`, and
+ * `joinedAt` fields are extra mock additions beyond the core identity
+ * used by the Navbar.
  */
 export const MOCK_PROFILE = {
   ...CURRENT_USER,
   phone: '+62 812-3456-7890',
   avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=sarah.talentpulse&backgroundColor=d1d4f9',
   joinedAt: '2026-01-12',
-  bio: 'Agency Manager yang bertanggung jawab atas eksekusi campaign TikTok dari brief hingga laporan performa.',
+  bio: 'Agency Manager responsible for running TikTok campaigns end-to-end, from brief to performance reports.',
   agency: {
     name: 'PT TalentPulse Media',
     legalName: 'PT Talentpulse Media Nusantara',
-    address: 'Gedung Creatif Hub Lt. 8, Jl. Jend. Sudirman Kav. 52-53, Jakarta Selatan',
+    address: 'Creatif Hub Building, 8th Floor, Jl. Jend. Sudirman Kav. 52-53, South Jakarta',
     verified: true,
-    teamSize: '12 orang',
+    teamSize: '12 people',
   },
   stats: {
     campaignsManaged: 14,
@@ -62,10 +63,10 @@ export const MOCK_PROFILE = {
   },
 };
 
-/** Riwayat aktivitas akun terakhir (mock). */
+/** Recent account activity history (mock). */
 export const RECENT_ACTIVITY = [
-  { id: 1, label: 'Membuat kampanye “Lip Tint Sensation”', time: '2 hari lalu' },
-  { id: 2, label: 'Menyetujui konten @citraayu untuk “Kuliner Legendaris Nusantara”', time: '4 hari lalu' },
-  { id: 3, label: 'Mengunduh daftar “Beauty Macro Creator”', time: '1 minggu lalu' },
-  { id: 4, label: 'Memperbarui profil agensi', time: '2 minggu lalu' },
+  { id: 1, label: 'Created the “Lip Tint Sensation” campaign', time: '2 days ago' },
+  { id: 2, label: 'Approved @citraayu content for “Nusantara Legendary Food”', time: '4 days ago' },
+  { id: 3, label: 'Downloaded the “Beauty Macro Creator” list', time: '1 week ago' },
+  { id: 4, label: 'Updated the agency profile', time: '2 weeks ago' },
 ];

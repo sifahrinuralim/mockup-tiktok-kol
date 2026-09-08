@@ -2,7 +2,7 @@
   "name": "educore-ui-starter",
   "private": true,
   "version": "0.1.0",
-  "description": "Starter UI bertema Educore — template polosan Vite + React + Tailwind CSS untuk project baru.",
+  "description": "Educore UI starter — a blank Vite + React + Tailwind CSS template for new projects.",
   "type": "module",
   "scripts": {
     "dev": "vite",

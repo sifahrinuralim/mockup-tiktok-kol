@@ -1,22 +1,22 @@
 import { TALENT_CATEGORIES, TALENT_CATEGORY_LIST } from '@/data/mockTalents';
 
 /**
- * Konstanta khusus fitur Talent Discovery:
- * opsi filter/sortir, kelas warna chip kategori, dan nilai mock pendukung.
+ * Talent Discovery feature constants:
+ * filter/sort options, category chip color classes, and supporting mock values.
  */
 
-/** Nilai opsi kategori "semua" pada dropdown filter. */
+/** Value of the "all" category option in the filter dropdown. */
 export const DISCOVERY_CATEGORY_ALL = 'all';
 
-/** Opsi dropdown filter kategori (All + daftar kategori dari mock data). */
+/** Category filter dropdown options (All + list of categories from mock data). */
 export const DISCOVERY_CATEGORY_OPTIONS = [
-  { value: DISCOVERY_CATEGORY_ALL, label: 'Semua Kategori' },
+  { value: DISCOVERY_CATEGORY_ALL, label: 'All Categories' },
   ...TALENT_CATEGORY_LIST.map((category) => ({ value: category, label: category })),
 ];
 
 /**
- * Opsi dropdown "Sort By".
- * `value` menunjuk field metrik pada objek talent (mock data).
+ * "Sort By" dropdown options.
+ * `value` points to a metric field on the talent object (mock data).
  */
 export const DISCOVERY_SORT_OPTIONS = [
   { value: 'totalViews', label: 'Most Views' },
@@ -24,15 +24,15 @@ export const DISCOVERY_SORT_OPTIONS = [
   { value: 'engagementRate', label: 'Highest Engagement Rate' },
 ];
 
-/** Kunci sortir bawaan saat halaman pertama dimuat. */
+/** Default sort key when the page first loads. */
 export const DISCOVERY_DEFAULT_SORT_KEY = 'totalViews';
 
-/** Arah urut bawaan — angka terbesar tampil lebih dulu. */
+/** Default sort direction — largest numbers appear first. */
 export const DISCOVERY_DEFAULT_SORT_DIRECTION = 'desc';
 
 /**
- * Kelas Tailwind untuk chip kategori (dipetakan dari nilai kategori).
- * Ditulis lengkap agar aman dideteksi JIT Tailwind.
+ * Tailwind classes for category chips (mapped from the category value).
+ * Written out in full so the Tailwind JIT scanner picks them up safely.
  */
 export const CATEGORY_CHIP_CLASSES = {
   [TALENT_CATEGORIES.BEAUTY]: 'bg-rose-50 text-rose-700 ring-rose-200',
@@ -43,8 +43,8 @@ export const CATEGORY_CHIP_CLASSES = {
   [TALENT_CATEGORIES.ENTERTAINMENT]: 'bg-amber-50 text-amber-700 ring-amber-200',
 };
 
-/** Jumlah kampanye aktif (mock) — nanti bersumber dari modul Campaign Manager. */
+/** Active campaign count (mock) — later sourced from the Campaign Manager module. */
 export const ACTIVE_CAMPAIGNS_COUNT = 8;
 
-/** Durasi simulasi loading (ms) agar skeleton state sempat terlihat nyata. */
+/** Simulated loading duration (ms) so the skeleton state is visibly rendered. */
 export const SIMULATED_LOAD_DELAY_MS = 700;
