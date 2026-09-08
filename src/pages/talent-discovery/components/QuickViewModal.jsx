@@ -136,9 +136,10 @@ export const QuickViewModal = ({
               {isVerified && <VerifiedMark />}
               <CategoryChip category={talent.category} />
             </div>
-            <p className="mt-1 flex items-center gap-1 truncate text-sm text-slate-500">
+            <p className="truncate text-sm text-slate-500">{talent.username}</p>
+            <p className="mt-1 flex items-center gap-1 truncate text-xs text-slate-400">
               <MapPin className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-              {talent.username} · {talent.location}
+              {talent.location}
             </p>
             {extraBadges.length > 0 && (
               <div className="mt-2 flex flex-wrap gap-1.5">
@@ -152,16 +153,18 @@ export const QuickViewModal = ({
           </div>
         </section>
 
-        <section aria-label="Ringkasan metrik performa" className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
-          {METRIC_TILES.map(({ key, label, icon, iconClassName }) => (
-            <MetricTile
-              key={key}
-              label={label}
-              value={talent[key]}
-              icon={icon}
-              iconClassName={iconClassName}
-            />
-          ))}
+        <section aria-label="Ringkasan metrik performa">
+          <ul role="list" className="grid grid-cols-2 gap-3 md:grid-cols-3 xl:grid-cols-5">
+            {METRIC_TILES.map(({ key, label, icon, iconClassName }) => (
+              <MetricTile
+                key={key}
+                label={label}
+                value={talent[key]}
+                icon={icon}
+                iconClassName={iconClassName}
+              />
+            ))}
+          </ul>
         </section>
 
         <section aria-labelledby="quick-view-trend-title">

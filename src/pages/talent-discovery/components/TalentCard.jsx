@@ -19,7 +19,7 @@ const MAX_VIDEO_THUMBS = 3;
 const CARD_METRIC_FIELDS = [
   { key: 'followers', label: 'Followers' },
   { key: 'avgViewsPerVideo', label: 'Avg Views' },
-  { key: 'engagementRate', label: 'Eng. Rate' },
+  { key: 'engagementRate', label: 'Eng. Rate', valueClassName: 'text-emerald-600' },
 ];
 
 /**
