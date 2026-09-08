@@ -13,7 +13,7 @@ import {
 } from '@/utils/talentEstimate';
 
 import { AddToCampaignButton } from './AddToCampaignButton';
-import { CategoryChip } from './CategoryChip';
+import { CategoryChip } from '@/components/common/CategoryChip';
 import { ViewsTrendChart } from './ViewsTrendChart';
 
 const VERIFIED_BADGE = 'Verified';

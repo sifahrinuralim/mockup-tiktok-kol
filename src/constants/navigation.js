@@ -2,7 +2,7 @@ import { BarChart3, Bookmark, Home, LayoutDashboard, Megaphone, UserRound, Users
 
 /**
  * Daftar menu navigasi utama.
- * Dipakai bersama oleh Sidebar (NavLink) dan PagePlaceholder (judul rute).
+ * Dipakai bersama oleh Sidebar (NavLink) dan komponen lain untuk label rute.
  */
 export const NAV_ITEMS = [
   {

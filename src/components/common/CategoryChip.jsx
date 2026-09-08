@@ -3,8 +3,9 @@ import { cn } from '@/utils/cn';
 import { CATEGORY_CHIP_CLASSES } from '@/constants/discovery';
 
 /**
- * Chip kecil berwarna untuk label kategori kreator.
- * Warna diambil dari CATEGORY_CHIP_CLASSES agar konsisten lintas tampilan.
+ * Chip kecil berwarna untuk label kategori kreator (dipakai lintas halaman:
+ * Talent Discovery, Top Talents, Saved Lists, dan lain-lain).
+ * Warna diambil dari CATEGORY_CHIP_CLASSES agar konsisten di seluruh aplikasi.
  */
 export const CategoryChip = ({ category, className }) => (
   <span

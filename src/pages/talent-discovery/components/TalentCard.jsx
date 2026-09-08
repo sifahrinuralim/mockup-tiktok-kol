@@ -7,7 +7,7 @@ import { Card, CardContent } from '@/components/ui/Card';
 import { cn } from '@/utils/cn';
 
 import { AddToCampaignButton } from './AddToCampaignButton';
-import { CategoryChip } from './CategoryChip';
+import { CategoryChip } from '@/components/common/CategoryChip';
 import { QuickViewModal } from './QuickViewModal';
 import { TalentMetricList } from './TalentMetricList';
 

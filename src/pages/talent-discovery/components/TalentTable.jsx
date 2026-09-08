@@ -1,14 +1,13 @@
-import { ArrowDown, ArrowUp, ArrowUpDown, BadgeCheck } from 'lucide-react';
+import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react';
 
+import { CategoryChip } from '@/components/common/CategoryChip';
+import { TalentIdentity } from '@/components/common/TalentIdentity';
 import { Badge } from '@/components/ui/Badge';
 import { Card } from '@/components/ui/Card';
 import { Table, TBody, Td, Th, THead, Tr } from '@/components/ui/Table';
 import { cn } from '@/utils/cn';
 
-import { CategoryChip } from './CategoryChip';
 import { TalentMetricList } from './TalentMetricList';
-
-const VERIFIED_BADGE = 'Verified';
 
 /** Kolom numerik yang bisa diurutkan lewat header tabel. */
 const SORTABLE_COLUMNS = [
@@ -16,33 +15,6 @@ const SORTABLE_COLUMNS = [
   { key: 'totalViews', label: 'Total Views' },
   { key: 'engagementRate', label: 'Engagement Rate' },
 ];
-
-/** Tanda centang di samping nama kreator terverifikasi. */
-const VerifiedMark = () => (
-  <>
-    <BadgeCheck className="h-4 w-4 shrink-0 text-cyan-600" aria-hidden="true" />
-    <span className="sr-only">Terverifikasi</span>
-  </>
-);
-
-/** Identitas kreator (avatar + nama + username) yang dipakai baris tabel/list. */
-const TalentIdentity = ({ talent, imageClassName }) => (
-  <div className="flex min-w-0 items-center gap-3">
-    <img
-      src={talent.avatarUrl}
-      alt={`Foto ${talent.name}`}
-      loading="lazy"
-      className={cn('shrink-0 object-cover ring-1 ring-slate-200', imageClassName)}
-    />
-    <div className="min-w-0">
-      <p className="flex items-center gap-1 font-medium text-slate-800">
-        <span className="truncate">{talent.name}</span>
-        {talent.badges.includes(VERIFIED_BADGE) && <VerifiedMark />}
-      </p>
-      <p className="truncate text-xs text-slate-500">{talent.username}</p>
-    </div>
-  </div>
-);
 
 /** Header kolom numerik yang bisa diklik untuk mengurutkan hasil. */
 const SortableHeader = ({ column, sortKey, sortDirection, onSortHeader }) => {

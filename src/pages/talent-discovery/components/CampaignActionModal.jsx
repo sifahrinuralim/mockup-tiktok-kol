@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button';
 import { Modal } from '@/components/ui/Modal';
 import { formatCompactNumber, parseCompactNumber } from '@/utils/metrics';
 
-import { CategoryChip } from './CategoryChip';
+import { CategoryChip } from '@/components/common/CategoryChip';
 
 const VERIFIED_BADGE = 'Verified';
 
