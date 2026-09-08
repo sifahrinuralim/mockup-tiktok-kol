@@ -38,7 +38,7 @@ export const AppLayout = () => {
   }, [sidebarOpen]);
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-slate-200">
+    <div className="min-h-screen bg-slate-100 font-sans text-slate-900">
       <a
         href="#konten-utama"
         onClick={(event) => {

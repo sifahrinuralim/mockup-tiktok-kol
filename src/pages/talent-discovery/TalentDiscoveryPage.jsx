@@ -88,18 +88,18 @@ export default function TalentDiscoveryPage() {
       <section aria-labelledby="heading-jelajahi-kreator" className="space-y-4">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 id="heading-jelajahi-kreator" className="text-lg font-semibold text-slate-100">
+            <h2 id="heading-jelajahi-kreator" className="text-lg font-semibold text-slate-900">
               Jelajahi Kreator
             </h2>
-            <p className="mt-0.5 text-sm text-slate-400">
+            <p className="mt-0.5 text-sm text-slate-600">
               Filter berdasarkan kategori, urutkan metrik, dan ganti mode tampilan.
             </p>
           </div>
           {isLoading ? (
-            <p className="text-sm text-slate-500">Memuat hasil…</p>
+            <p className="text-sm text-slate-600">Memuat hasil…</p>
           ) : (
-            <p aria-live="polite" className="text-sm text-slate-400">
-              Menampilkan <span className="font-semibold text-slate-100">{results.length}</span> dari{' '}
+            <p aria-live="polite" className="text-sm text-slate-600">
+              Menampilkan <span className="font-semibold text-slate-900">{results.length}</span> dari{' '}
               {totalCount} kreator
             </p>
           )}

@@ -18,7 +18,7 @@ export const Sidebar = ({ open = false, onClose }) => {
       {/* Backdrop — hanya tampil untuk drawer mobile */}
       {open && (
         <div
-          className="fixed inset-x-0 bottom-0 top-16 z-30 bg-slate-950/60 backdrop-blur-sm lg:hidden"
+          className="fixed inset-x-0 bottom-0 top-16 z-30 bg-slate-900/50 backdrop-blur-sm lg:hidden"
           onClick={onClose}
           aria-hidden="true"
         />
@@ -27,7 +27,7 @@ export const Sidebar = ({ open = false, onClose }) => {
       <aside
         aria-label="Navigasi utama"
         className={cn(
-          'fixed bottom-0 left-0 top-16 z-40 flex w-64 flex-col border-r border-white/10 bg-slate-950/95 transition-transform duration-200 ease-out lg:translate-x-0',
+          'fixed bottom-0 left-0 top-16 z-40 flex w-64 flex-col border-r border-slate-200 bg-white transition-transform duration-200 ease-out lg:translate-x-0',
           open ? 'translate-x-0' : '-translate-x-full',
         )}
       >
@@ -36,7 +36,7 @@ export const Sidebar = ({ open = false, onClose }) => {
           <button
             type="button"
             onClick={onClose}
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             aria-label="Tutup menu navigasi"
           >
             <X className="h-5 w-5" aria-hidden="true" />
@@ -56,10 +56,10 @@ export const Sidebar = ({ open = false, onClose }) => {
                   onClick={onClose}
                   className={({ isActive }) =>
                     cn(
-                      'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60',
+                      'group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
                       isActive
-                        ? 'bg-white/[0.07] text-white'
-                        : 'text-slate-400 hover:bg-white/5 hover:text-slate-100',
+                        ? 'bg-cyan-50 text-cyan-800'
+                        : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900',
                     )
                   }
                 >
@@ -75,8 +75,8 @@ export const Sidebar = ({ open = false, onClose }) => {
                         className={cn(
                           'h-5 w-5 shrink-0 transition-colors',
                           isActive
-                            ? 'text-cyan-300'
-                            : 'text-slate-500 group-hover:text-slate-300',
+                            ? 'text-cyan-600'
+                            : 'text-slate-400 group-hover:text-slate-600',
                         )}
                         aria-hidden="true"
                       />
@@ -89,9 +89,9 @@ export const Sidebar = ({ open = false, onClose }) => {
           </ul>
         </nav>
 
-        <div className="border-t border-white/10 px-5 py-4">
+        <div className="border-t border-slate-200 px-5 py-4">
           <p className="text-xs leading-relaxed text-slate-500">© {year} {APP.brand}</p>
-          <p className="mt-0.5 text-xs text-slate-600">Mockup frontend — UI only.</p>
+          <p className="mt-0.5 text-xs text-slate-500">Mockup frontend — UI only.</p>
         </div>
       </aside>
     </>

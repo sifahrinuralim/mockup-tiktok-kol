@@ -14,7 +14,7 @@ export const CampaignSelectionBar = ({ selectedCount, onClear, onExport, onCreat
 
   return (
     <div className="dock-offset fixed inset-x-0 z-50 px-4 sm:px-6 lg:bottom-6">
-      <div className="animate-modal-in mx-auto w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-950/30 sm:p-3.5">
+      <div className="animate-modal-in mx-auto w-full max-w-2xl rounded-2xl border border-slate-200 bg-white p-4 shadow-2xl shadow-slate-900/15 sm:p-3.5">
         <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between lg:gap-4">
           {/* Ringkasan jumlah talent terpilih */}
           <div className="flex w-full min-w-0 items-center gap-3 lg:w-auto">
