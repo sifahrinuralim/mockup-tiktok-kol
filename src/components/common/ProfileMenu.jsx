@@ -69,7 +69,7 @@ export const ProfileMenu = () => {
               type="button"
               role="menuitem"
               onClick={() => setOpen(false)}
-              className="flex w-full items-center gap-2.5 px-4 py-2.5 text-sm text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+              className="flex w-full items-center gap-2.5 px-4 py-3 text-sm text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
             >
               <item.icon className="h-4 w-4 text-slate-500" aria-hidden="true" />
               {item.label}
@@ -82,7 +82,7 @@ export const ProfileMenu = () => {
             type="button"
             role="menuitem"
             onClick={() => setOpen(false)}
-            className="flex w-full items-center gap-2.5 px-4 py-2.5 text-sm text-rose-400 transition-colors hover:bg-rose-500/10 hover:text-rose-300"
+            className="flex w-full items-center gap-2.5 px-4 py-3 text-sm text-rose-400 transition-colors hover:bg-rose-500/10 hover:text-rose-300"
           >
             <LogOut className="h-4 w-4" aria-hidden="true" />
             Keluar

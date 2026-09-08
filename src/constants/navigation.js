@@ -1,4 +1,4 @@
-import { BarChart3, Bookmark, LayoutDashboard, Megaphone, Users } from 'lucide-react';
+import { BarChart3, Bookmark, Home, LayoutDashboard, Megaphone, UserRound, Users } from 'lucide-react';
 
 /**
  * Daftar menu navigasi utama.
@@ -36,4 +36,21 @@ export const NAV_ITEMS = [
     icon: Bookmark,
     description: 'Kumpulan daftar kreator yang Anda simpan untuk kampanye mendatang.',
   },
+  {
+    to: '/profile',
+    label: 'Profile',
+    icon: UserRound,
+    description: 'Kelola profil pengguna, preferensi akun, dan pengaturan lainnya.',
+  },
+];
+
+/**
+ * Item bottom navigation untuk layar mobile (di bawah lg).
+ * Subset navigasi utama dengan label ringkas ala aplikasi native.
+ */
+export const BOTTOM_NAV_ITEMS = [
+  { to: '/', label: 'Home', icon: Home, end: true },
+  { to: '/top-talents', label: 'Talents', icon: Users },
+  { to: '/saved-lists', label: 'Saved', icon: Bookmark },
+  { to: '/profile', label: 'Profile', icon: UserRound },
 ];

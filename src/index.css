@@ -68,3 +68,19 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Area aman (notch/home indicator) pada perangkat mobile */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/*
+ * Offset bawah untuk elemen mengambang di atas Bottom Navigation mobile
+ * (tinggi nav 3.5rem + jarak 1rem + area aman). Hanya aktif di bawah lg;
+ * pada lg+ elemen memakai `bottom-6` biasa dari Tailwind.
+ */
+@media (max-width: 1023px) {
+  .dock-offset {
+    bottom: calc(4.5rem + env(safe-area-inset-bottom));
+  }
+}

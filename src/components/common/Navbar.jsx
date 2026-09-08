@@ -62,7 +62,7 @@ export const Navbar = ({ onMenuClick }) => {
         <button
           type="button"
           onClick={onMenuClick}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 lg:hidden"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 lg:hidden"
           aria-label="Buka menu navigasi"
         >
           <Menu className="h-5 w-5" aria-hidden="true" />
@@ -82,7 +82,7 @@ export const Navbar = ({ onMenuClick }) => {
             onClick={() => setMobileSearchOpen((prev) => !prev)}
             aria-label={mobileSearchOpen ? 'Tutup pencarian' : 'Buka pencarian'}
             aria-expanded={mobileSearchOpen}
-            className="flex h-9 w-9 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 md:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-300 transition-colors hover:bg-white/5 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/60 md:hidden"
           >
             {mobileSearchOpen ? (
               <X className="h-5 w-5" aria-hidden="true" />

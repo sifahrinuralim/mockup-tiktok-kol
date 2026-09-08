@@ -36,7 +36,7 @@ export const Sidebar = ({ open = false, onClose }) => {
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-2 text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
             aria-label="Tutup menu navigasi"
           >
             <X className="h-5 w-5" aria-hidden="true" />

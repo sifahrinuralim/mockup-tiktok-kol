@@ -26,18 +26,16 @@ const CARD_METRIC_FIELDS = [
  * Kartu profil kreator untuk grid view.
  * Menampilkan identitas, kategori, metrik utama, tiga video terakhir dengan
  * overlay jumlah view, serta aksi "Add to Campaign" & "View Details" (Quick View).
+ * Status pilihan campaign diangkat ke halaman (`isInCampaign`/`onToggleCampaign`).
  */
-export const TalentCard = ({ talent, className }) => {
+export const TalentCard = ({ talent, isInCampaign = false, onToggleCampaign = () => {}, className }) => {
   const [isQuickViewOpen, setIsQuickViewOpen] = useState(false);
-  const [isAddedToCampaign, setIsAddedToCampaign] = useState(false);
 
   const isVerified = talent.badges.includes(VERIFIED_BADGE);
   const extraBadges = talent.badges.filter((badge) => badge !== VERIFIED_BADGE);
   const visibleBadges = extraBadges.slice(0, MAX_NON_VERIFIED_BADGES);
   const hiddenBadgeCount = extraBadges.length - visibleBadges.length;
   const latestVideos = talent.recentVideos.slice(0, MAX_VIDEO_THUMBS);
-
-  const handleToggleCampaign = () => setIsAddedToCampaign((current) => !current);
 
   return (
     <>
@@ -136,8 +134,8 @@ export const TalentCard = ({ talent, className }) => {
           {/* Aksi: tambah campaign & lihat detail */}
           <div className="mt-auto flex flex-col gap-2 border-t border-slate-100 pt-4">
             <AddToCampaignButton
-              isInCampaign={isAddedToCampaign}
-              onClick={handleToggleCampaign}
+              isInCampaign={isInCampaign}
+              onClick={onToggleCampaign}
               size="sm"
               className="w-full"
             />
@@ -146,7 +144,7 @@ export const TalentCard = ({ talent, className }) => {
               variant="outline"
               size="sm"
               onClick={() => setIsQuickViewOpen(true)}
-              className="w-full"
+              className="min-h-11 w-full"
             >
               <Eye className="h-4 w-4 shrink-0" aria-hidden="true" />
               View Details
@@ -159,8 +157,8 @@ export const TalentCard = ({ talent, className }) => {
         talent={talent}
         open={isQuickViewOpen}
         onClose={() => setIsQuickViewOpen(false)}
-        isInCampaign={isAddedToCampaign}
-        onToggleCampaign={handleToggleCampaign}
+        isInCampaign={isInCampaign}
+        onToggleCampaign={onToggleCampaign}
       />
     </>
   );

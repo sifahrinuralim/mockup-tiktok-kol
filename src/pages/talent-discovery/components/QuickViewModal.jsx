@@ -116,7 +116,7 @@ export const QuickViewModal = ({
       fullScreenMobile
       footer={
         <>
-          <Button type="button" variant="outline" onClick={onClose}>
+          <Button type="button" variant="outline" onClick={onClose} className="min-h-11">
             Tutup
           </Button>
           <AddToCampaignButton isInCampaign={isInCampaign} onClick={onToggleCampaign} />

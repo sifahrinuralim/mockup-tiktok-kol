@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { RotateCcw, SearchX } from 'lucide-react';
 
 import { PageHeader } from '@/components/common/PageHeader';
@@ -7,10 +8,13 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { Skeleton } from '@/components/ui/Skeleton';
 import { MOCK_TALENTS } from '@/data/mockTalents';
 
+import { CampaignActionModal } from './components/CampaignActionModal';
+import { CampaignSelectionBar } from './components/CampaignSelectionBar';
 import { DiscoveryStats } from './components/DiscoveryStats';
 import { DiscoveryToolbar } from './components/DiscoveryToolbar';
 import { TalentGrid } from './components/TalentGrid';
 import { TalentTable } from './components/TalentTable';
+import { useCampaignSelection } from './useCampaignSelection';
 import { useTalentDirectory } from './useTalentDirectory';
 
 /** Skeleton daftar hasil yang ditampilkan selama simulasi loading berjalan. */
@@ -46,8 +50,14 @@ const ResultsSkeleton = () => (
  * Halaman Utama — Talent Discovery Dashboard.
  * Menampilkan ringkasan statistik, pencarian/filter kreator, dan hasil
  * dalam mode grid maupun tabel (responsif). Seluruh data dari mock.
+ * Seleksi "Add to Campaign" diangkat ke halaman agar Floating Selection Bar
+ * bisa menjumlahkan kreator terpilih lintas kartu/filter.
  */
 export default function TalentDiscoveryPage() {
+  const [actionModal, setActionModal] = useState(null);
+  const { selectedIds, selectedCount, selectedTalents, toggleSelection, clearSelection } =
+    useCampaignSelection(MOCK_TALENTS);
+
   const {
     query,
     setQuery,
@@ -125,7 +135,7 @@ export default function TalentDiscoveryPage() {
             />
           </Card>
         ) : viewMode === 'grid' ? (
-          <TalentGrid talents={results} />
+          <TalentGrid talents={results} selectedIds={selectedIds} onToggleCampaign={toggleSelection} />
         ) : (
           <TalentTable
             talents={results}
@@ -135,6 +145,20 @@ export default function TalentDiscoveryPage() {
           />
         )}
       </section>
+
+      {/* Floating bar shortlist & popup dummy aksinya */}
+      <CampaignSelectionBar
+        selectedCount={selectedCount}
+        onClear={clearSelection}
+        onExport={() => setActionModal('export')}
+        onCreate={() => setActionModal('create')}
+      />
+      <CampaignActionModal
+        mode={actionModal}
+        open={Boolean(actionModal)}
+        onClose={() => setActionModal(null)}
+        talents={selectedTalents}
+      />
     </div>
   );
 }

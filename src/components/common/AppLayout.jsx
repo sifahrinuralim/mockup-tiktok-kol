@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
 
+import { BottomNav } from '@/components/common/BottomNav';
 import { Navbar } from '@/components/common/Navbar';
 import { Sidebar } from '@/components/common/Sidebar';
 
@@ -52,13 +53,14 @@ export const AppLayout = () => {
 
       <Navbar onMenuClick={() => setSidebarOpen(true)} />
       <Sidebar open={sidebarOpen} onClose={() => setSidebarOpen(false)} />
+      <BottomNav />
 
       {/* Konten utama — digeser ke kanan pada lg karena sidebar menetap */}
       <div className="pt-16 lg:pl-64">
         <main
           id="konten-utama"
           tabIndex={-1}
-          className="mx-auto w-full max-w-7xl scroll-mt-20 px-4 py-6 outline-none sm:px-6 lg:px-8 lg:py-8"
+          className="mx-auto w-full max-w-7xl scroll-mt-20 px-4 pb-28 pt-6 outline-none sm:px-6 lg:px-8 lg:pb-8 lg:pt-8"
         >
           <Outlet />
         </main>

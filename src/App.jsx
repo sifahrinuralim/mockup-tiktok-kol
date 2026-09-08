@@ -30,6 +30,7 @@ export default function App() {
           <Route path="/campaigns" element={<PagePlaceholder />} />
           <Route path="/analytics" element={<PagePlaceholder />} />
           <Route path="/saved-lists" element={<PagePlaceholder />} />
+          <Route path="/profile" element={<PagePlaceholder />} />
 
           {/* Peraga design system starter (dev reference) */}
           <Route path="/ui-kit" element={<ComponentsShowcase />} />

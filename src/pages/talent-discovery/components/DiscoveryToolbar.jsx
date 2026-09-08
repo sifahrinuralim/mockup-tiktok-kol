@@ -46,14 +46,14 @@ export const DiscoveryToolbar = ({
           onChange={(event) => onQueryChange(event.target.value)}
           placeholder="Cari nama atau @username…"
           aria-label="Cari kreator berdasarkan nama atau username"
-          className="pl-10"
+          className="min-h-11 pl-10"
           rightElement={
             query ? (
               <button
                 type="button"
                 onClick={() => onQueryChange('')}
                 aria-label="Bersihkan kata kunci pencarian"
-                className="rounded p-0.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
+                className="rounded-md p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
               >
                 <X className="h-4 w-4" aria-hidden="true" />
               </button>
@@ -69,7 +69,7 @@ export const DiscoveryToolbar = ({
             value={category}
             onChange={(event) => onCategoryChange(event.target.value)}
             aria-label="Filter kategori kreator"
-            className="bg-white"
+            className="min-h-11 bg-white"
           >
             {DISCOVERY_CATEGORY_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -84,7 +84,7 @@ export const DiscoveryToolbar = ({
             value={sortKey}
             onChange={(event) => onSortChange(event.target.value)}
             aria-label="Urutkan hasil"
-            className="bg-white"
+            className="min-h-11 bg-white"
           >
             {DISCOVERY_SORT_OPTIONS.map((option) => (
               <option key={option.value} value={option.value}>
@@ -95,7 +95,7 @@ export const DiscoveryToolbar = ({
         </div>
 
         {activeFilterCount > 0 && (
-          <Button variant="ghost" size="sm" onClick={onResetFilters} className="shrink-0">
+          <Button variant="ghost" size="sm" onClick={onResetFilters} className="min-h-11 shrink-0">
             <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
             Reset
           </Button>
@@ -118,7 +118,7 @@ export const DiscoveryToolbar = ({
                 aria-pressed={isActive}
                 title={label}
                 className={cn(
-                  'inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
+                  'inline-flex min-h-11 items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
                   isActive
                     ? 'bg-primary-600 text-white shadow-sm'
                     : 'text-slate-500 hover:bg-slate-100 hover:text-slate-700',
