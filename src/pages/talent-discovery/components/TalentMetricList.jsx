@@ -1,6 +1,6 @@
 import { cn } from '@/utils/cn';
 
-/** Kolom metrik yang ditampilkan pada kartu/list kompak. */
+/** Kolom metrik bawaan yang ditampilkan pada kartu/list kompak. */
 const METRIC_FIELDS = [
   { key: 'followers', label: 'Followers' },
   { key: 'totalViews', label: 'Total Views' },
@@ -8,12 +8,13 @@ const METRIC_FIELDS = [
 ];
 
 /**
- * Grid tiga metrik utama kreator (followers, total views, engagement rate).
+ * Grid tiga metrik kreator (default: followers, total views, engagement rate).
+ * Kolom bisa diganti lewat prop `fields` (mis. kartu memakai avg views).
  * Nilai diambil langsung dari field string siap-tampil di mock data.
  */
-export const TalentMetricList = ({ talent, className }) => (
+export const TalentMetricList = ({ talent, fields = METRIC_FIELDS, className }) => (
   <dl className={cn('grid grid-cols-3 gap-2', className)}>
-    {METRIC_FIELDS.map(({ key, label }) => (
+    {fields.map(({ key, label }) => (
       <div key={key} className="min-w-0 text-center">
         <dt className="truncate text-[11px] font-medium uppercase tracking-wide text-slate-400">
           {label}

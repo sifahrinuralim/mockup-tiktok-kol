@@ -15,8 +15,20 @@ const modalSizes = {
  * Modal generik yang dapat diakses (accessible):
  * - Tutup via tombol ×, klik backdrop, atau tombol Escape.
  * - Mengunci scroll body selama modal terbuka.
+ * - Prop `fullScreenMobile` membuat modal tampil full-screen di mobile dan
+ *   kembali menjadi dialog terpusat sejak breakpoint `sm` (dipakai Quick View).
  */
-export const Modal = ({ open, onClose, title, description, size = 'md', footer, children, className }) => {
+export const Modal = ({
+  open,
+  onClose,
+  title,
+  description,
+  size = 'md',
+  fullScreenMobile = false,
+  footer,
+  children,
+  className,
+}) => {
   useEffect(() => {
     if (!open) return undefined;
 
@@ -36,8 +48,21 @@ export const Modal = ({ open, onClose, title, description, size = 'md', footer, 
 
   if (!open) return null;
 
+  const sizeClassName = modalSizes[size] ?? modalSizes.md;
+  const maxWidthClassName = fullScreenMobile
+    ? sizeClassName.replace('max-w-', 'sm:max-w-')
+    : sizeClassName;
+  const shapeClassName = fullScreenMobile
+    ? 'h-full w-full rounded-none sm:h-auto sm:max-h-[90vh] sm:rounded-2xl'
+    : 'max-h-[90vh] w-full rounded-2xl';
+
   return createPortal(
-    <div className="animate-fade-in fixed inset-0 z-[60] flex items-center justify-center p-4 sm:p-6">
+    <div
+      className={cn(
+        'animate-fade-in fixed inset-0 z-[60] flex items-center justify-center',
+        fullScreenMobile ? 'p-0 sm:p-6' : 'p-4 sm:p-6',
+      )}
+    >
       <div
         className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
         onClick={onClose}
@@ -49,8 +74,9 @@ export const Modal = ({ open, onClose, title, description, size = 'md', footer, 
         aria-modal="true"
         aria-labelledby="educore-modal-title"
         className={cn(
-          'animate-modal-in relative flex max-h-[90vh] w-full flex-col overflow-hidden rounded-2xl bg-white shadow-2xl',
-          modalSizes[size],
+          'animate-modal-in relative flex flex-col overflow-hidden bg-white shadow-2xl',
+          shapeClassName,
+          maxWidthClassName,
           className,
         )}
       >
