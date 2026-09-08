@@ -6,6 +6,7 @@ import { Spinner } from '@/components/ui/Spinner';
 
 const PagePlaceholder = lazy(() => import('@/pages/PagePlaceholder'));
 const ComponentsShowcase = lazy(() => import('@/pages/ComponentsShowcase'));
+const TalentDiscoveryPage = lazy(() => import('@/pages/talent-discovery/TalentDiscoveryPage'));
 
 /** Fallback saat halaman lazy masih dimuat. */
 const PageFallback = () => (
@@ -24,7 +25,7 @@ export default function App() {
     <Suspense fallback={<PageFallback />}>
       <Routes>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<PagePlaceholder />} />
+          <Route path="/" element={<TalentDiscoveryPage />} />
           <Route path="/top-talents" element={<PagePlaceholder />} />
           <Route path="/campaigns" element={<PagePlaceholder />} />
           <Route path="/analytics" element={<PagePlaceholder />} />
