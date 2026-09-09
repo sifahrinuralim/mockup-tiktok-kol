@@ -20,7 +20,7 @@ const PageFallback = () => (
 );
 
 /**
- * TalentPulse TikTok Agency app routing.
+ * XYZ Admin app routing.
  * Product pages live under AppLayout; each module already has its own
  * page with its own mock data.
  */

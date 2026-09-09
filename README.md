@@ -1,4 +1,4 @@
-# TalentPulse TikTok Agency
+# XYZ Admin
 
 Frontend mockup for a TikTok creator & campaign management platform, built on
 the **Educore UI Starter** theme — Vite + React 18 + Tailwind CSS v3.

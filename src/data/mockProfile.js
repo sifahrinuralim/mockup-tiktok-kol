@@ -25,7 +25,7 @@ export const NOTIFICATION_PREFERENCES = {
   },
   productNews: {
     label: 'New Feature Updates',
-    description: 'Announcements about new TalentPulse features and quick usage tips.',
+    description: 'Announcements about new XYZ Admin features and quick usage tips.',
     enabled: false,
   },
 };
@@ -45,12 +45,12 @@ export const PROFILE_SETTINGS = {
 export const MOCK_PROFILE = {
   ...CURRENT_USER,
   phone: '+62 812-3456-7890',
-  avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=fahri.talentpulse&backgroundColor=d1d4f9',
+  avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=fahri.xyzadmin&backgroundColor=d1d4f9',
   joinedAt: '2026-01-12',
   bio: 'Agency Manager responsible for running TikTok campaigns end-to-end, from brief to performance reports.',
   agency: {
-    name: 'PT TalentPulse Media',
-    legalName: 'PT Talentpulse Media Nusantara',
+    name: 'PT XYZ Admin Media',
+    legalName: 'PT XYZ Admin Media Nusantara',
     address: 'Creatif Hub Building, 8th Floor, Jl. Jend. Sudirman Kav. 52-53, South Jakarta',
     verified: true,
     teamSize: '12 people',

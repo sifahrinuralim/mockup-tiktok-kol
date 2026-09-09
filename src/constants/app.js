@@ -1,11 +1,10 @@
 /**
- * TalentPulse TikTok Agency app identity.
+ * XYZ Admin app identity.
  * These values are used for the brand in the Navbar & Sidebar.
  */
 export const APP = {
-  name: 'TalentPulse',
-  tagline: 'TikTok Agency',
-  brand: 'TalentPulse TikTok Agency',
+  name: 'XYZ Admin',
+  brand: 'XYZ Admin',
 };
 
 /**
@@ -13,7 +12,7 @@ export const APP = {
  */
 export const CURRENT_USER = {
   name: 'Fahri Nuralim',
-  email: 'fahri@talentpulse.id',
+  email: 'fahri@xyzadmin.id',
   role: 'Agency Manager',
   initials: 'FN',
 };

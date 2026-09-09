@@ -15,7 +15,7 @@ const searchInputClasses = cn(
   'focus:border-primary-500 focus:bg-white focus:ring-primary-500/20',
 );
 
-/** App brand: logo mark + name & tagline. */
+/** App brand: logo mark + name (and an optional tagline). */
 const Brand = () => (
   <Link
     to="/"
@@ -27,7 +27,9 @@ const Brand = () => (
     </span>
     <span className="min-w-0 leading-tight">
       <span className="block truncate text-sm font-bold text-slate-900">{APP.name}</span>
-      <span className="block truncate text-[11px] text-slate-500">{APP.tagline}</span>
+      {APP.tagline && (
+        <span className="block truncate text-[11px] text-slate-500">{APP.tagline}</span>
+      )}
     </span>
   </Link>
 );
