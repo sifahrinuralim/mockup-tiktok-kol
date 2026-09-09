@@ -7,7 +7,7 @@ export const NOTIFICATIONS = [
   {
     id: 1,
     type: 'campaign',
-    title: 'Campaign “Glow Up x @rara.may” approved',
+    title: 'Campaign “Glow Up x @johndoe” approved',
     body: 'Creator content goes live Monday at 09:00 (GMT+7).',
     time: '12 minutes ago',
     unread: true,
@@ -15,7 +15,7 @@ export const NOTIFICATIONS = [
   {
     id: 2,
     type: 'metric',
-    title: '@devina.erlita metrics are up',
+    title: '@jamestaylor metrics are up',
     body: 'Engagement rate is up 24% compared to last week.',
     time: '1 hour ago',
     unread: true,

@@ -11,10 +11,10 @@ const STATUS_STYLES = {
 };
 
 const ROWS = [
-  { nama: 'Budi Santoso', nis: '2025001', status: 'Active' },
-  { nama: 'Siti Rahmawati', nis: '2025002', status: 'Pending' },
-  { nama: 'Andi Wijaya', nis: '2025003', status: 'Graduated' },
-  { nama: 'Dewi Lestari', nis: '2025004', status: 'Left' },
+  { nama: 'John Doe', nis: '2025001', status: 'Active' },
+  { nama: 'Jane Smith', nis: '2025002', status: 'Pending' },
+  { nama: 'Michael Johnson', nis: '2025003', status: 'Graduated' },
+  { nama: 'Emily Davis', nis: '2025004', status: 'Left' },
 ];
 
 export const DemoTable = () => (

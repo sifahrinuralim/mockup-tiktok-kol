@@ -45,7 +45,7 @@ export const PROFILE_SETTINGS = {
 export const MOCK_PROFILE = {
   ...CURRENT_USER,
   phone: '+62 812-3456-7890',
-  avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=sarah.talentpulse&backgroundColor=d1d4f9',
+  avatarUrl: 'https://api.dicebear.com/9.x/adventurer/svg?seed=fahri.talentpulse&backgroundColor=d1d4f9',
   joinedAt: '2026-01-12',
   bio: 'Agency Manager responsible for running TikTok campaigns end-to-end, from brief to performance reports.',
   agency: {
@@ -66,7 +66,7 @@ export const MOCK_PROFILE = {
 /** Recent account activity history (mock). */
 export const RECENT_ACTIVITY = [
   { id: 1, label: 'Created the “Lip Tint Sensation” campaign', time: '2 days ago' },
-  { id: 2, label: 'Approved @citraayu content for “Nusantara Legendary Food”', time: '4 days ago' },
+  { id: 2, label: 'Approved @lauraclark content for “Nusantara Legendary Food”', time: '4 days ago' },
   { id: 3, label: 'Downloaded the “Beauty Macro Creator” list', time: '1 week ago' },
   { id: 4, label: 'Updated the agency profile', time: '2 weeks ago' },
 ];

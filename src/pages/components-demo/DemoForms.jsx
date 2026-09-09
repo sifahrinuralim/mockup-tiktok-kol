@@ -13,11 +13,11 @@ export const DemoForms = () => {
   return (
     <div className="grid gap-x-8 gap-y-6 lg:grid-cols-2">
       <div className="space-y-5">
-        <Input label="Full Name" placeholder="e.g: Budi Santoso" />
+        <Input label="Full Name" placeholder="e.g: John Doe" />
         <Input
           label="Email"
           type="email"
-          defaultValue="budi@example.id"
+          defaultValue="johndoe@example.id"
           hint="Email will not be published."
         />
         <Input

@@ -87,7 +87,7 @@ const buildDraftCampaign = (form, nextId) => ({
   endDate: form.endDate || null,
   kpi: 'Not set yet',
   goal: form.goal,
-  manager: { name: 'Sarah Rahmawati', initials: 'SR' },
+  manager: { name: 'Fahri Nuralim', initials: 'FN' },
   code: `CMP-${String(nextId).padStart(3, '0')}`,
 });
 

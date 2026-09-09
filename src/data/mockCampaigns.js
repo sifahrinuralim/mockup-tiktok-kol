@@ -10,7 +10,7 @@
 import { MOCK_TALENTS } from '@/data/mockTalents';
 
 /** Default manager for all mock campaigns (mockup — no real auth yet). */
-const DEFAULT_MANAGER = { name: 'Sarah Rahmawati', initials: 'SR' };
+const DEFAULT_MANAGER = { name: 'Fahri Nuralim', initials: 'FN' };
 
 /** Finds the full talent object from the creator library by id. */
 const findTalentById = (id) => MOCK_TALENTS.find((talent) => talent.id === id);
