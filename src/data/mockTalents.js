@@ -1,5 +1,6 @@
 /**
- * Mock TikTok creators data for the TalentPulse platform.
+ * Mock TikTok cr 
+ * eators data for the TalentPulse platform.
  *
  * Data format notes:
  * - Metric values (followers, totalViews, etc.) are intentionally stored as
